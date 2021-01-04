@@ -1,0 +1,193 @@
+@import 'styles/every.scss';
+
+
+body {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include color-body-each-theme(background-color, body);
+    @include color-body-each-theme(color, basic__5);
+
+    // use div.app as body (about colors)
+
+    width: 100%; min-width: $device-xs__min-width;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    
+    position: relative;
+    
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+}
+
+div {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: transparent;
+    color: inherit;
+    //@include color-body-each-theme(color, basic__5);
+
+    width: 100%;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    position: relative;
+    z-index: inherit;
+
+    line-height: 1.4;  // it should be based on fonts
+    overflow: visible;
+
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+
+
+}
+
+
+button {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+
+    @include color-each-theme(color, basic__5, $is-module: false);
+
+    border: 0px none transparent;
+    border-radius: 4px;
+
+    width: auto;
+    height: 36px; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    position: static;
+
+    overflow: visible;
+    cursor: pointer;
+
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+
+    &:focus {
+        border-style: none;
+        outline: 0px none transparent;
+        // @include frame-each-theme(outline, 1px, solid, front__basic__weak, $is-module: false);
+    }
+}
+
+
+
+a {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    color: inherit;
+    // @include color-each-theme(color, basic__5, $is-module: false);
+
+    border-radius: 4px;
+
+    width: auto;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    
+    position: static;
+
+    overflow: visible;
+    cursor: pointer;
+    
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+}
+
+
+p { 
+    width: auto;
+    height: auto;
+
+    padding: 4px;
+
+    &.hint {
+        @include color-each-theme(color, hint__5);
+    }
+}
+
+ul, ol {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+}
+
+li {
+    width: auto; max-width: 100%;
+    height: auto;
+
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & > * {
+        width: auto;
+    }
+}
+
+
+header {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include color-each-theme(background-color, basic__0, $is-module: false);
+    @include color-each-theme(color, basic__4, $is-module: false);
+
+    width: 100%;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    position: relative;
+    z-index: inherit;
+
+    overflow: visible;
+
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+}

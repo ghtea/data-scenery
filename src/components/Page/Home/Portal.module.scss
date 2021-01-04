@@ -1,0 +1,438 @@
+@import 'styles/every.scss';
+
+
+.root {
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+$height__face: 60px;
+$border-radius__face: 12px;
+
+
+.portal {
+
+    width: 160px;
+    height: $height__face;
+    position: relative;
+
+    margin: 20px 20px 0px 0px;
+    // z-index: 20;   // should not set    https://stackoverflow.com/questions/32677697/stacking-with-z-index-child-element-on-top-over-parent-sibling
+
+    .face {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius__face;
+
+        cursor: pointer;  
+
+        .left  {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+
+            width: $height__face;
+            height: 100%;
+            padding: 6px;
+            border-radius: $border-radius__face;
+
+            & > *:nth-child(1) {
+                display: flex;
+            }
+            .image-icon {
+                width: 90%;
+                height: 90%;
+                border-radius: 15%;
+            }
+
+            .initials {
+                line-height: 1.2;  // it should be based on fonts
+
+                &:global(.length-initials----1){
+                    font-size: 2rem;
+                    font-weight: 900;
+                }
+                &:global(.length-initials----2){
+                    font-size: 1.4rem;
+                    font-weight: 900;
+                }
+                &:global(.length-initials----3){
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
+                &:global(.length-initials----4){
+                    font-size: 1rem;
+                    font-weight: 700;
+                }
+            }
+            & > *:nth-child(2) {
+                display: none;
+            }
+        }
+
+        .right {
+            width: calc(100% - #{$height__face} - 8px);
+            height: 90%;
+
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-around;
+            align-items: center;
+
+            border-radius: $border-radius__face * 0.7 ;
+            //border-radius: 0 $border-radius__face $border-radius__face 0;
+
+            & > *{
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-start;
+                align-items: center;
+
+                font-size: 1rem;
+                font-weight: bold;
+                
+                width: auto;
+                height: auto; max-height: calc(100% - 6px);
+                margin: 0px 6px 0px 6px;
+                padding: 0;
+
+                overflow: hidden;
+            }
+
+            & > *:nth-child(1) {
+                display: flex;
+            }
+            & > *:nth-child(2) {
+                display: none;
+            }
+        }
+        
+    }
+
+    .body {
+        display: none;
+    }
+}
+
+
+.root:global(.open----true) {
+
+    .outside {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0; bottom: 0; left: 0; right: 0; // without it, automatically some top/bottom/left/right values are added, idk
+        // z-index: 599;
+        background: transparent;
+    }
+
+    .face {
+        z-index: 50;
+
+        .left {
+            & > *:nth-child(1){
+                display: none !important;
+            }
+            & > *:nth-child(2){
+                display: flex;
+                .icon-link-external {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+        .right {
+            & > *:nth-child(1){
+                display: none;
+            }
+            & > *:nth-child(2){
+                display: flex;
+            }
+        }
+    }
+
+    @keyframes openBody {
+        from { transform: scale(1, 0.7); }
+        to { transform: scale(1, 1); }
+    }
+
+    @keyframes openSearch {
+        from { transform: scale(0.5, 1); }
+        to { transform: scale(1, 1); }
+    }
+    
+    .body {
+        $margin-top__child: 10px;
+        $height__name: 50px;
+
+        transform-origin: 50% #{$height__name};
+        animation: openBody 0.2s ease-out;
+
+        display: flex;
+        width: 110%;
+        //height: 250px;
+
+        border-radius: $border-radius__face;
+        position: absolute;
+        z-index: 30;
+
+        
+
+        top: - $height__name - $margin-top__child;
+
+        & > *:nth-child(n+2){
+            margin-top: $margin-top__child;
+        }
+
+
+        .search {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+
+            width: 220px;
+            height: auto;
+            padding: 6px;
+
+            border-radius: 6px;
+
+            position: absolute;
+            top: -60px;
+
+            // animation: openSearch 0.2s ease-out 1s;
+        }
+
+
+        .name {
+            width: auto;
+            height: $height__name;
+            
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.1rem;
+            font-weight: bold;
+
+            padding: 0px 6px 0px 6px;
+            overflow-y: auto;
+        }
+        
+        .empty {
+            height: $height__face;
+        }
+
+        .actions {
+
+            height: 32px;
+            border-radius: 8px;
+
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+
+            & > *:nth-child(n+2){
+                margin-left: 7px;
+            }
+            & > * {
+                width: 40px;
+                height: 100%;
+            }
+
+            .icon-move {
+                width: 24px;
+                height: 24px;
+            }
+
+            .icon-edit {
+                width: 23px;
+                height: 23px;
+            }
+
+            .icon-layer-plus {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        .others {
+            margin-top: 10px;
+            border-radius: 8px;
+
+
+            .list-tag {
+                & > * {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    width: auto;
+                    height: 30px; 
+
+                    padding: 0px 4px 0px 4px;
+
+                    @include frame-each-theme(color, 2px, solid, basic__4);
+                    @include frame-each-theme(border, 2px, solid, basic__1);
+                    border-radius: 4px;
+                }
+            }
+
+            .hp {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+
+                height: 30px;
+
+                & > *:nth-child(1) {
+                    width: 15%;
+                }
+                & > .container__bar {
+                    width: 50%;
+                    height: 14px;
+                    border-radius: 3px;
+                    @include color-each-theme(background-color, basic__2);
+
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    & > div {
+                        height: 12px;
+                        border-radius: 3px;
+                    }
+                }
+
+               
+            }
+
+            .last-visit {
+                height: 30px;
+            }
+        }
+
+    }
+    
+}
+    
+
+
+@each $hue in $list-hue {
+
+    :global(.hue----#{$hue}) {
+
+        .face {
+
+            // @include frame-each-theme(border, 1px, solid, hue-#{$hue}__3);
+            // @include color-each-theme(color, hue-#{$hue}__7);
+            // @include shadow-each-theme(box-shadow, 0px, 0px, 20px, 0px, shadow__hue-#{$hue}__normal);
+
+            .left {
+                @include frame-each-theme(border, 2px, solid, hue-#{$hue}__5);
+                @include color-each-theme(background-color, basic__0);
+                @include color-each-theme(color, hue-#{$hue}__6);
+                @include shadow-each-theme(box-shadow, 0px, 0px, 20px, 0px, shadow__hue-#{$hue}__normal);
+            }
+            .right {
+                @include color-each-theme(background-color, hue-#{$hue}__1, 0.3);
+                @include color-each-theme(color, hue-#{$hue}__7);
+            }
+        }
+
+        &:global(.open----true){
+
+            .face {
+                .left {
+                    @include frame-each-theme(border, 2px, solid, basic__3);
+                    @include color-each-theme(color, basic__6);
+                    //background-color: transparent;
+                    box-shadow: none;
+                    //@include color-each-theme(background-color, basic__0);
+                }
+                .right {
+                    background-color: transparent;
+                    @include frame-each-theme(border, 2px, solid, basic__2);
+                    @include color-each-theme(color, basic__7);
+                }
+            }
+
+            .body {
+                @include color-each-theme(background-color, basic__0, 0.8);
+                backdrop-filter: blur(1px);
+
+                @include color-each-theme(color, basic__5);
+                @include frame-each-theme(border, 1px, solid, basic__1);
+                @include frame-each-theme(border-top, 4px, solid, hue-#{$hue}__4);
+                @include frame-each-theme(border-bottom, 4px, solid, hue-#{$hue}__4);
+
+                @include shadow-each-theme(box-shadow, 0px, 0px, 20px, 0px, shadow__basic__weak);
+
+                .search {
+                    @include color-each-theme(background-color, basic__0, 0.8);
+                    backdrop-filter: blur(1px);
+                    @include frame-each-theme(border, 1px, solid, basic__1);
+
+                    @include frame-each-theme(border-left, 4px, solid, hue-#{$hue}__4);
+                    @include frame-each-theme(border-right, 4px, solid, hue-#{$hue}__4);
+
+                    @include shadow-each-theme(box-shadow, 0px, 0px, 20px, 0px, shadow__basic__weak);               
+                }
+                .name {
+                    @include color-each-theme(color, basic__8);
+                }
+                .actions > * {
+                    @include color-each-theme(background-color, basic__0);
+                    @include color-each-theme(color, basic__6);
+                    @include frame-each-theme(border, 1px, solid, basic__1);
+
+                }
+                .info {
+                    @include color-each-theme(background-color, basic__0, 0.8);
+                    @include color-each-theme(color, basic__6);
+                    @include frame-each-theme(border, 1px, solid, basic__1);
+                }
+            } 
+        }
+    }
+
+
+}
+
+
+
+.root:global(.kindHp----healthy) {
+    .hp .container__bar > div {
+        @include color-each-theme(background-color, success__5);
+    }
+}
+.root:global(.kindHp----warning) {
+    &:global(.open----false) .face .right {
+        @include frame-each-theme(border, 2px, solid, warning__3);
+    }
+    .hp .container__bar > div {
+        @include color-each-theme(background-color, warning__5);
+    }
+}
+.root:global(.kindHp----critical) {
+    &:global(.open----false) .face .right {
+        @include frame-each-theme(border, 2px, solid, error__3);
+    }
+    .hp .container__bar > div {
+        @include color-each-theme(background-color, error__5);
+    }
+}
+

@@ -1,0 +1,21 @@
+@import './color-elements.scss';
+
+
+$palette-others: (
+
+    light: (
+
+        google__bg: hsl($h-basic,$s-basic,100%),
+        google__font: hsl($h-basic,$s-basic,23%),
+        apple__bg: hsl($h-basic,$s-basic,23%),
+        apple__font: hsl($h-basic,$s-basic,100%)
+    ),
+
+    dark: (
+        
+        google__bg: hsl($h-basic,$s-basic,100%),
+        google__font: hsl($h-basic,$s-basic,18%),
+        apple__bg: hsl($h-basic,$s-basic,18%),
+        apple__font: hsl($h-basic,$s-basic,100%)
+    )
+);

@@ -1,0 +1,67 @@
+@import 'styles/every.scss';
+
+
+body {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include color-body-each-theme(background-color, body);
+    @include color-body-each-theme(color, basic__5);
+
+    // use div.app as body (about colors)
+
+    width: 100%; min-width: $device-xs__min-width;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    
+    position: relative;
+    
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+}
+
+
+p { 
+    width: auto;
+    height: auto;
+
+    padding: 4px;
+
+    &.hint {
+        @include color-each-theme(color, hint__5);
+    }
+}
+
+
+header {
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include color-each-theme(background-color, basic__0, $is-module: false);
+    @include color-each-theme(color, basic__4, $is-module: false);
+
+    width: 100%;
+    height: auto; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    position: relative;
+    z-index: inherit;
+
+    overflow: visible;
+
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
+}

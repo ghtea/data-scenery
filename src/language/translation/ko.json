@@ -1,0 +1,141 @@
+
+
+
+{
+    "Blank": "",
+
+    "Nav.Home": "홈",
+    "Nav.Setting": "설정",
+    "Nav.LogIn": "로그인",
+    "Nav.SignUp": "회원가입",
+
+
+    "Nav.NameApp": "포탈 뷰",
+    
+    "Nav.System": "시스템",   
+    "Nav.System_State": "상태 관리",
+    "Nav.System_Styles": "스타일",
+    "Nav.System_Language": "언어",
+    "Nav.Diary": "일기",
+    
+
+    "Modal.Create": "만들기",
+    "Modal.Delete": "삭제",
+    "Modal.Update": "업데이트",
+
+
+    "Modal.Setting_Title": "설정",
+    "Modal.Setting_Theme": "테마",
+    "Modal.Setting_Language": "언어",
+    "Modal.Setting_LogOut": "로그아웃",
+
+    "Modal.MyProfile_Title": "프로필",
+    "Modal.MyProfile_EmailAddress": "이메일 주소",
+    "Modal.MyProfile_Name": "이름",
+    "Modal.MyProfile_Photo": "사진",
+    "Modal.MyProfile_Update": "업데이트",
+
+    "Modal.CreatingPortal_Title": "포털 만들기",
+    "Modal.CreatingPortal_Kind": "종류",
+    "Modal.CreatingPortal_Name": "이름",
+    "Modal.CreatingPortal_KindIcon": "아이콘 종류",
+    "Modal.CreatingPortal_Initials": "이니셜 (1~4 글자)",
+    "Modal.CreatingPortal_Image": "이미지",
+    "Modal.CreatingPortal_Url": "URL",
+    "Modal.CreatingPortal_GuideUrlSearching": "검색 키워드 부분을 {search}로 바꿔주세요",
+    "Modal.CreatingPortal_Life": "수명",
+    "Modal.CreatingPortal_Hue": "색상",
+    "Modal.CreatingPortal_Tags": "태그",
+    "Modal.CreatingPortal_Create": "만들기",
+    "Modal.EditingPortal_Title": "포털 수정하기",
+
+
+    "Modal.CreatingStack_Title": "스택 만들기",
+    "Modal.CreatingStack_Kind": "종류",
+    "Modal.CreatingStack_Name": "이름",
+    "Modal.CreatingStack_Create": "만들기",
+    "Modal.EditingStack_Title": "스택 수정하기",
+
+
+    "Modal.AddingPortalToStack_Title": "스택에 추가하기",
+    "Modal.AddingPortalToStack_WhichStack": "스택 지정",
+    "Modal.AddingPortalToStack_NewStack": "새로운 스택",
+    "Modal.AddingPortalToStack_ExistingStack": "기존 스택",
+    "Modal.AddingPortalToStack_NameOfStack": "스택 이름",
+    "Modal.AddingPortalToStack_Choose": "선택",
+    "Modal.AddingPortalToStack_Add": "추가",
+
+    "Global.Portal": "포털",
+    "Global.Stack": "스택",
+    "Global.Name": "이름",
+    "Global.Add": "추가",
+    "Global.Create": "만들기",
+    "Global.Delete": "삭제",
+    "Global.Update": "업데이트",
+    "Global.Search": "검색",
+
+    "Notification.Test1__S": "테스트에 성공하였습니다 1 !",
+    "Notification.Test2__H": "테스트에 성공하였습니다 2 !",
+    "Notification.NotLoggedIn__E": "먼저 로그인해야 합니다",
+    "Notification.UnknownError__E": "알수 없는 에러가 발생했습니다",
+
+    "Notification.LogIn_UnknownError__E": "알수 없는 에러가 발생했습니다",
+    "Notification.LogIn_UserNotFound__E": "해당 이메일 주소로부터 유저를 찾지 못했습니다",
+    "Notification.LogIn_UserDisabled__E": "사용정지된 사용자입니다",
+
+    "Notification.LogIn_NoEmail__E": "이메일 주소를 입력해주세요",
+    "Notification.LogIn_InvalidEmail__E": "이메일 주소가 유효하지 않습니다",
+    "Notification.LogIn_NoPassword__E": "비밀번호를 입력해주세요",
+    "Notification.LogIn_WrongPassword__E": "비밀번호가 틀리거나, 이미 등록한 소셜 서비스를 이용해야 합니다",
+
+    "Notification.LogInGoogle_UnknownError__E": "알수 없는 에러가 발생했습니다",
+    "Notification.LogInGithub_UnknownError__E": "알수 없는 에러가 발생했습니다",
+
+    "Notification.SignUp_UnknownError__E": "알수 없는 에러가 발생했습니다",
+    "Notification.SignUp_Succeeded__S": "성공적으로 회원가입하였습니다!",
+
+    "Notification.SignUp_NoEmail__E": "이메일 주소를 입력해주세요",
+    "Notification.SignUp_InvalidEmail__E": "이메일 주소가 유효하지 않습니다",
+    "Notification.SignUp_DuplicateEmail__E": "해당 이메일이 이미 등록되어 있습니다",
+    "Notification.SignUp_NoPassword__E": "비밀번호를 모두 입력해주세요",
+    "Notification.SignUp_PasswordsDifferent__E": "두 비밀번호가 서로 다릅니다",
+    "Notification.SignUp_WeakPassword__E": "비밀번호는 6글자 이상이어야 합니다",
+    
+    "Notification.Portal_NotOwner__E": "이 포털의 주인이 아닙니다",
+    "Notification.Portal_InitialsTooLong__E": "이니셜은 1~4 글자이어야 합니다",
+    "Notification.Portal_NotValidSearchUrl__E": "검색 포털의 URL은 '{search}'를 포함해야 합니다",
+    "Notification.Portal_NoImage__E": "이미지를 업로드해주세요",
+
+    "Notification.CreatePortal_Succeeded__S": "성공적으로 포털을 만들었습니다!",
+    "Notification.CreatePortal_UnknownError__E": "포털을 만들지 못했습니다",
+    "Notification.GetListPortal_UnknownError__E": "포털들을 불러오지 못했습니다",
+    "Notification.VisitPortal_UnknownError__E": "방문한 포털의 상태를 업데이트하지 못했습니다",
+    "Notification.UpdatePortal_Succeeded__S": "성공적으로 포털을 수정했습니다!",
+    "Notification.UpdatePortal_UnknownError__E": "포털을 수정하지 못했습니다",
+    "Notification.DeletePortal_Succeeded__S": "성공적으로 포털을 삭제했습니다!",
+    "Notification.DeletePortal_UnknownError__E": "포털을 삭제하지 못했습니다",
+
+    "Notification.Stack_NotOwner__E": "이 스택의 주인이 아닙니다",
+    "Notification.CreateStack_Succeeded__S": "성공적으로 스택을 만들었습니다!",
+    "Notification.CreateStack_UnknownError__E": "스택을 만들지 못했습니다",
+    "Notification.GetListStack_UnknownError__E": "스택들을 불러오지 못했습니다",
+    "Notification.VisitStack_UnknownError__E": "방문한 포털들의 상태를 업데이트하지 못했습니다",
+    "Notification.UpdateStack_Succeeded__S": "성공적으로 스택을 수정했습니다!",
+    "Notification.UpdateStack_UnknownError__E": "스택을 수정하지 못했습니다",
+    "Notification.DeleteStack_Succeeded__S": "성공적으로 스택을 삭제했습니다!",
+    "Notification.DeleteStack_UnknownError__E": "스택을 삭제하지 못했습니다",
+
+    "Page.Home_Welcome": "환영합니다!",
+    
+    "Page.LogIn_LogIn": "로그인",
+    "Page.LogIn_EmailAddress": "이메일 주소",
+    "Page.LogIn_Password": "비밀번호",
+    "Page.LogIn_SignUp": "회원가입",
+
+    "Page.SignUp_PasswordAgain": "비밀번호 재입력",
+
+    "Page.Home_ConfirmDeletingPortal": "정말로 이 포털을 삭제 하시겠습니까?"
+
+}
+
+

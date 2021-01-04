@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState, useMemo } from "react";
 import history from 'historyApp';
 import { useLocation } from "react-router-dom";
 import { FormattedMessage, useIntl } from 'react-intl';
-
+ 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsStatus from 'store/actions/status';

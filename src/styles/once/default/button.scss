@@ -1,0 +1,51 @@
+@import 'styles/every.scss';
+
+/**
+    * 1. Change the font styles in all browsers.
+    * 2. Remove the margin in Firefox and Safari.
+    * 3. Show the overflow in Edge.
+    * 4. Remove the inheritance of text transform in Firefox.
+ */
+
+button {
+
+    display: inline-block;
+    text-align: center;
+    /*
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    */
+    background-color: transparent;
+
+    @include color-each-theme(color, basic__5, $is-module: false);
+
+    //border: 0px none transparent;
+    @include frame-each-theme(border, 2px, solid, basic__2, $is-module: false);
+    border-radius: 4px;
+
+    width: auto;
+    height: 36px; 
+
+    box-sizing: border-box;
+
+    font-size: 1rem;
+    
+    font-family: inherit; /* 1 */
+    // font-family: 'Noto Sans KR', sans-serif;
+
+    overflow: visible;  /* 3 */
+    cursor: pointer;
+
+    margin: 0px 0px 0px 0px;   /* 2 */
+    padding: 0px 0px 0px 0px; 
+
+    text-transform: none;  /* 4 */
+
+    &:focus {
+        border-style: none;
+        //outline: 0px none transparent;
+        @include frame-each-theme(outline, 1px, solid, basic__2, $is-module: false);
+    }
+}

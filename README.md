@@ -1,26 +1,18 @@
-# Portal View
-[link](https://pv.nextwing.me/)
->Dynamic bookmark managing app
-- Visualize how often user visited the webiste
-    - Warning for website where user has not visited recently
-- One click for visiting multiple websites (Chrome)
+# Data Scenery
+[link](https://ds.nextwing.me/)
+> 
+- Check diverse data on graph
 
 ---
 ## Focused (compared to past projects)
-- Used Typescirpt on entire app 
-- Used Sass on entire app 
-    - Moved from Styled Components
-        - Sass Module  
-    - Made mixins for Dark Mode, Colors of diverse hue 
-- Used Firebase 
-- Systematize Components (UI)
-    - Nav, Page, Modal, Notification
-
-
-## Should Be Improved
 - Semantic HTML
 - Better saga coding for rendering/using firebase less
 - More complicate UI
+- Testing
+
+
+## Should Be Improved
+- 
 
 
 ---

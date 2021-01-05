@@ -1,0 +1,53 @@
+@import 'styles/every.scss';
+
+p { 
+
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    display: block;
+    padding: 4px;
+    
+    margin: 1rem 0 1rem 0;
+}
+
+
+img {
+  border-style: none;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+strong {
+  font-weight: bolder;
+}

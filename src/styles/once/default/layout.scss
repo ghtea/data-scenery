@@ -1,30 +1,34 @@
 @import 'styles/every.scss';
 
-body {
+header {
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
 
-    @include color-body-each-theme(background-color, body);
-    @include color-body-each-theme(color, basic__5);
+    @include color-each-theme(background-color, basic__0, $is-module: false);
+    @include color-each-theme(color, basic__4, $is-module: false);
 
-    width: 100%; min-width: $device-xs__min-width;
+    width: 100%;
     height: auto; 
 
     box-sizing: border-box;
 
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     
     position: relative;
-    
-    margin: 0px; 
-    padding: 0px; 
+    z-index: inherit;
+
+    overflow: visible;
+
+    margin: 0px 0px 0px 0px; 
+    padding: 0px 0px 0px 0px; 
 }
 
-header {
 
+
+main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;

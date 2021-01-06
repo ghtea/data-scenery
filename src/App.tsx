@@ -14,24 +14,24 @@ import * as actionsStatus from 'store/actions/status';
 import * as actionsAuth from 'store/actions/auth';
 import 'styles/once.scss';
 
-import Nav from "components/Nav";
-import Page from "components/Page";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import Main from "components/Main";
+
 import Modal from "components/Modal";
 import Notification from "components/Notification";
-import Action from "components/Action";
+// import Action from "components/Action";
 
 // TS  https://velog.io/@velopert/create-typescript-react-component
 type PropsApp = {};
 
 function App({}: PropsApp) {
   
-  let location = useLocation();
-  const dispatch = useDispatch();
+    let location = useLocation();
+    const dispatch = useDispatch();
 
-    
 
     // Language
-  
     const codeLanguageCurrent:string = useSelector((state: StateRoot) => state['status']['current']['language']);
     const translationLanguageCurrent = useMemo(()=>{
         if (codeLanguageCurrent === 'ko'){
@@ -41,7 +41,6 @@ function App({}: PropsApp) {
             return translationEn;
         }
     },[codeLanguageCurrent])
-    
     useEffect(()=>{
         if (codeLanguageCurrent === ''){
             dispatch(actionsStatus.return__DETECT_LANGUAGE() );
@@ -53,17 +52,12 @@ function App({}: PropsApp) {
 
 
 
-
-
     // theme
-
     const optionThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['option']);
     const nameThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['name']);
-
     useEffect(() => {
         dispatch(actionsStatus.return__READ_OPTION_THEME() );
     }, [optionThemeCurrent]);
-    
     useEffect(()=>{
             if (nameThemeCurrent === 'dark'){
                 document.body.classList.add('theme----dark');
@@ -79,15 +73,12 @@ function App({}: PropsApp) {
   
     // log check
     useEffect(() => {
-
         dispatch( actionsStatus.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: true
         }) );
-
         try {
             firebaseAuth.onAuthStateChanged((user) => {
-                console.log('hello!')
                 if (user) {
                     dispatch(actionsAuth.return__LOG_CHECK_SUCCEEDED() );
                 } 
@@ -108,7 +99,7 @@ function App({}: PropsApp) {
         if (!readyUser){
             dispatch( actionsAuth.return__REPLACE({
                 listKey: ['user'],
-                replacement: {}
+                replacement: null
             }) );
         }
     },[readyUser])
@@ -120,9 +111,12 @@ function App({}: PropsApp) {
         <IntlProvider locale={codeLanguageCurrent || 'en'} messages={translationLanguageCurrent} >
             <Notification />
             <Modal />
-            <Action/>
-            <Nav/>
-            <Page/>
+            {/*<Action/>*/}
+            
+            <Header/>
+
+            <Main/>
+            <Footer/>
         </IntlProvider>
     </>
     

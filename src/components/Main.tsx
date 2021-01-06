@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import Home from "./Page/Home";
-import LogIn from "./Page/LogIn";
-import SignUp from "./Page/SignUp";
-import NotFound from "./Page/NotFound";
+import Home from "./Main/Home";
+import LogIn from "./Main/LogIn";
+import SignUp from "./Main/SignUp";
+import NotFound from "./Main/NotFound";
 
 //import SignUp from "./components/Auth/SignUp";
 
-import styles from './Page.module.scss';
+import styles from './Main.module.scss';
 
 
-type PropsPage = {};
+type PropsMain = {};
 
-function Page({}: PropsPage) {
+function Main({}: PropsMain) {
   return (
     
-    <>
+    <main>
           <Switch>
             
             <Route exact path="/" >
@@ -37,18 +37,9 @@ function Page({}: PropsPage) {
 
           </Switch>
         
-      </>
+      </main>
   );
 }
 
-export default Page;
-
-/*
-<Route path="/sign-up" >
-            <SignUp />
-          </Route>
-          <Route path="/log-in" >
-            <LogIn />
-          </Route>
-*/
+export default Main;
 

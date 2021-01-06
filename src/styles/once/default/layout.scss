@@ -1,54 +1,16 @@
 @import 'styles/every.scss';
 
 header {
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-
-    @include color-each-theme(background-color, basic__0, $is-module: false);
-    @include color-each-theme(color, basic__4, $is-module: false);
-
-    width: 100%;
-    height: auto; 
-
-    box-sizing: border-box;
-
-    font-size: 1rem;
-    
-    position: relative;
-    z-index: inherit;
-
-    overflow: visible;
-
-    margin: 0px 0px 0px 0px; 
-    padding: 0px 0px 0px 0px; 
+    display: block;
+    width: 100%; min-width: $device-xs__min-width;
 }
 
-
-
 main {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
+    display: block;
+    width: 100%; min-width: $device-xs__min-width;
+}
 
-    @include color-each-theme(background-color, basic__0, $is-module: false);
-    @include color-each-theme(color, basic__4, $is-module: false);
-
-    width: 100%;
-    height: auto; 
-
-    box-sizing: border-box;
-
-    font-size: 1rem;
-    
-    position: relative;
-    z-index: inherit;
-
-    overflow: visible;
-
-    margin: 0px 0px 0px 0px; 
-    padding: 0px 0px 0px 0px; 
+footer {
+    display: block;
+    width: 100%; min-width: $device-xs__min-width;
 }

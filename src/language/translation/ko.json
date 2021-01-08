@@ -1,27 +1,26 @@
-
-
-
 {
     "Blank": "",
 
-    "Nav.Home": "홈",
-    "Nav.Setting": "설정",
-    "Nav.LogIn": "로그인",
-    "Nav.SignUp": "회원가입",
+
+    "Global.Name": "이름",
+    "Global.Add": "추가",
+    "Global.Create": "만들기",
+    "Global.Delete": "삭제",
+    "Global.Update": "업데이트",
+    "Global.Search": "검색",
+ 
+
+    "Header.Setting": "설정",
 
 
-    "Nav.NameApp": "포탈 뷰",
-    
-    "Nav.System": "시스템",   
-    "Nav.System_State": "상태 관리",
-    "Nav.System_Styles": "스타일",
-    "Nav.System_Language": "언어",
-    "Nav.Diary": "일기",
-    
+    "Main.LogIn_LogIn": "로그인",
+    "Main.LogIn_EmailAddress": "이메일 주소",
+    "Main.LogIn_Password": "비밀번호",
 
-    "Modal.Create": "만들기",
-    "Modal.Delete": "삭제",
-    "Modal.Update": "업데이트",
+    "Main.SignUp_SignUp": "회원가입",
+    "Main.SignUp_PasswordAgain": "비밀번호 재입력",
+
+    "Main.Home_ConfirmDeletingPortal": "정말로 이 포털을 삭제 하시겠습니까?",
 
 
     "Modal.Setting_Title": "설정",
@@ -34,46 +33,19 @@
     "Modal.MyProfile_Name": "이름",
     "Modal.MyProfile_Photo": "사진",
     "Modal.MyProfile_Update": "업데이트",
+ 
 
-    "Modal.CreatingPortal_Title": "포털 만들기",
-    "Modal.CreatingPortal_Kind": "종류",
-    "Modal.CreatingPortal_Name": "이름",
-    "Modal.CreatingPortal_KindIcon": "아이콘 종류",
-    "Modal.CreatingPortal_Initials": "이니셜 (1~4 글자)",
-    "Modal.CreatingPortal_Image": "이미지",
-    "Modal.CreatingPortal_Url": "URL",
-    "Modal.CreatingPortal_GuideUrlSearching": "검색 키워드 부분을 {search}로 바꿔주세요",
-    "Modal.CreatingPortal_Life": "수명",
-    "Modal.CreatingPortal_Hue": "색상",
-    "Modal.CreatingPortal_Tags": "태그",
-    "Modal.CreatingPortal_Create": "만들기",
-    "Modal.EditingPortal_Title": "포털 수정하기",
+    "Nav.NameApp": "데이터 시너리",
+    "Nav.Home": "홈",
+    "Nav.LogIn": "로그인",
+    "Nav.SignUp": "회원가입",
+    "Nav.System": "시스템",   
+    "Nav.System_State": "상태 관리",
+    "Nav.System_Styles": "스타일",
+    "Nav.System_Language": "언어",
+    "Nav.Diary": "일기",
 
-
-    "Modal.CreatingStack_Title": "스택 만들기",
-    "Modal.CreatingStack_Kind": "종류",
-    "Modal.CreatingStack_Name": "이름",
-    "Modal.CreatingStack_Create": "만들기",
-    "Modal.EditingStack_Title": "스택 수정하기",
-
-
-    "Modal.AddingPortalToStack_Title": "스택에 추가하기",
-    "Modal.AddingPortalToStack_WhichStack": "스택 지정",
-    "Modal.AddingPortalToStack_NewStack": "새로운 스택",
-    "Modal.AddingPortalToStack_ExistingStack": "기존 스택",
-    "Modal.AddingPortalToStack_NameOfStack": "스택 이름",
-    "Modal.AddingPortalToStack_Choose": "선택",
-    "Modal.AddingPortalToStack_Add": "추가",
-
-    "Global.Portal": "포털",
-    "Global.Stack": "스택",
-    "Global.Name": "이름",
-    "Global.Add": "추가",
-    "Global.Create": "만들기",
-    "Global.Delete": "삭제",
-    "Global.Update": "업데이트",
-    "Global.Search": "검색",
-
+    
     "Notification.Test1__S": "테스트에 성공하였습니다 1 !",
     "Notification.Test2__H": "테스트에 성공하였습니다 2 !",
     "Notification.NotLoggedIn__E": "먼저 로그인해야 합니다",
@@ -113,29 +85,7 @@
     "Notification.UpdatePortal_Succeeded__S": "성공적으로 포털을 수정했습니다!",
     "Notification.UpdatePortal_UnknownError__E": "포털을 수정하지 못했습니다",
     "Notification.DeletePortal_Succeeded__S": "성공적으로 포털을 삭제했습니다!",
-    "Notification.DeletePortal_UnknownError__E": "포털을 삭제하지 못했습니다",
-
-    "Notification.Stack_NotOwner__E": "이 스택의 주인이 아닙니다",
-    "Notification.CreateStack_Succeeded__S": "성공적으로 스택을 만들었습니다!",
-    "Notification.CreateStack_UnknownError__E": "스택을 만들지 못했습니다",
-    "Notification.GetListStack_UnknownError__E": "스택들을 불러오지 못했습니다",
-    "Notification.VisitStack_UnknownError__E": "방문한 포털들의 상태를 업데이트하지 못했습니다",
-    "Notification.UpdateStack_Succeeded__S": "성공적으로 스택을 수정했습니다!",
-    "Notification.UpdateStack_UnknownError__E": "스택을 수정하지 못했습니다",
-    "Notification.DeleteStack_Succeeded__S": "성공적으로 스택을 삭제했습니다!",
-    "Notification.DeleteStack_UnknownError__E": "스택을 삭제하지 못했습니다",
-
-    "Page.Home_Welcome": "환영합니다!",
-    
-    "Page.LogIn_LogIn": "로그인",
-    "Page.LogIn_EmailAddress": "이메일 주소",
-    "Page.LogIn_Password": "비밀번호",
-    "Page.LogIn_SignUp": "회원가입",
-
-    "Page.SignUp_PasswordAgain": "비밀번호 재입력",
-
-    "Page.Home_ConfirmDeletingPortal": "정말로 이 포털을 삭제 하시겠습니까?"
-
+    "Notification.DeletePortal_UnknownError__E": "포털을 삭제하지 못했습니다"
 }
 
 

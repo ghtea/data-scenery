@@ -6,9 +6,9 @@
 ---
 ## Focused (compared to past projects)
 - Semantic HTML
+- Testing
 - Better saga coding for rendering/using firebase less
 - More complicate UI
-- Testing
 
 
 ## Should Be Improved

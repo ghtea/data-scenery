@@ -1,24 +1,38 @@
 {
     "Blank": "",
 
-    "Nav.Home": "Home",
-    "Nav.Setting": "Setting",
-        
-    "Nav.NameApp": "Portal View",
+
+    "Global.Name": "Name",
+    "Global.Add": "Add",
+    "Global.Create": "Create",
+    "Global.Delete": "Delete",
+    "Global.Update": "Update",
+    "Global.Search": "Search",
+
     
+    "Header.Setting": "Setting",
+
+
+    "Nav.NameApp": "Data Scenery",
+    "Nav.Home": "Home",
     "Nav.LogIn": "Log In",
     "Nav.SignUp": "Sign Up",
-    
     "Nav.System": "System",   
     "Nav.System_State": "State",
     "Nav.System_Styles": "Styles",
     "Nav.System_Language": "Language",
     "Nav.Diary": "Diary",
     
-    
-    "Modal.Create": "Create",
-    "Modal.Delete": "Delete",
-    "Modal.Update": "Update",
+
+    "Main.LogIn_LogIn": "LogIn",
+    "Main.LogIn_EmailAddress": "Email Address",
+    "Main.LogIn_Password": "Password",
+
+    "Main.SignUp_SignUp": "Sign Up",
+    "Main.SignUp_PasswordAgain": "Password Again",
+
+    "Main.Home_ConfirmDeletingPortal": "Are you sure you want to delete this portal?",
+
 
     "Modal.Setting_Title": "Setting",
     "Modal.Setting_Theme": "Theme",
@@ -31,44 +45,7 @@
     "Modal.MyProfile_Photo": "Photo",
     "Modal.MyProfile_Update": "Update",
 
-
-    "Modal.CreatingPortal_Title": "Create Portal",
-    "Modal.CreatingPortal_Kind": "Kind",
-    "Modal.CreatingPortal_Name": "Name",
-    "Modal.CreatingPortal_KindIcon": "Kind of Icon",
-    "Modal.CreatingPortal_Initials": "Initials (1~4 letters)",
-    "Modal.CreatingPortal_Image": "Image",
-    "Modal.CreatingPortal_Url": "URL",
-    "Modal.CreatingPortal_GuideUrlSearching": "Please replace the search keyword part with {search}",
-    "Modal.CreatingPortal_Life": "Life",
-    "Modal.CreatingPortal_Hue": "Hue",
-    "Modal.CreatingPortal_Tags": "Tags",
-    "Modal.CreatingPortal_Create": "Create",
-    "Modal.EditingPortal_Title": "Edit Portal",
-
-    "Modal.CreatingStack_Title": "Create Stack",
-    "Modal.CreatingStack_Kind": "Kind",
-    "Modal.CreatingStack_Name": "Name",
-    "Modal.CreatingStack_Create": "Create",
-    "Modal.EditingStack_Title": "Edit Stack",
-
-    "Modal.AddingPortalToStack_Title": "Add to Stack",
-    "Modal.AddingPortalToStack_WhichStack": "Which Stack",
-    "Modal.AddingPortalToStack_NewStack": "New Stack",
-    "Modal.AddingPortalToStack_ExistingStack": "Existing Stack",
-    "Modal.AddingPortalToStack_NameOfStack": "Name of Stack",
-    "Modal.AddingPortalToStack_Choose": "Choose",
-    "Modal.AddingPortalToStack_Add": "Add",
-
-    "Global.Portal": "Portal",
-    "Global.Stack": "Stack",
-    "Global.Name": "Name",
-    "Global.Add": "Add",
-    "Global.Create": "Create",
-    "Global.Delete": "Delete",
-    "Global.Update": "Update",
-    "Global.Search": "Search",
-
+    
     "Notification.Test1__S": "Succuessfully tested 1 !",
     "Notification.Test2__H": "Succuessfully tested 2 !",
     "Notification.NotLoggedIn__E": "You should log in first",
@@ -108,29 +85,7 @@
     "Notification.UpdatePortal_Succeeded__S": "Successfully updated portal!",
     "Notification.UpdatePortal_UnknownError__E": "Failed to update the portal",
     "Notification.DeletePortal_Succeeded__S": "Successfully deleted portal!",
-    "Notification.DeletePortal_UnknownError__E": "Failed to delete the portal",
-
-    "Notification.Stack_NotOwner__E": "You're not owner of this stack",
-
-    "Notification.CreateStack_Succeeded__S": "Successfully created stack!",
-    "Notification.CreateStack_UnknownError__E": "Failed to create the stack",
-    "Notification.GetListStack_UnknownError__E": "Failed to get stacks",
-    "Notification.VisitStack_UnknownError__E": "Failed to update the some portals which you visited",
-    "Notification.UpdateStack_Succeeded__S": "Successfully updated stack!",
-    "Notification.UpdateStack_UnknownError__E": "Failed to update the stack",
-    "Notification.DeleteStack_Succeeded__S": "Successfully deleted stack!",
-    "Notification.DeleteStack_UnknownError__E": "Failed to delete the stack",
-
-    "Page.Home_Welcome": "Welcome!",
-    "Page.LogIn_LogIn": "LogIn",
-    "Page.LogIn_EmailAddress": "Email Address",
-    "Page.LogIn_Password": "Password",
-    "Page.LogIn_SignUp": "Sign Up",
-
-    "Page.SignUp_PasswordAgain": "Password Again",
-
-    "Page.Home_ConfirmDeletingPortal": "Are you sure you want to delete this portal?"
-
+    "Notification.DeletePortal_UnknownError__E": "Failed to delete the portal"
 }
 
 

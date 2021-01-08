@@ -21,8 +21,8 @@ button {
 
     @include color-each-theme(color, basic__5, $is-module: false);
 
-    //border: 0px none transparent;
-    @include frame-each-theme(border, 2px, solid, basic__2, $is-module: false);
+    border: 0px none transparent;
+    // @include frame-each-theme(border, 2px, solid, basic__2, $is-module: false);
     border-radius: 4px;
 
     width: auto;

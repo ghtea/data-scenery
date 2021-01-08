@@ -23,7 +23,7 @@ import styles from './LogIn.module.scss';
 
 type PropsLogIn = {};
 
-function LogIn() {
+function LogIn({}:PropsLogIn) {
   
     const dispatch = useDispatch();
     const intl = useIntl();
@@ -124,14 +124,14 @@ function LogIn() {
 
 
             <div className={`${styles['title-page']}`} > 
-                <FormattedMessage id={`Page.LogIn_LogIn`} />
+                <FormattedMessage id={`Main.LogIn_LogIn`} />
             </div>
                 
             <div className={`${styles['input-identity']}`} >
-                <div> <FormattedMessage id={`Page.LogIn_EmailAddress`} /> </div>
+                <div> <FormattedMessage id={`Main.LogIn_EmailAddress`} /> </div>
                 <input 
                     type='email'
-                    placeholder={intl.formatMessage({ id: 'Page.LogIn_EmailAddress'})}
+                    placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
                     value={inputEmail.value}
                     required
                     onChange={inputEmail.onChange} 
@@ -140,10 +140,10 @@ function LogIn() {
             </div> 
                 
             <div className={`${styles['input-password']}`} >
-                <div> <FormattedMessage id={`Page.LogIn_Password`} /> </div>
+                <div> <FormattedMessage id={`Main.LogIn_Password`} /> </div>
                 <input 
                     type='password'
-                    placeholder={intl.formatMessage({ id: 'Page.LogIn_Password'})}
+                    placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
                     value={inputPassword.value}
                     required
                     onChange={inputPassword.onChange}
@@ -156,7 +156,7 @@ function LogIn() {
             <div className={`${styles['button-enter']}`} >
                 <button
                     onClick={()=>onClick_LogIn()}
-                > <FormattedMessage id={`Page.LogIn_LogIn`} />
+                > <FormattedMessage id={`Main.LogIn_LogIn`} />
                 </button>
             </div> 
             

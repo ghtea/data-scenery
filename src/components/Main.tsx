@@ -16,7 +16,7 @@ type PropsMain = {};
 function Main({}: PropsMain) {
   return (
     
-    <main>
+    <main className={`${styles['root']}`}>
           <Switch>
             
             <Route exact path="/" >

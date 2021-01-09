@@ -4,18 +4,16 @@
 $palette-others: (
 
     light: (
-
         google__bg: hsl($h-basic,$s-basic,100%),
-        google__font: hsl($h-basic,$s-basic,23%),
-        apple__bg: hsl($h-basic,$s-basic,23%),
-        apple__font: hsl($h-basic,$s-basic,100%)
+        google__font: hsl($h-basic,$s-basic,45%),
+        github__bg: hsl($h-basic,$s-basic,25%),
+        github__font: hsl($h-basic,$s-basic,100%)
     ),
 
     dark: (
-        
         google__bg: hsl($h-basic,$s-basic,100%),
-        google__font: hsl($h-basic,$s-basic,18%),
-        apple__bg: hsl($h-basic,$s-basic,18%),
-        apple__font: hsl($h-basic,$s-basic,100%)
+        google__font: hsl($h-basic,$s-basic,45%),
+        github__bg: hsl($h-basic,$s-basic,25%),
+        github__font: hsl($h-basic,$s-basic,100%)
     )
 );

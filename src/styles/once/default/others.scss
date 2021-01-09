@@ -2,12 +2,10 @@
 
 p { 
 
-    display: block;
-
+    display: block;    // setting this for block   not works by browser
     width: auto;
     height: auto;
 
-    display: block;
     padding: 4px;
     
     margin: 1rem 0 1rem 0;
@@ -16,6 +14,13 @@ p {
 
 a {
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+
+    &:focus {
+        outline-style: none;
+        @include shadow-each-theme(box-shadow, 0, 0, 0, 2px, basic__9, $is-module: false);
+    }
 }
 
 

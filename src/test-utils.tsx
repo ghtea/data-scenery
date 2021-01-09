@@ -1,5 +1,5 @@
 import React from 'react';
-import { render as renderRtl } from '@testing-library/react';
+import { render as renderRtl, RenderOptions } from '@testing-library/react';
 
 import { IntlProvider } from 'react-intl';
 import translationEn from 'language/translation/en.json';
@@ -16,9 +16,10 @@ import { CookiesProvider } from 'react-cookie';
 
 // wrote automatically from IDE tooltip
 type Ui = React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)> | null) | (new (props: any) => React.Component<any, any, any>)>;
+type Option = Pick<RenderOptions<typeof import("@testing-library/dom/types/queries")>, "container" | "baseElement" | "hydrate" | "wrapper"> | undefined;
 
-function render(ui: Ui, { locale = 'en', ...renderOptions }: any) {
-  function Wrapper({ children }:{children: any}) {
+
+const wrapper:React.FunctionComponent<{}> = ({ children }) => {
     return (
         <Router history={history}>
         <CookiesProvider>
@@ -30,12 +31,15 @@ function render(ui: Ui, { locale = 'en', ...renderOptions }: any) {
         </CookiesProvider>
         </Router>
     )
-  }
-  return renderRtl(ui, { wrapper: Wrapper, ...renderOptions })
 }
 
+const render = (ui: Ui, option?: Option) =>
+    renderRtl(ui, { wrapper: wrapper, ...option })
+
+
+
 // re-export everything
-export * from '@testing-library/react'
+export * from '@testing-library/react';
 
 // override render method
 export { render }

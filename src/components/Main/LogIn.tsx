@@ -11,7 +11,7 @@ import {StateRoot} from 'store/reducers';
 import * as actionsAuth from 'store/actions/auth';
 import * as actionsStatus from 'store/actions/status';
 
-import useInput from 'tools/hooks/useInput';
+import useInputBasic from 'tools/hooks/useInputBasic';
 
 //import IconLogIn from 'svgs/basic/IconLogIn';
 import TopBar from './LogIn/TopBar';
@@ -32,7 +32,7 @@ function LogIn({}:PropsLogIn) {
     const loadingUser = useSelector((state: StateRoot) => state['status']['loading']['user']);
 
     // when login button is pushed, notification code of reaction is added to  this list, when login button is pushed again this list cleared once 
-    const listCodeSituationOthers:string[] = useSelector((state: StateRoot) => state['notification']['listCodeSituationOthers']);
+    const listCodeSituationOthers = useSelector((state: StateRoot) => state['notification']['listCodeSituationOthers']);
 
   
     const onClick_LinkInsideApp = useCallback(
@@ -40,10 +40,13 @@ function LogIn({}:PropsLogIn) {
         history.push(destination);
         },[history]
     );
-  
-    const inputEmail = useInput(""); // {value, setValue, onChange};
-    const inputPassword = useInput(""); // {value, setValue, onChange};
     
+    const {draft: draft_Main, onChange: onChange_Main} = useInputBasic({
+        emailAddress: '',
+        password: '' 
+    });
+
+
     const [codeSituationEmail, setCodeSituationEmail] = useState('');
     const [codeSituationPassword, setCodeSituationPassword] = useState('');
   
@@ -74,44 +77,44 @@ function LogIn({}:PropsLogIn) {
             setCodeSituationEmail('');
             setCodeSituationPassword('');
         }
-
     },[listCodeSituationOthers])
 
-    const onClick_LogIn = useCallback(
-        () => {
-        
-        dispatch(actionsAuth.return__LOG_IN({
-            email: inputEmail.value,
-            password: inputPassword.value
-        }));
-        
-        },
-        [inputEmail, inputPassword]
-    );
 
-    const onKeyPress_LogIn = useCallback(
+    const submitMain = useCallback(
+        () => {
+            dispatch(actionsAuth.return__LOG_IN({
+                email: draft_Main.emailAddress,
+                password: draft_Main.password
+            }));
+        },
+        [draft_Main]
+    );
+    const onSubmit_Main = useCallback(
+        (event:React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            submitMain();
+        },
+        []
+    );
+    const onKeyPress_Main = useCallback(
         (event: React.KeyboardEvent<HTMLInputElement>) => {
             if (event.key === "Enter") {
-                console.log('hero!')
-                console.log(inputEmail.value)
-                onClick_LogIn();
+                submitMain();
             }
         },
-        [inputEmail, inputPassword]
+        []
     );
     
 
     const onClick_LogInSocial = useCallback(
-        (event) => {
-            const {target: {name}} = event;
-            
-            if (name === 'google'){
+        (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            const {currentTarget: {value}} = event;
+            if (value === 'google'){
                 dispatch(actionsAuth.return__LOG_IN_GOOGLE() );
             }
-            else if (name === 'github'){
+            else if (value === 'github'){
                 dispatch(actionsAuth.return__LOG_IN_GITHUB() );
             }
-                
         }, []
     );
   
@@ -120,8 +123,10 @@ function LogIn({}:PropsLogIn) {
 
         <TopBar />
 
-        <div className={`${styles['content']}`} >
-
+        <form 
+            className={`${styles['content']}`} 
+            onSubmit={onSubmit_Main}
+        >
 
             <div className={`${styles['title-page']}`} > 
                 <FormattedMessage id={`Main.LogIn_LogIn`} />
@@ -132,9 +137,11 @@ function LogIn({}:PropsLogIn) {
                 <input 
                     type='email'
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
-                    value={inputEmail.value}
+                    name='emailAddress'
+                    value={draft_Main.emailAddress}
                     required
-                    onChange={inputEmail.onChange} 
+                    onChange={onChange_Main} 
+                    onKeyPress={onKeyPress_Main}
                 /> 
                 <div> { codeSituationEmail && <FormattedMessage id={`Notification.${codeSituationEmail}`} /> }  </div>
             </div> 
@@ -144,20 +151,21 @@ function LogIn({}:PropsLogIn) {
                 <input 
                     type='password'
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
-                    value={inputPassword.value}
+                    name='password'
+                    value={draft_Main.password}
                     required
-                    onChange={inputPassword.onChange}
-                    onKeyPress={onKeyPress_LogIn}
+                    onChange={onChange_Main}
+                    onKeyPress={onKeyPress_Main}
                 /> 
                 <div> { codeSituationPassword && <FormattedMessage id={`Notification.${codeSituationPassword}`}/>} </div>
             </div> 
 
             
             <div className={`${styles['button-enter']}`} >
-                <button
-                    onClick={()=>onClick_LogIn()}
-                > <FormattedMessage id={`Main.LogIn_LogIn`} />
-                </button>
+                <input
+                    type='submit'
+                    value={intl.formatMessage({ id: 'Main.LogIn_LogIn'})}
+                />
             </div> 
             
         
@@ -167,33 +175,31 @@ function LogIn({}:PropsLogIn) {
             
             <div className={`${styles['collection-social']}`} >
                 <button 
-                    name='google'
-                    onClick={(event)=>onClick_LogInSocial(event)}
+                    type='button'
+                    value='google'
+                    onClick={onClick_LogInSocial}
                 > Google </button>
                 <button 
-                    name='apple'
-                    onClick={(event)=>onClick_LogInSocial(event)}
-                > Apple </button>
-                <button 
-                    name='github'
-                    onClick={(event)=>onClick_LogInSocial(event)}
+                    type='button'
+                    value='github'
+                    onClick={onClick_LogInSocial}
                 > GitHub </button>
             </div> 
             
-            <div className={`${styles['collection-link']}`} >
+            <nav className={`${styles['collection-link']}`} >
                 <div> 
-                    <a
-                    onClick={(event)=>onClick_LinkInsideApp(event, '/')}
+                    <a  
+                        href='/'
                     > <FormattedMessage id={`Nav.Home`} /> </a> 
                 </div>
-                <div> <a
-                    onClick={(event)=>onClick_LinkInsideApp(event, '/sign-up')}
-                > <FormattedMessage id={`Nav.SignUp`} /> </a> 
+                <div> 
+                    <a  
+                        href='/sign-up'
+                    > <FormattedMessage id={`Nav.SignUp`} /> </a> 
                 </div>
-            </div> 
+            </nav> 
 
-
-        </div>
+        </form>
     </div>
   );
 }

@@ -41,7 +41,7 @@ function MyProfile({}: PropsMyProfile) {
         },[]
     );
 
-    const onChange_InputNormal = useCallback(
+    const onChange_InputBasic = useCallback(
         (event:React.ChangeEvent<HTMLInputElement>) => {
 
             if (event.currentTarget.name === 'displayNameEditing'){

@@ -177,8 +177,8 @@
         @include color-each-theme(color, google__font);
     }
     &:nth-child(2){
-        @include color-each-theme(background-color, apple__bg);
-        @include color-each-theme(color, apple__font);
+        @include color-each-theme(background-color, github__bg);
+        @include color-each-theme(color, github__font);
         margin-top: 8px;
     }
   }

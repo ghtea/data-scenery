@@ -13,13 +13,10 @@ Modal  600
     Shadow 599
 
 
-Nav  200
+Header  200
 
 
 
 
-Page  0
-    Portal   20
-        open
-            face   50
-            body 30 
+Main  0
+    

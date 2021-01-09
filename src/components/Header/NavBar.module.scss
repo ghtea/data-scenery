@@ -1,0 +1,69 @@
+@import 'styles/every.scss';
+
+
+.root {
+    display: flex;
+    margin-left: 20px;
+} 
+
+
+ul.all {
+    width: auto;
+
+    list-style-type: none;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > li {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        position: relative;
+
+        .category {
+            width: auto;
+
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-end; 
+
+            .text {
+                width: auto;
+            }
+
+            .container__icon {
+                width: auto;
+                margin-bottom: 1px;
+
+                .icon__angle {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+
+            &:hover {
+                &+.dropdown {
+                    display: flex;
+                }
+            }
+        }
+
+
+        ul.dropdown {
+            width: auto;
+            
+            display: none;
+            list-style-type: none;
+
+            position: absolute;
+        }
+    }
+}
+
+

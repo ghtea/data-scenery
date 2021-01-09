@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import history from 'historyApp';
 import { useLocation } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
@@ -8,17 +8,11 @@ import {StateRoot} from 'store/reducers';
 import * as actionsStatus from 'store/actions/status';
 import * as actionsNotification from 'store/actions/notification';
 
-import NavBar from './Header/NavBar';
-import NavBoard from './Header/NavBoard';
-
-
 import styles from './Header.module.scss';
 
 import IconLogo from 'svgs/others/IconLogo';
 import IconSearch from 'svgs/basic/IconSearch'; 
-
-import IconThreeBars from 'svgs/basic/IconThreeBars';
-import IconX from 'svgs/basic/IconX';
+import IconPlus from 'svgs/basic/IconPlus';
 
 import IconSetting from 'svgs/basic/IconSetting';
 import IconUserCircle from 'svgs/basic/IconUserCircle';
@@ -38,7 +32,6 @@ function Header({}: PropsHeader) {
     const user = useSelector((state: StateRoot) => state['auth']['user']);
     // useEffect(()=>console.log(user),[user])
 
-    
     useEffect(() => {
         console.log(location.pathname);
         if (  (/^\/log-in/).test(location.pathname) || (/^\/sign-up/).test(location.pathname)  ) {
@@ -55,11 +48,12 @@ function Header({}: PropsHeader) {
         }
     }, [location]);
 
-    const [isOpen, setIsOpen] = useState(false);
-    const onClick_OpenBoard = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
-            setIsOpen(!isOpen);        
-        },[isOpen]
+
+    // event: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>, 
+    const onClick_LinkInsideApp = useCallback(
+        (destination:string) => {
+        history.push(destination);
+        },[history]
     );
     
     const onClick_ShowModal = useCallback(
@@ -75,51 +69,56 @@ function Header({}: PropsHeader) {
   return (
     <header className={`${styles['root']} showing----${showingHeader}`}>
 
-        <div className={`${styles['bar']}`}>
+        <div className={`${styles['left']}`} >
+            <a
+                className={`${styles['logo-app']}`}
+                onClick={()=>onClick_LinkInsideApp('/')}
+            >
+                <div>
+                    <IconLogo className={`${styles['icon-logo']}`} />
+                </div>
+                <div>
+                    <FormattedMessage id={`Nav.NameApp`} />
+                </div>
+            </a>
+        </div>
+      
+        <div className={`${styles['middle']}`} >
+            
+        </div>
+      
 
-            <div className={`${styles['left']}`}>
-                <button
-                    type='button'
-                    onClick={onClick_OpenBoard}
-                >   {!isOpen ?
-                        <IconThreeBars className={`${styles['icon__three-bars']}`} kind='light'/>
+        <nav className={`${styles['right']}`} >
+            
+                { !readyUser && !loadingUser &&
+                    <a className={`${styles['log-in']}`} 
+                        onClick={()=>onClick_LinkInsideApp('/log-in')} 
+                    >
+                        <FormattedMessage id={`Nav.LogIn`} />
+                    </a>
+                }
+                
+                { readyUser &&
+                    <button className={`${styles['user']}`} 
+                        onClick={()=>onClick_ShowModal('myProfile')}
+                    >
+                    {user?.photoURL ? 
+                        <div> <img className={`${styles['photo-profile']}`} src={user.photoURL} /> </div>
                         :
-                        <IconX className={`${styles['icon__x']}`} kind='light'/>
+                        <div> <IconUserCircle className={`${styles['icon-user-circle']}`} kind="solid"/> </div>
                     }
+
+                    </button>
+                }
+
+                <button className={`${styles['setting']}`} 
+                    onClick={()=>onClick_ShowModal('setting')}
+                >
+                <div> <IconSetting className={`${styles['icon-setting']}`} /> </div>
                 </button>
-            </div>
 
-            <div className={`${styles['left']} on-big-devices`}>
-
-                <a href='/' className={`${styles['logo']}`} >
-                    <div> <IconLogo className={`${styles['icon__logo']}`} kind='regular' /> </div>
-                    <div className={`${styles['name']}`}> <FormattedMessage id={`Nav.NameApp`} /> </div>
-                </a>
-
-                <NavBar/>
-
-            </div>
-
-
-            {!readyUser && !loadingUser && 
-                <div className={`${styles['right']}`}>
-                    <a href='/log-in'> Log In </a>
-                    <a className={`on-big-devices`} href='/sign-up'> Sign Up </a>
-                </div>
-            }
-            {readyUser &&  
-                <div className={`${styles['right']}`}>
-                    <button
-                        type='button'
-                    > Icon </button>
-                </div>
-            }               
-
-
-        </div> 
-
-        <NavBoard isOpen={isOpen}/>
-
+        </nav>
+      
     </header>
   );
 }

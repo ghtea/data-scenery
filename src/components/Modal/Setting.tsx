@@ -92,18 +92,24 @@ function Setting({}: PropsSetting) {
                     <div> <FormattedMessage id={`Modal.Setting_Theme`} /> </div>
 
                     <div className={'container__input-radio'} > 
-                        <input type="radio" name="optionTheme" value="auto" defaultChecked
-                            id="optionTheme----auto"
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="auto" defaultChecked={optionThemeCurrent==='auto'} id="optionTheme----auto"
                             onChange={onChange_InputNormal} 
                         /> <label htmlFor="optionTheme----auto"> auto </label>
 
-                        <input type="radio" name="optionTheme" value="always-light"
-                            id="optionTheme----always-light"
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="always-light" defaultChecked={optionThemeCurrent==='always-light'} id="optionTheme----always-light"
                             onChange={onChange_InputNormal} 
                         /> <label htmlFor="optionTheme----always-light"> light</label>
 
-                        <input type="radio" name="optionTheme" value="always-dark"
-                            id="optionTheme----always-dark"
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="always-dark" defaultChecked={optionThemeCurrent==='always-dark'} id="optionTheme----always-dark"
                             onChange={onChange_InputNormal} 
                         /> <label htmlFor="optionTheme----always-dark"> dark </label>
                     </div>
@@ -113,13 +119,17 @@ function Setting({}: PropsSetting) {
                     <div>  <FormattedMessage id={`Modal.Setting_Language`} /></div>
 
                     <div className={'container__input-radio'} > 
-                        <input type="radio" name="language" value="en" defaultChecked
-                            id="language----en"
+                        <input 
+                            type="radio" 
+                            name="language"  
+                            value="en"  defaultChecked={languageCurrent==='en'} id="language----en"
                             onChange={onChange_InputNormal} 
                         /> <label htmlFor="language----en"> English </label>
 
-                        <input type="radio" name="language" value="ko"
-                            id="language----ko"
+                        <input 
+                            type="radio" 
+                            name="language" 
+                            value="ko" defaultChecked={languageCurrent==='ko'} id="language----ko"
                             onChange={onChange_InputNormal} 
                         /> <label htmlFor="language----ko"> 한국어 </label>
 

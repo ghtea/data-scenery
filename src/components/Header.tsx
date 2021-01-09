@@ -63,9 +63,10 @@ function Header({}: PropsHeader) {
     );
     
     const onClick_ShowModal = useCallback(
-        (idModal:string) => {
+        (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const {value} = event.currentTarget;
         dispatch(actionsStatus.return__REPLACE({ 
-            listKey: ['showing', 'modal', idModal],
+            listKey: ['showing', 'modal', value],
             replacement: true
         }));
         },[]
@@ -103,15 +104,30 @@ function Header({}: PropsHeader) {
 
             {!readyUser && !loadingUser && 
                 <div className={`${styles['right']}`}>
-                    <a href='/log-in'> Log In </a>
-                    <a className={`on-big-devices`} href='/sign-up'> Sign Up </a>
+                    <a className={`button__main--light on-big-devices`} href='/log-in'> 
+                        <FormattedMessage id={'Nav.LogIn'}/> 
+                    </a>
+                    <a className={`button__main--solid on-big-devices`} href='/sign-up'> 
+                        <FormattedMessage id={'Nav.SignUp'}/> 
+                    </a>
+                    <button
+                        type='button'
+                        value='setting'
+                        onClick={onClick_ShowModal}
+                    > <IconSetting className={`${styles['icon__setting']}`} kind='regular'/>  
+                    </button>
                 </div>
             }
             {readyUser &&  
                 <div className={`${styles['right']}`}>
                     <button
                         type='button'
-                    > Icon </button>
+                    > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
+                    </button>
+                    <button
+                        type='button'
+                    > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
+                    </button>
                 </div>
             }               
 

@@ -2,12 +2,16 @@
 
 .root {
 
-    @include color-each-theme(background-color, basic__0);
+    background-color: transparent;
+    // @include color-each-theme(background-color, basic__0);
 
     display: none;
     &:global(.showing----true) {
-        display: block;
+        display: flex;
     }
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 
     width: 100%; min-width: $device-xs__min-width; 
     height: auto; min-height: 120px;
@@ -22,13 +26,11 @@
       
     
     & > * {
-        display: inline-block;
+        display: block;
 
         width: auto;
-        margin: auto;
+        margin: 0 auto;
 
-        margin-left: auto;
-        margin-right: auto;
     }
        
 }

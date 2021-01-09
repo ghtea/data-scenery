@@ -79,7 +79,7 @@
             .name {
                 font-size: 1.2rem;
                 font-weight: bold;
-                @include color-each-theme(color, basic__5);
+                @include color-each-theme(color, basic__7);
                 margin-left: 10px;
             }
         }
@@ -108,6 +108,17 @@
             &:nth-child(n+2){
                 margin-left: 20px;
             }
+        }
+
+
+        .icon__setting {
+            width: 24px;
+            height: 24px;
+            @include color-each-theme(color, basic__5);
+        }
+        .icon__user-circle {
+            width: 24px;
+            height: 24px;
         }
     }
 }

@@ -4,12 +4,15 @@
 .root {
     display: flex;
     margin-left: 20px;
+
+    height: $header__height;
 } 
 
 
 ul.all {
     width: auto;
-
+    height: 100%;
+    
     list-style-type: none;
 
     display: flex;
@@ -23,15 +26,18 @@ ul.all {
         justify-content: flex-start;
         align-items: center;
 
+        height: 100%;
+
         position: relative;
 
         .category {
             width: auto;
+            height: 100%;
 
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-start;
-            align-items: flex-end; 
+            align-items: center; 
 
             .text {
                 width: auto;
@@ -39,7 +45,7 @@ ul.all {
 
             .container__icon {
                 width: auto;
-                margin-bottom: 1px;
+                top: 3px;
 
                 .icon__angle {
                     width: 18px;
@@ -47,21 +53,39 @@ ul.all {
                 }
             }
 
-            &:hover {
-                &+.dropdown {
-                    display: flex;
-                }
+        }
+
+        &:hover {
+            .dropdown {
+                display: flex;
             }
         }
 
-
         ul.dropdown {
-            width: auto;
+            width: 180px;
+            height: auto;
+            padding: 1rem 1rem 1rem 1rem;
             
             display: none;
             list-style-type: none;
 
+            @include color-each-theme(background-color, basic__0);
+
             position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+
+            border-radius: 4px;
+            @include frame-each-theme(border, 1px, solid, basic__1);
+
+            li {
+                width: 100%;
+                a {
+                    width: 100%;
+                    display: inline-block;
+                }
+            }
         }
     }
 }

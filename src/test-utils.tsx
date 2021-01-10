@@ -1,5 +1,6 @@
 import React from 'react';
 import { render as renderRtl, RenderOptions } from '@testing-library/react';
+import '@testing-library/dom';
 
 import { IntlProvider } from 'react-intl';
 import translationEn from 'language/translation/en.json';
@@ -37,9 +38,11 @@ const render = (ui: Ui, option?: Option) =>
     renderRtl(ui, { wrapper: wrapper, ...option })
 
 
-
+/*
 // re-export everything
 export * from '@testing-library/react';
+export * from '@testing-library/dom'
+*/
 
 // override render method
 export { render }

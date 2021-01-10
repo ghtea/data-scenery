@@ -79,15 +79,23 @@ function Header({}: PropsHeader) {
         <div className={`${styles['bar']}`}>
 
             <div className={`${styles['left']}`}>
+
+                {!isOpen ?
                 <button
                     type='button'
+                    aria-label="Open"
                     onClick={onClick_OpenBoard}
-                >   {!isOpen ?
-                        <IconThreeBars className={`${styles['icon__three-bars']}`} kind='light'/>
-                        :
-                        <IconX className={`${styles['icon__x']}`} kind='light'/>
-                    }
+                >   <IconThreeBars className={`${styles['icon__three-bars']}`} kind='light'/>
                 </button>
+                :
+                <button
+                    type='button'
+                    aria-label="Close"
+                    onClick={onClick_OpenBoard}
+                >   <IconX className={`${styles['icon__x']}`} kind='light'/>
+                </button>
+                }   
+
             </div>
 
             <div className={`${styles['left']} on-big-devices`}>

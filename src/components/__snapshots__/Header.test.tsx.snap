@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> matches snapshot 1`] = `
+<div>
+  <header
+    class="root showing----true"
+  >
+    <div
+      class="bar"
+    >
+      <div
+        class="left"
+      >
+        <button
+          aria-label="Open"
+          type="button"
+        >
+             
+          <div
+            class="icon__three-bars icon"
+          >
+            <svg
+              aria-hidden="true"
+              class=""
+              fill="currentColor"
+              focusable="false"
+              height="100%"
+              role="img"
+              viewBox="0 0 448 512"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
+      <div
+        class="left on-big-devices"
+      >
+        <a
+          class="logo"
+          href="/"
+        >
+          <div>
+             
+            <div
+              class="icon__logo icon"
+            >
+              <svg
+                aria-hidden="true"
+                class=""
+                fill="currentColor"
+                focusable="false"
+                height="100%"
+                role="img"
+                viewBox="0 0 640 512"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M635.73 406.91l-194.04-297.6C435.9 100.44 425.95 96 416 96c-9.95 0-19.9 4.44-25.69 13.31l-52 79.76-70.79-110.55C261.32 68.84 250.66 64 240 64s-21.32 4.84-27.52 14.52L4.58 403.18C-7.99 422.81 6.81 448 30.92 448h580.22c22.5 0 36.32-23.09 24.59-41.09zM63.61 400L240 124.55 416.39 400H63.61zm409.78 0L366.71 233.4 416 157.8 573.92 400H473.39z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+             
+          </div>
+          <div
+            class="name"
+          >
+             
+            Data Scenery
+             
+          </div>
+        </a>
+        <nav
+          class="root "
+        >
+          <ul
+            class="all"
+          >
+            <li>
+              <a
+                class="category"
+              >
+                <div
+                  class="text"
+                >
+                   sports 
+                </div>
+                <div
+                  class="container__icon"
+                >
+                   
+                  <div
+                    class="icon__angle icon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class=""
+                      fill="currentColor"
+                      focusable="false"
+                      height="100%"
+                      role="img"
+                      transform="rotate(90)"
+                      viewBox="0 0 192 512"
+                      width="100%"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M166.9 264.5l-117.8 116c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17L127.3 256 25.1 155.6c-4.7-4.7-4.7-12.3 0-17l7.1-7.1c4.7-4.7 12.3-4.7 17 0l117.8 116c4.6 4.7 4.6 12.3-.1 17z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                   
+                </div>
+              </a>
+              <ul
+                class="dropdown"
+              >
+                <li>
+                  <a
+                    href="/sports/football"
+                  >
+                    football
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div
+        class="right"
+      >
+        <a
+          class="button__main--light on-big-devices"
+          href="/log-in"
+        >
+          Log In
+        </a>
+        <a
+          class="button__main--solid on-big-devices"
+          href="/sign-up"
+        >
+          Sign Up
+        </a>
+        <button
+          type="button"
+          value="setting"
+        >
+           
+          <div
+            class="icon__setting icon"
+          >
+            <svg
+              aria-hidden="true"
+              class=""
+              fill="currentColor"
+              focusable="false"
+              height="100%"
+              role="img"
+              viewBox="0 0 512 512"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M452.515 237l31.843-18.382c9.426-5.441 13.996-16.542 11.177-27.054-11.404-42.531-33.842-80.547-64.058-110.797-7.68-7.688-19.575-9.246-28.985-3.811l-31.785 18.358a196.276 196.276 0 0 0-32.899-19.02V39.541a24.016 24.016 0 0 0-17.842-23.206c-41.761-11.107-86.117-11.121-127.93-.001-10.519 2.798-17.844 12.321-17.844 23.206v36.753a196.276 196.276 0 0 0-32.899 19.02l-31.785-18.358c-9.41-5.435-21.305-3.877-28.985 3.811-30.216 30.25-52.654 68.265-64.058 110.797-2.819 10.512 1.751 21.613 11.177 27.054L59.485 237a197.715 197.715 0 0 0 0 37.999l-31.843 18.382c-9.426 5.441-13.996 16.542-11.177 27.054 11.404 42.531 33.842 80.547 64.058 110.797 7.68 7.688 19.575 9.246 28.985 3.811l31.785-18.358a196.202 196.202 0 0 0 32.899 19.019v36.753a24.016 24.016 0 0 0 17.842 23.206c41.761 11.107 86.117 11.122 127.93.001 10.519-2.798 17.844-12.321 17.844-23.206v-36.753a196.34 196.34 0 0 0 32.899-19.019l31.785 18.358c9.41 5.435 21.305 3.877 28.985-3.811 30.216-30.25 52.654-68.266 64.058-110.797 2.819-10.512-1.751-21.613-11.177-27.054L452.515 275c1.22-12.65 1.22-25.35 0-38zm-52.679 63.019l43.819 25.289a200.138 200.138 0 0 1-33.849 58.528l-43.829-25.309c-31.984 27.397-36.659 30.077-76.168 44.029v50.599a200.917 200.917 0 0 1-67.618 0v-50.599c-39.504-13.95-44.196-16.642-76.168-44.029l-43.829 25.309a200.15 200.15 0 0 1-33.849-58.528l43.819-25.289c-7.63-41.299-7.634-46.719 0-88.038l-43.819-25.289c7.85-21.229 19.31-41.049 33.849-58.529l43.829 25.309c31.984-27.397 36.66-30.078 76.168-44.029V58.845a200.917 200.917 0 0 1 67.618 0v50.599c39.504 13.95 44.196 16.642 76.168 44.029l43.829-25.309a200.143 200.143 0 0 1 33.849 58.529l-43.819 25.289c7.631 41.3 7.634 46.718 0 88.037zM256 160c-52.935 0-96 43.065-96 96s43.065 96 96 96 96-43.065 96-96-43.065-96-96-96zm0 144c-26.468 0-48-21.532-48-48 0-26.467 21.532-48 48-48s48 21.533 48 48c0 26.468-21.532 48-48 48z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+    <nav
+      class="root on-small-devices isOpen----false"
+    >
+      hello! hellohellohellohellohellohello
+    </nav>
+  </header>
+</div>
+`;

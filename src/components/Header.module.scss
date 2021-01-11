@@ -1,10 +1,6 @@
 @import 'styles/every.scss';
 
 .root {
-    visibility: hidden;
-    &:global(.showing----true) {
-        visibility: visible;
-    }
 
     width: 100%; min-width: $device-xs__min-width; 
 

@@ -3,15 +3,12 @@
 
 .root {
 
+    display: none;
+    /*
     @media (min-width: $device-m__min-width) { // 320≤ xs < 576,   576 ≤ s < 768,   768 ≤ m < 992,   992 ≤ l < 1200,   1200 ≤ xl
-        visibility: hidden;
+        display: none;
     }
-
-    visibility: hidden;
-    
-    &:global(.isOpen----true){
-        visibility: visible;
-    }
+    */
 
 }
 

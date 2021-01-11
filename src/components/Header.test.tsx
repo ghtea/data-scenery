@@ -31,14 +31,13 @@ describe('<Header />', () => {
         render(<Header />);
 
         expect(screen.getByRole('button', {name: 'Open'})).toBeInTheDocument();
-
-        const test =screen.getByRole('button', {name: 'Close'});
-        expect(test).toBeNull();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'})).toBeNull()
+        expect(screen.queryByRole('button', {name: 'Close'})).not.toBeInTheDocument();
+        //expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).toHaveStyle({ visibility: 'hidden' });
+console.log(screen.getByRole('navigation', {name: 'Main Navigation'}))
 
         fireEvent.click(screen.getByRole('button', {name: 'Open'}));
         
-        expect(screen.getByRole('button', {name: 'Open'})).toBeNull()
+        expect(screen.queryByRole('button', {name: 'Open'})).not.toBeInTheDocument();
         expect(screen.getByRole('button', {name: 'Close'})).toBeInTheDocument();
         expect(screen.getByRole('navigation', {name: 'Main Navigation'})).toBeInTheDocument();
 
@@ -46,8 +45,8 @@ describe('<Header />', () => {
         fireEvent.click(screen.getByRole('button', {name: 'Close'}));
         
         expect(screen.getByRole('button', {name: 'Open'})).toBeInTheDocument();
-        expect(screen.getByRole('button', {name: 'Close'})).toBeNull()
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'})).toBeNull()
+        expect(screen.queryByRole('button', {name: 'Close'})).not.toBeInTheDocument();
+        expect(screen.queryByRole('navigation', {name: 'Main Navigation'})).not.toBeInTheDocument();
 
     });
     

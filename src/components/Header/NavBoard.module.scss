@@ -4,12 +4,15 @@
 .root {
 
     @media (min-width: $device-m__min-width) { // 320≤ xs < 576,   576 ≤ s < 768,   768 ≤ m < 992,   992 ≤ l < 1200,   1200 ≤ xl
-        display: none;
+        visibility: hidden;
     }
 
-    display: none;
+    visibility: hidden;
+    
     &:global(.isOpen----true){
-        display: flex;
+        visibility: visible;
     }
+
 }
 
+ 

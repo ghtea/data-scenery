@@ -32,6 +32,8 @@ function NavBoard({isOpen}: PropsNavBoard) {
   );
 }
 
-NavBoard.defaultProps = {};
+NavBoard.defaultProps = {
+    isOpen: false
+};
 
 export default NavBoard;

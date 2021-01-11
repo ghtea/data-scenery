@@ -25,7 +25,7 @@ function NavBoard({isOpen}: PropsNavBoard) {
   return (
     <nav 
         className={`${styles['root']} on-small-devices isOpen----${isOpen}`}
-        aria-labelledby="Main Navigation"
+        aria-label="Main Navigation"
     > 
         hello! hellohellohellohellohellohello
     </nav> 

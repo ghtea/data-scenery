@@ -131,6 +131,9 @@ function Header({}: PropsHeader) {
                 <div className={`${styles['right']}`}>
                     <button
                         type='button'
+                        aria-label="Open Profile"
+                        value='profile'
+
                     > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
                     </button>
                     <button

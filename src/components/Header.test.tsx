@@ -22,13 +22,6 @@ describe('<Header />', () => {
     });
     */ 
 
-    /*
-    it('check translations', () => {
-        render(<Header />);
-        screen.getByText(translationEn['Nav.LogIn']);
-    });
-    */
-    
     it('open/close board', () => {
         render(<Header />);
 
@@ -66,3 +59,7 @@ describe('<Header />', () => {
 
 
 // https://twitter.com/i/lists/create
+
+// https://www.samdawson.dev/article/react-redux-use-selector-vs-connect
+// https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2
+// 테스팅 등으로 비교한 connect vs useSelector

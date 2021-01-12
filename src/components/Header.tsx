@@ -83,14 +83,14 @@ function Header({}: PropsHeader) {
                 {!isOpen ?
                 <button
                     type='button'
-                    aria-label="Open"
+                    aria-label="Open Board"
                     onClick={onClick_OpenBoard}
                 >   <IconThreeBars className={`${styles['icon__three-bars']}`} kind='light'/>
                 </button>
                 :
                 <button
                     type='button'
-                    aria-label="Close"
+                    aria-label="Close Board"
                     onClick={onClick_OpenBoard}
                 >   <IconX className={`${styles['icon__x']}`} kind='light'/>
                 </button>
@@ -120,6 +120,7 @@ function Header({}: PropsHeader) {
                     </a>
                     <button
                         type='button'
+                        aria-label="Open Setting"
                         value='setting'
                         onClick={onClick_ShowModal}
                     > <IconSetting className={`${styles['icon__setting']}`} kind='regular'/>  
@@ -134,7 +135,10 @@ function Header({}: PropsHeader) {
                     </button>
                     <button
                         type='button'
-                    > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
+                        aria-label="Open Setting"
+                        value='setting'
+                        onClick={onClick_ShowModal}
+                    > <IconSetting className={`${styles['icon__setting']}`} kind='regular'/>  
                     </button>
                 </div>
             }               

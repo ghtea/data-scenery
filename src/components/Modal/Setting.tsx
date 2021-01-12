@@ -65,7 +65,10 @@ function Setting({}: PropsSetting) {
   
   return (
     
-    <div className={`${styles['root']} ${stylesModal['root']}`} >
+    <div 
+        className={`${styles['root']} ${stylesModal['root']}`} 
+        role="dialog" aria-labelledby="heading__setting"
+    >
         
         <div 
             className={`${stylesModal['outside']}`} 
@@ -77,7 +80,7 @@ function Setting({}: PropsSetting) {
         >
             
             <div className={`${stylesModal['header']}`} >
-                <div>  <FormattedMessage id={`Modal.Setting_Title`} /> </div>
+                <h2 id='heading__setting'>  <FormattedMessage id={`Modal.Setting_Title`} /> </h2>
                 <div
                     onClick={()=>onClick_HideModal()}
                 > 

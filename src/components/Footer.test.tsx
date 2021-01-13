@@ -12,7 +12,7 @@ import Footer from './Footer';
 
 // import { StringLiteral } from 'typescript';
 
-/*
+
 describe('<Footer />', () => {
 
     it('matches snapshot', () => {
@@ -22,4 +22,4 @@ describe('<Footer />', () => {
 
     
 });
-*/
+

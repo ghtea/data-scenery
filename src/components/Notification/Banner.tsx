@@ -34,20 +34,29 @@ function Banner({
   const dispatch = useDispatch();
   
   const onClick_DeleteBanner = useCallback(
-    (id:string) => {
-      dispatch(actionsRoot.notification.return__DELETE_BANNER({
-        id: id
-      }) )
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault();
+        const {value : id} = event.currentTarget;
+        
+        dispatch(actionsRoot.notification.return__DELETE_BANNER({
+            id: id
+        }) )
     }, []
   );
   
+  const idMessaga = useMemo( 
+    ()=>{ 
+        return `message__${banner['id']}`
+    }, [banner]
+  )
   
   // console.log(banner);
   
   return (
     
     <div 
-        aria-role='alert' ??
+        role='alert'
+        aria-labelledby={idMessaga}
         className={`${styles['root']} ${styles[banner['kindSituation']]}`} 
     >
 
@@ -59,7 +68,9 @@ function Banner({
         </div>
             
         <div className={`${styles['middle']}`}>
-            <div><FormattedMessage id={banner.idMessage} /> </div>
+            <div
+                id={idMessaga}
+            ><FormattedMessage id={banner.idMessage} /> </div>
         </div>
       
         <div className={`${styles['right']}`}>
@@ -67,7 +78,8 @@ function Banner({
                 type='button'
                 aria-label="Delete Banner"
                 className={`${styles['button__delete']}`} 
-                onClick={()=>onClick_DeleteBanner(banner['id'])}
+                value={banner['id']}
+                onClick={onClick_DeleteBanner}
             >
                 <IconXCircle className={`${styles['icon__x-circle']}`} kind={'light'}  />
                 <IconXCircle className={`${styles['icon__x-circle']}`} kind={'solid'}  />

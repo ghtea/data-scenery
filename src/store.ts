@@ -17,14 +17,22 @@ const sagaMiddleware = createSagaMiddleware({
 // type State = ReturnType<typeof reducerRoot>;
 
 
+// example: dont show logger when testing
+let listMiddleware = []
+if (process.env.NODE_ENV !== 'production') {
+  listMiddleware = [sagaMiddleware];
+} else {
+  listMiddleware = [sagaMiddleware, logger];
+}
 
 const store = createStore(
     reducerRoot,
-    applyMiddleware(sagaMiddleware, logger)
+    applyMiddleware(...listMiddleware)
 );
 
 sagaMiddleware.run(sagaRoot);
-    
+
+
 
 export default store;
 

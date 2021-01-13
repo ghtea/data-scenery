@@ -4,7 +4,7 @@ import { render} from 'test-utils';
 import {screen, fireEvent} from '@testing-library/react';
 //import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-// import * from '@testing-library/dom';
+import {waitFor} from '@testing-library/dom';
 
 import {Banner as TypeBanner} from 'store/reducers/notification';
 import translationEn from 'language/translation/en.json';
@@ -34,13 +34,14 @@ describe('<Banner />', () => {
 
         render(<Banner banner={bannerSample}/>);
         
+        expect(screen.getByRole('alert', {name: translationEn[ bannerSample.idMessage as keyof typeof translationEn] } )).toBeInTheDocument();
+
         fireEvent.click( screen.getByRole('button', {name: 'Delete Banner'}) );
         
-
-        expect(screen.queryByRole('button', {name: 'Open Board'})).not.toBeInTheDocument();
+        waitFor( () => expect(screen.queryByRole('alert', {name: translationEn[ bannerSample.idMessage as keyof typeof translationEn] } )).not.toBeInTheDocument() );
     });
     
-});
+}); 
 
 
 // https://twitter.com/i/lists/create

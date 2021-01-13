@@ -39,7 +39,7 @@ function Header({}: PropsHeader) {
 
     
     useEffect(() => {
-        console.log(location.pathname);
+        // console.log(location.pathname);
         if (  (/^\/log-in/).test(location.pathname) || (/^\/sign-up/).test(location.pathname)  ) {
             dispatch(actionsRoot.status.return__REPLACE({
                 listKey:['showing', 'header'],

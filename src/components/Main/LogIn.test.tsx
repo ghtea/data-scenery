@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from 'test-utils';
-// import '@testing-library/jest-dom/extend-expect';    // 이거 필요없는 듯?
+import { render } from 'test-utils';
+import {screen, fireEvent} from '@testing-library/react';
 
 import LogIn from './LogIn';
 import { StringLiteral } from 'typescript';

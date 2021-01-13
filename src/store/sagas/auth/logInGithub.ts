@@ -9,11 +9,8 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
-
-import * as actionsStatus from "store/actions/status";
-import * as actionsNotification from "store/actions/notification";
-
-import * as actionsAuth from "store/actions/auth";
+import * as actionsRoot from "store/actions";
+ 
 //import * as actionsTheme from "../../actions/theme";
 
 
@@ -24,12 +21,12 @@ const requestLogInGithub = (provider:any) => {
 };
 
 
-function* logInGithub(action: actionsAuth.type__LOG_IN_GITHUB) {
+function* logInGithub(action: actionsRoot.auth.type__LOG_IN_GITHUB) {
     try {
 
         const provider = new firebaseApp.auth.GithubAuthProvider();
         
-        yield put( actionsNotification.return__REPLACE({
+        yield put( actionsRoot.notification.return__REPLACE({
             listKey: ['listCodeSituationOthers'],
             replacement: []
         }) );
@@ -39,17 +36,17 @@ function* logInGithub(action: actionsAuth.type__LOG_IN_GITHUB) {
                 const {user} = yield call( requestLogInGithub, provider );
                 //console.log(data.user);
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: true
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: user
                 }) );
 
@@ -57,17 +54,17 @@ function* logInGithub(action: actionsAuth.type__LOG_IN_GITHUB) {
             } 
             catch (error){
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: null
                 }) );
 
@@ -75,13 +72,13 @@ function* logInGithub(action: actionsAuth.type__LOG_IN_GITHUB) {
                 console.log(error);
                 if (error.code === 'auth/account-exists-with-different-credential'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogInGithub_UnknownError__E'
                     }) );
                 }
                 else {
                     console.log(error);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogInGithub_UnknownError__E'
                     }) );
                 }
@@ -95,24 +92,24 @@ function* logInGithub(action: actionsAuth.type__LOG_IN_GITHUB) {
         
     } catch (error) {
         
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['ready', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsAuth.return__REPLACE_USER({
+        yield put( actionsRoot.auth.return__REPLACE_USER({
             user: null
         }) );
 
         console.log(error);
         console.log('logInGithub has been failed');
         
-        yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+        yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'LogInGithub_UnknownError__E'
         }) );
     }

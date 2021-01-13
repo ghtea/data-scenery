@@ -5,8 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
-import * as actionsNotification from 'store/actions/notification';
+import * as actionsRoot from "store/actions";
 
 import styles from './Header.module.scss';
 
@@ -35,13 +34,13 @@ function Header({}: PropsHeader) {
     useEffect(() => {
         console.log(location.pathname);
         if (  (/^\/log-in/).test(location.pathname) || (/^\/sign-up/).test(location.pathname)  ) {
-            dispatch(actionsStatus.return__REPLACE({
+            dispatch(actionsRoot.status.return__REPLACE({
                 listKey:['showing', 'header'],
                 replacement: false
             }));
         }
         else {
-            dispatch(actionsStatus.return__REPLACE({
+            dispatch(actionsRoot.status.return__REPLACE({
                 listKey:['showing', 'header'],
                 replacement: true
             }));
@@ -58,7 +57,7 @@ function Header({}: PropsHeader) {
     
     const onClick_ShowModal = useCallback(
         (idModal:string) => {
-        dispatch(actionsStatus.return__REPLACE({ 
+        dispatch(actionsRoot.status.return__REPLACE({ 
             listKey: ['showing', 'modal', idModal],
             replacement: true
         }));

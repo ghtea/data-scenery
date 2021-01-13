@@ -1,7 +1,7 @@
 import produce from 'immer';
 import {handleActions} from 'redux-actions';
 
-import * as actionsStatus from 'store/actions/status';
+import * as actionsRoot from "store/actions";
 
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 
@@ -71,7 +71,7 @@ const stateInitial = {
 
 const reducerStatus = handleActions<State, any>({
   
-  [actionsStatus.name__REPLACE]: (statePrevious, action: actionsStatus.type__REPLACE) => {
+  [actionsRoot.status.name__REPLACE]: (statePrevious, action: actionsRoot.status.type__REPLACE) => {
     
     return produce(statePrevious, stateNew => {
       if (action.payload === undefined) { 

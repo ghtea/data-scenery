@@ -2,13 +2,13 @@ import { call, spawn, put, takeEvery, select } from "redux-saga/effects";
 
 import Cookies from 'js-cookie';
 
-import * as actionsStatus from "store/actions/status";
+import * as actionsRoot from "store/actions";
 import {StateRoot} from 'store/reducers';
 
 
 
 
-function* readOptionTheme(action: actionsStatus.type__READ_OPTION_THEME) {
+function* readOptionTheme(action: actionsRoot.status.type__READ_OPTION_THEME) {
     
     const optionThemeCookie:string | undefined = Cookies.get('optionTheme');
     
@@ -16,12 +16,12 @@ function* readOptionTheme(action: actionsStatus.type__READ_OPTION_THEME) {
     
     if (typeof optionThemeCookie === 'string'){
         
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['current', 'theme', 'option'],
             replacement: optionThemeCookie
         }) );
         
-        yield put( actionsStatus.return__DECIDE_THEME() );
+        yield put( actionsRoot.status.return__DECIDE_THEME() );
     }
         
 }

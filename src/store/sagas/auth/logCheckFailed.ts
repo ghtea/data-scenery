@@ -5,33 +5,30 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
 //import * as config from 'config';
-
-import * as actionsStatus from "store/actions/status";
-import * as actionsAuth from "store/actions/auth";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
 
+type Action = actionsRoot.auth.type__LOG_CHECK_FAILED;
 
-
-function* logCheckFailed(action: actionsAuth.type__LOG_CHECK_FAILED) {
+function* logCheckFailed(action: actionsRoot.auth.type__LOG_CHECK_FAILED) {
     
     
 
-    yield put( actionsStatus.return__REPLACE({
+    yield put( actionsRoot.status.return__REPLACE({
         listKey: ['ready', 'user'],
         replacement: false
     }) );
     
-    yield put( actionsStatus.return__REPLACE({
+    yield put( actionsRoot.status.return__REPLACE({
         listKey: ['loading', 'user'],
         replacement: false
     }) );
     
-    yield put( actionsAuth.return__REPLACE_USER({
+    yield put( actionsRoot.auth.return__REPLACE_USER({
         user: null
     }) );
     
-    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
         codeSituation: 'LogCheck_UnknownError__E'
     }) );
     console.log('log check failed');

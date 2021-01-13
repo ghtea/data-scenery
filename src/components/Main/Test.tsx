@@ -6,10 +6,7 @@ import axios from 'axios';
 
 import {useSelector, useDispatch} from "react-redux";
 
-import * as actionsStatus from 'store/actions/status';
-import * as actionsAuth from 'store/actions/auth';
-
-import * as actionsNotification from 'store/actions/notification';
+import * as actionsRoot from "store/actions";
 
 import styles from './Test.module.scss';
 
@@ -24,7 +21,7 @@ function Test({}: PropsTest) {
 
     const onClick_AddTestingBanner = useCallback(
         (codeSituation:string) => {
-        dispatch(actionsNotification.return__ADD_DELETE_BANNER({
+        dispatch(actionsRoot.notification.return__ADD_DELETE_BANNER({
             codeSituation: codeSituation
         }) );
         }, []

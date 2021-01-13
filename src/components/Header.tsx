@@ -5,8 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
-import * as actionsNotification from 'store/actions/notification';
+import * as actionsRoot from "store/actions";
 
 import NavBar from './Header/NavBar';
 import NavBoard from './Header/NavBoard';
@@ -42,13 +41,13 @@ function Header({}: PropsHeader) {
     useEffect(() => {
         console.log(location.pathname);
         if (  (/^\/log-in/).test(location.pathname) || (/^\/sign-up/).test(location.pathname)  ) {
-            dispatch(actionsStatus.return__REPLACE({
+            dispatch(actionsRoot.status.return__REPLACE({
                 listKey:['showing', 'header'],
                 replacement: false
             }));
         }
         else {
-            dispatch(actionsStatus.return__REPLACE({
+            dispatch(actionsRoot.status.return__REPLACE({
                 listKey:['showing', 'header'],
                 replacement: true
             }));
@@ -65,7 +64,7 @@ function Header({}: PropsHeader) {
     const onClick_ShowModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const {value} = event.currentTarget;
-        dispatch(actionsStatus.return__REPLACE({ 
+        dispatch(actionsRoot.status.return__REPLACE({ 
             listKey: ['showing', 'modal', value],
             replacement: true
         }));

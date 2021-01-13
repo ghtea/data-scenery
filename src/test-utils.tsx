@@ -6,8 +6,7 @@ import { IntlProvider } from 'react-intl';
 import translationEn from 'language/translation/en.json';
 
 // action 하나로 합쳐볼까?!!!
-import * as actionsStatus from 'store/actions/status';
-import * as actionsAuth from 'store/actions/auth';
+import * as actionsRoot from 'store/actions'; 
 
 import { Router} from "react-router-dom";  // BrowserRouter
 import history from 'historyApp';
@@ -24,17 +23,16 @@ type Ui = React.ReactElement<any, string | ((props: any) => React.ReactElement<a
 
 type Option = Pick<RenderOptions<typeof import("@testing-library/dom/types/queries")>, "container" | "baseElement" | "hydrate" | "wrapper"> | undefined;
 
-type ListReplacing = [
-    {
+type ListReplacing = {
         listKey: (string | number)[];    
         replacement: any;
         keyRoot: 'auth' | 'notification' | 'status'
-    }
-]
+    }[] ;
 
 
 
-const render = (ui: Ui, listReplacing: ListReplacing, option?: Option) =>{
+
+const render = (ui: Ui, listReplacing: ListReplacing = [], option?: Option) =>{
 
     const wrapper:React.FunctionComponent<{}> = ({ children }) => {
 
@@ -42,10 +40,8 @@ const render = (ui: Ui, listReplacing: ListReplacing, option?: Option) =>{
 
         for (const replacing of listReplacing){
 
-            const actionsEach = actionsStatus;
-
-            dispatch(actionsEach.return__REPLACE({
-                listKey: replacing.listKey
+            dispatch(actionsRoot[replacing.keyRoot].return__REPLACE({
+                listKey: replacing.listKey,
                 replacement: replacing.replacement
             }) );
         }

@@ -10,10 +10,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
 
-import * as actionsStatus from "store/actions/status";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
-import * as actionsAuth from "store/actions/auth";
 //import * as actionsTheme from "../../actions/theme";
 
 
@@ -23,20 +21,20 @@ const requestSignUp = (email:string, password:string) => {
 };
 
 
-function* signUp(action: actionsAuth.type__SIGN_UP) {
+function* signUp(action: actionsRoot.auth.type__SIGN_UP) {
     try {
 
-        yield put( actionsNotification.return__REPLACE({
+        yield put( actionsRoot.notification.return__REPLACE({
             listKey: ['listCodeSituationOthers'],
             replacement: []
         }) );
         
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: true
         }) );
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['ready', 'user'],
             replacement: false
         }) );
@@ -44,7 +42,7 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
 
         if (action.payload.email === "") {
             console.log('type email address');
-            yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+            yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                 codeSituation: 'SignUp_NoEmail__E'
             }) );
             //addDeleteNotification("auth01", language);
@@ -60,14 +58,14 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
         */
         else if (action.payload.password1 === "" || action.payload.password2 === "") {
             console.log('type both passwords');
-            yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+            yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                 codeSituation: 'SignUp_NoPassword__E'
             }) );
             //addDeleteNotification("auth03", language);
         }
         else if (action.payload.password1 !== action.payload.password2) {
             console.log('two passwords are different');
-            yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+            yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                 codeSituation: 'SignUp_PasswordsDifferent__E'
             }) );
             //addDeleteNotification("auth04", language);
@@ -90,21 +88,21 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
                 const user = yield call( requestSignUp, email, password );
                 console.log(user);
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: true
                 }) );
 
-                yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                     codeSituation: 'SignUp_Succeeded__S'
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: user
                 }) );
                 
@@ -112,48 +110,48 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
             } 
             catch (error){
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: null
                 }) );
 
                 console.log(error);
                 if (error.code === 'auth/email-already-in-use'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+                    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_DuplicateEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/invalid-email'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+                    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_InvalidEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/weak-password'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+                    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_WeakPassword__E'
                     }) );
                 }
                 else if (error.code === 'auth/operation-not-allowed'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'SignUp_UnknownError__E'
                     }) );
                 }
                 else {
                     console.log(error);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'SignUp_UnknownError__E'
                     }) );
                 }
@@ -171,12 +169,12 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
         
     } catch (error) {
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['ready', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: false
         }) );
@@ -184,7 +182,7 @@ function* signUp(action: actionsAuth.type__SIGN_UP) {
         console.log(error);
         console.log('signUp has been failed');
         
-        yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+        yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'SignUp_UnknownError'
         }) );
     }

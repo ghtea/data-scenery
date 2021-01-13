@@ -10,7 +10,7 @@ import translationEn from 'language/translation/en.json';
 import Header from './Header';
 import Modal from './Modal';
 
-import { StringLiteral } from 'typescript';
+// import { StringLiteral } from 'typescript';
 
 
 describe('<Header />', () => {
@@ -52,7 +52,6 @@ describe('<Header />', () => {
         render(<Modal />);
 
         expect(screen.getByRole('dialog', {name: translationEn['Modal.Setting_Title']})).toBeInTheDocument();
-
     });
     
 });

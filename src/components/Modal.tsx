@@ -2,7 +2,6 @@ import React, {useCallback} from 'react';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
 
 import Setting from "./Modal/Setting";
 import MyProfile from "./Modal/MyProfile";

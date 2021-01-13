@@ -5,9 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from "store/actions/status";
-import * as actionsAuth from "store/actions/auth";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
 import * as actionsPortal from "store/actions/portal";
 //import * as actionsTheme from "../../actions/theme";
@@ -22,7 +20,8 @@ const updateProfileFirebase = (update: any) => {
     return firebaseAuth?.currentUser?.updateProfile(update)
 }
 
-function* updateProfile(action: actionsAuth.type__UPDATE_PROFILE) {
+
+function* updateProfile(action: actionsRoot.auth.type__UPDATE_PROFILE) {
 
     const readyUser =  yield select( (state:StateRoot) => state.status.ready.user); 
     const idUserInApp =  yield select( (state:StateRoot) => state.auth.user?.id); 
@@ -30,7 +29,7 @@ function* updateProfile(action: actionsAuth.type__UPDATE_PROFILE) {
     try {
 
         if (!readyUser){
-            yield put(actionsNotification.return__ADD_DELETE_BANNER({
+            yield put(actionsRoot.notification.return__ADD_DELETE_BANNER({
                 codeSituation: 'NotLoggedIn__E'
             }) );
         }
@@ -63,7 +62,7 @@ function* updateProfile(action: actionsAuth.type__UPDATE_PROFILE) {
             }
 
             yield call (updateProfileFirebase, update);
-            yield put (actionsAuth.return__REPLACE_USER());
+            yield put (actionsRoot.auth.return__REPLACE_USER());
 
             console.log('updateProfile worked successfully!');
             
@@ -74,7 +73,7 @@ function* updateProfile(action: actionsAuth.type__UPDATE_PROFILE) {
         console.log(error);
         console.log('updateProfile has been failed');
         
-        yield put( actionsNotification.return__ADD_DELETE_BANNER({
+        yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
             codeSituation: 'UnknownError__E'
         }) );
     }

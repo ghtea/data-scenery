@@ -7,9 +7,8 @@ import axios from 'axios';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-import * as actionsStatus from 'store/actions/status';
-import * as actionsAuth from 'store/actions/auth';
-//import * as actionsPortal from 'store/actions/portal';
+
+//import actionsRoot from 'store/actions';
 
 //import Portal from './Home/Portal';
 

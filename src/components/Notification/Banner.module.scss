@@ -74,21 +74,21 @@ $width__side: 50px;
         @include shadow-each-theme(box-shadow, 0px, 0px, 10px, 2px, shadow__warning__normal);
     }
   
-    .icon-success, .icon-hint, .icon-error, .icon-warning {
+    .icon__success, .icon__hint, .icon__error, .icon__warning {
         width: 24px;
         height: 24px;
     }
 
-    .icon-success {
+    .icon__success {
         @include color-each-theme(color, success__6);
     }
-    .icon-hint {
+    .icon__hint {
         @include color-each-theme(color, hint__6);
     }
-    .icon-error {
+    .icon__error {
         @include color-each-theme(color, error__6);
     }
-    .icon-warning {
+    .icon__warning {
         @include color-each-theme(color, warning__6);
     }
 
@@ -158,7 +158,7 @@ $width__side: 50px;
 	    }
     }
     
-    .icon-x-circle {
+    .icon__x-circle {
 
         width: 20px;
         height: 20px;

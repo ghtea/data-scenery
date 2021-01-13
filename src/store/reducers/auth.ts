@@ -1,7 +1,6 @@
 import produce from 'immer';
 import {handleActions} from 'redux-actions';
-
-import * as actionsAuth from 'store/actions/auth';
+import * as actionsRoot from "store/actions";
 
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 //import defaultUsingColorAssignment from '../../styles/defaultUsingColorAssignment'
@@ -29,11 +28,11 @@ const stateInitial = {
   
 };
 
-
-
+ 
+ 
 const reducerAuth = handleActions<State, any>({
   
-  [actionsAuth.name__REPLACE]: (statePrevious, action: actionsAuth.type__REPLACE) => {
+  [actionsRoot.auth.name__REPLACE]: (statePrevious, action: actionsRoot.auth.type__REPLACE) => {
 
     return produce(statePrevious, stateNew => {
       if (action.payload === undefined) { 

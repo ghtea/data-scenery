@@ -4,9 +4,7 @@ import history from 'historyApp';
 import { useLocation } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 
-import {useSelector, useDispatch} from "react-redux";
-import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
+//import {useSelector, useDispatch} from "react-redux";
 
 import IconLogo from 'svgs/others/IconLogo';
 

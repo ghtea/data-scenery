@@ -6,9 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
  
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
-import * as actionsProfile from 'store/actions/portal';
-import * as actionsAuth from 'store/actions/auth';
+import * as actionsRoot from "store/actions";
 
 import {pascalToCamel} from 'tools/vanilla/convertName';
 import useInput from 'tools/hooks/useInput';
@@ -34,7 +32,7 @@ function MyProfile({}: PropsMyProfile) {
 
     const onClick_HideModal = useCallback(
         () => {
-            dispatch(actionsStatus.return__REPLACE({ 
+            dispatch(actionsRoot.status.return__REPLACE({ 
                 listKey: ['showing', 'modal', pascalToCamel('MyProfile')],
                 replacement: false
             }));
@@ -75,7 +73,7 @@ function MyProfile({}: PropsMyProfile) {
     
     const onSubmit = useCallback( (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(actionsAuth.return__UPDATE_PROFILE({
+        dispatch(actionsRoot.auth.return__UPDATE_PROFILE({
             urlPhotoLocal: urlPhotoLocal,
             displayName: displayNameEditing
         }));
@@ -83,7 +81,7 @@ function MyProfile({}: PropsMyProfile) {
 
     const onClick_LogOut = useCallback(
         () => {
-            dispatch(actionsAuth.return__LOG_OUT());
+            dispatch(actionsRoot.auth.return__LOG_OUT());
         }, []
     );
 

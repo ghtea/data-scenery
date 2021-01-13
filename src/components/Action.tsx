@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 
 import {useSelector, useDispatch} from "react-redux";
-import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
+// import {StateRoot} from 'store/reducers';
+import * as actionsRoot from "store/actions";
 
 // import Setting from "./Action/Setting";
 
@@ -37,7 +37,7 @@ function Action({}: PropsAction) {
 
   const onClick_ShowModal = useCallback(
     (idModal:string) => {
-      dispatch(actionsStatus.return__REPLACE({ 
+      dispatch(actionsRoot.status.return__REPLACE({ 
         listKey: ['showing', 'modal', idModal],
         replacement: true
       }))

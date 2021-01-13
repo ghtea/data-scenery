@@ -7,18 +7,16 @@ import Cookies from 'js-cookie';
 
 // import * as config from 'config';
 
-import * as actionsStatus from "store/actions/status";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
-import * as actionsAuth from "store/actions/auth";
 //import * as actionsTheme from "../../actions/theme";
 
 
-function* logOut(action: actionsAuth.type__LOG_OUT) {
+function* logOut(action: actionsRoot.auth.type__LOG_OUT) {
 
     firebaseAuth.signOut();
 
-    yield put( actionsStatus.return__REPLACE({
+    yield put( actionsRoot.status.return__REPLACE({
         listKey: ['ready', 'user'],
         replacement: false
     }) );

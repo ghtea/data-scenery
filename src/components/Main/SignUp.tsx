@@ -6,8 +6,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsAuth from 'store/actions/auth';
-import * as actionsStatus from 'store/actions/status';
+import * as actionsRoot from "store/actions";
 
 import useInput from 'tools/hooks/useInput';
 
@@ -76,7 +75,7 @@ function SignUp({}: PropsSignUp) {
   const onClick_SignUp = useCallback(
     () => {
       
-      dispatch(actionsAuth.return__SIGN_UP({
+      dispatch(actionsRoot.auth.return__SIGN_UP({
         email: inputEmail.value,
         password1: inputPassword1.value,
         password2: inputPassword2.value

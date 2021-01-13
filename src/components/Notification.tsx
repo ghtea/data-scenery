@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsNotification from 'store/actions/notification';
 
 import {Banner as TypeBanner} from 'store/reducers/notification';
 
@@ -17,7 +16,7 @@ type PropsNotification = {};
 
 function Notification({}: PropsNotification) {
   
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   
   const listBanner:TypeBanner[] = useSelector((state: StateRoot) => state['notification']['listBanner']);
 

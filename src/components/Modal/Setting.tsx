@@ -8,8 +8,7 @@ import Cookies from 'js-cookie';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
-import * as actionsAuth from 'store/actions/auth';
+import * as actionsRoot from "store/actions";
 
 import {pascalToCamel} from 'tools/vanilla/convertName';
 import IconX from 'svgs/basic/IconX';
@@ -29,7 +28,7 @@ function Setting({}: PropsSetting) {
   
   const onClick_HideModal = useCallback(
     () => {
-      dispatch(actionsStatus.return__REPLACE({ 
+      dispatch(actionsRoot.status.return__REPLACE({ 
         listKey: ['showing', 'modal', pascalToCamel('Setting')],
         replacement: false
       }))
@@ -41,14 +40,14 @@ function Setting({}: PropsSetting) {
         (event:React.ChangeEvent<HTMLInputElement>) => {
             const {currentTarget : {name, value}} = event;
             if (name === 'optionTheme'){
-                dispatch(actionsStatus.return__REPLACE({
+                dispatch(actionsRoot.status.return__REPLACE({
                     listKey: ['current', 'theme', 'option'],
                     replacement: value
                 }) );
                 Cookies.set('optionTheme', value, { expires: 14});
             }
             else if (name === 'language'){
-                dispatch(actionsStatus.return__REPLACE({
+                dispatch(actionsRoot.status.return__REPLACE({
                     listKey: ['current', 'language'],
                     replacement: value
                 }) );
@@ -58,7 +57,7 @@ function Setting({}: PropsSetting) {
 
     const onClick_LogOut = useCallback(
         () => {
-            dispatch(actionsAuth.return__LOG_OUT());
+            dispatch(actionsRoot.auth.return__LOG_OUT());
         }, []
     );
 

@@ -10,20 +10,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
 
-import * as actionsStatus from "store/actions/status";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
-import * as actionsAuth from "store/actions/auth";
 //import * as actionsTheme from "../../actions/theme";
 
 
 
-function* replaceUser(action: actionsAuth.type__REPLACE_USER) {
+function* replaceUser(action: actionsRoot.auth.type__REPLACE_USER) {
     try {
 
         const user = action.payload?.user || firebaseAuth.currentUser;
 
-        yield put( actionsAuth.return__REPLACE({
+        yield put( actionsRoot.auth.return__REPLACE({
             listKey: ['user'],
             replacement: {
                 id: user.uid,
@@ -41,7 +39,7 @@ function* replaceUser(action: actionsAuth.type__REPLACE_USER) {
         console.log(error);
         console.log('replaceUser has been failed');
         
-        yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+        yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'UnknownError__E'
         }) );
     }

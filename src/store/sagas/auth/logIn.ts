@@ -9,11 +9,8 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
+import * as actionsRoot from "store/actions";
 
-import * as actionsStatus from "store/actions/status";
-import * as actionsNotification from "store/actions/notification";
-
-import * as actionsAuth from "store/actions/auth";
 //import * as actionsTheme from "../../actions/theme";
 
 
@@ -23,23 +20,23 @@ const requestLogIn = (email:string, password:string) => {
 };
 
 
-function* logIn(action: actionsAuth.type__LOG_IN) {
+function* logIn(action: actionsRoot.auth.type__LOG_IN) {
     try {
 
-        yield put( actionsNotification.return__REPLACE({
+        yield put( actionsRoot.notification.return__REPLACE({
             listKey: ['listCodeSituationOthers'],
             replacement: []
         }) );
         
         if (action.payload.email === "") {
             console.log('type email address');
-            yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+            yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                 codeSituation: 'LogIn_NoEmail__E'
             }) );
         }
         else if (action.payload.password === "") {
             console.log('type password');
-            yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+            yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                 codeSituation: 'LogIn_NoPassword__E'
             }) );
         }
@@ -52,17 +49,17 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
                 const {user} = yield call( requestLogIn, email, password );
                 //console.log(data.user);
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: true
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: user
                 }) );
 
@@ -72,17 +69,17 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
             } 
             catch (error){
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsStatus.return__REPLACE({
+                yield put( actionsRoot.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsAuth.return__REPLACE_USER({
+                yield put( actionsRoot.auth.return__REPLACE_USER({
                     user: null
                 }) );
 
@@ -90,31 +87,31 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
                 console.log(error);
                 if (error.code === 'auth/wrong-password'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+                    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'LogIn_WrongPassword__E'
                     }) );
                 }
                 else if (error.code === 'auth/invalid-email'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+                    yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'LogIn_InvalidEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/user-disabled'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UserDisabled__E'
                     }) );
                 }
                 else if (error.code === 'auth/user-not-found'){
                     console.log(error.message);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UserNotFound__E'
                     }) );
                 }
                 else {
                     console.log(error);
-                    yield put( actionsNotification.return__ADD_DELETE_BANNER({
+                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UnknownError__E'
                     }) );
                 }
@@ -132,12 +129,12 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
         
     } catch (error) {
         
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['ready', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actionsRoot.status.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: false
         }) );
@@ -145,7 +142,7 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
         console.log(error);
         console.log('logIn has been failed');
         
-        yield put( actionsNotification.return__ADD_CODE_SITUATION_OTHERS({
+        yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'LogIn_UnknownError__E'
         }) );
     }

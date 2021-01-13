@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsNotification from 'store/actions/notification';
+import * as actionsRoot from "store/actions";
 
 import {Banner as TypeBanner} from 'store/reducers/notification';
 
@@ -35,7 +35,7 @@ function Banner({
   
   const onClick_DeleteBanner = useCallback(
     (id:string) => {
-      dispatch(actionsNotification.return__DELETE_BANNER({
+      dispatch(actionsRoot.notification.return__DELETE_BANNER({
         id: id
       }) )
     }, []
@@ -46,13 +46,16 @@ function Banner({
   
   return (
     
-    <div className={`${styles['root']} ${styles[banner['kindSituation']]}`} >
+    <div 
+        aria-role='alert' ??
+        className={`${styles['root']} ${styles[banner['kindSituation']]}`} 
+    >
 
         <div className={`${styles['left']}`}>
-            {banner['kindSituation'] === 'success' &&  <IconSuccess className={`${styles['icon-success']}`}  /> }
-            {banner['kindSituation'] === 'hint' &&  <IconHint className={`${styles['icon-hint']}`}  /> }
-            {banner['kindSituation'] === 'error' &&  <IconError className={`${styles['icon-error']}`}  /> }
-            {banner['kindSituation'] === 'warning' &&  <IconWarning className={`${styles['icon-warning']}`}  /> }
+            {banner['kindSituation'] === 'success' &&  <IconSuccess className={`${styles['icon__success']}`}  /> }
+            {banner['kindSituation'] === 'hint' &&  <IconHint className={`${styles['icon__hint']}`}  /> }
+            {banner['kindSituation'] === 'error' &&  <IconError className={`${styles['icon__error']}`}  /> }
+            {banner['kindSituation'] === 'warning' &&  <IconWarning className={`${styles['icon__warning']}`}  /> }
         </div>
             
         <div className={`${styles['middle']}`}>
@@ -60,11 +63,14 @@ function Banner({
         </div>
       
         <div className={`${styles['right']}`}>
-            <button className={`${styles['button-delete']}`} 
+            <button 
+                type='button'
+                aria-label="Delete Banner"
+                className={`${styles['button__delete']}`} 
                 onClick={()=>onClick_DeleteBanner(banner['id'])}
             >
-                <IconXCircle className={`${styles['icon-x-circle']}`} kind={'light'}  />
-                <IconXCircle className={`${styles['icon-x-circle']}`} kind={'solid'}  />
+                <IconXCircle className={`${styles['icon__x-circle']}`} kind={'light'}  />
+                <IconXCircle className={`${styles['icon__x-circle']}`} kind={'solid'}  />
                 
             </button>
 

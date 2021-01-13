@@ -5,8 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsStatus from 'store/actions/status';
-import * as actionsNotification from 'store/actions/notification';
+import * as actionsRoot from "store/actions";
 
 import styles from './NavBoard.module.scss';
 

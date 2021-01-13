@@ -8,8 +8,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-import * as actionsAuth from 'store/actions/auth';
-import * as actionsStatus from 'store/actions/status';
+import * as actionsRoot from "store/actions";
 
 import useInputBasic from 'tools/hooks/useInputBasic';
 
@@ -82,7 +81,7 @@ function LogIn({}:PropsLogIn) {
 
     const submitMain = useCallback(
         () => {
-            dispatch(actionsAuth.return__LOG_IN({
+            dispatch(actionsRoot.auth.return__LOG_IN({
                 email: draft_Main.emailAddress,
                 password: draft_Main.password
             }));
@@ -110,10 +109,10 @@ function LogIn({}:PropsLogIn) {
         (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             const {currentTarget: {value}} = event;
             if (value === 'google'){
-                dispatch(actionsAuth.return__LOG_IN_GOOGLE() );
+                dispatch(actionsRoot.auth.return__LOG_IN_GOOGLE() );
             }
             else if (value === 'github'){
-                dispatch(actionsAuth.return__LOG_IN_GITHUB() );
+                dispatch(actionsRoot.auth.return__LOG_IN_GITHUB() );
             }
         }, []
     );

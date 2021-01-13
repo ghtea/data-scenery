@@ -6,21 +6,17 @@ import { v4 as uuidv4 } from 'uuid';
 
 //import * as config from 'config';
 
-import * as actionsStatus from "store/actions/status";
-import * as actionsAuth from "store/actions/auth";
-import * as actionsNotification from "store/actions/notification";
+import * as actionsRoot from "store/actions";
 
-
-
-
-function* logCheckSucceeded(action: actionsAuth.type__LOG_CHECK_SUCCEEDED) {
+// action: actionsRoot.auth.type__LOG_CHECK_SUCCEEDED
+function* logCheckSucceeded() {
     
-    yield put( actionsStatus.return__REPLACE({
+    yield put( actionsRoot.status.return__REPLACE({
         listKey: ['ready', 'user'],
         replacement: true
     }) );
     
-    yield put( actionsStatus.return__REPLACE({
+    yield put( actionsRoot.status.return__REPLACE({
         listKey: ['loading', 'user'],
         replacement: false
     }) );
@@ -31,7 +27,7 @@ function* logCheckSucceeded(action: actionsAuth.type__LOG_CHECK_SUCCEEDED) {
 
     if (user) {   // 이미 성공했다는 걸 알고 있을 거니깐 왠만하면 있을것이다
 
-        yield put( actionsAuth.return__REPLACE_USER({
+        yield put( actionsRoot.auth.return__REPLACE_USER({
             user: user
         }) );
     }

@@ -6,8 +6,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsAuth from 'store/actions/auth';
-import * as actionsStatus from 'store/actions/status';
 
 import useInput from 'tools/hooks/useInput';
 

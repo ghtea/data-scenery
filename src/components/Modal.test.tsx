@@ -65,13 +65,36 @@ describe('Open and close all modals', () => {
         render(<CollectionButtonOpening />);
 
         fireEvent.click(screen.getByRole('button', {name: 'Open Setting'}));
-        
         expect(screen.getByRole('dialog', {name: translationEn['Modal.Setting_Title']})).toBeInTheDocument();
         
-
-        fireEvent.click(screen.getAllByRole('button', {name: 'Close Setting'})[0]);
-        
+        fireEvent.click( screen.getByRole('button', {name: 'Close Setting'}) );
         expect(screen.queryByRole('dialog', {name: translationEn['Modal.Setting_Title']})).not.toBeInTheDocument();
+
+
+        fireEvent.click( screen.getByRole('button', {name: 'Open Setting'}) );
+        expect(screen.getByRole('dialog', {name: translationEn['Modal.Setting_Title']})).toBeInTheDocument();
+        
+        fireEvent.click( screen.getByLabelText('Outside Setting') );
+        expect(screen.queryByRole('dialog', {name: translationEn['Modal.Setting_Title']})).not.toBeInTheDocument();
+    });
+
+
+    it('open/close MyProfile', () => {
+        render(<Modal/>);
+        render(<CollectionButtonOpening />);
+
+        fireEvent.click(screen.getByRole('button', {name: 'Open MyProfile'}));
+        expect(screen.getByRole('dialog', {name: translationEn['Modal.MyProfile_Title']})).toBeInTheDocument();
+        
+        fireEvent.click( screen.getByRole('button', {name: 'Close MyProfile'}) );
+        expect(screen.queryByRole('dialog', {name: translationEn['Modal.MyProfile_Title']})).not.toBeInTheDocument();
+
+
+        fireEvent.click( screen.getByRole('button', {name: 'Open MyProfile'}) );
+        expect(screen.getByRole('dialog', {name: translationEn['Modal.MyProfile_Title']})).toBeInTheDocument();
+        
+        fireEvent.click( screen.getByLabelText('Outside MyProfile') );
+        expect(screen.queryByRole('dialog', {name: translationEn['Modal.MyProfile_Title']})).not.toBeInTheDocument();
     });
 
 });

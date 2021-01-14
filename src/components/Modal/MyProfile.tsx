@@ -32,7 +32,6 @@ function MyProfile({}: PropsMyProfile) {
 
     const onClick_CloseModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-
         const {value} = event.currentTarget;
         dispatch(actionsRoot.status.return__REPLACE({ 
             listKey: ['showing', 'modal', value],
@@ -40,16 +39,15 @@ function MyProfile({}: PropsMyProfile) {
         }));
         },[]
     );
-
-    const onChange_InputBasic = useCallback(
-        (event:React.ChangeEvent<HTMLInputElement>) => {
-
-            if (event.currentTarget.name === 'displayNameEditing'){
-                // event.currentTarget.value
-            }
-            
+    
+    const onClick_OutsideModal = useCallback(
+        (event:React.MouseEvent<HTMLDivElement, MouseEvent>, idModal:string) => {
+        dispatch(actionsRoot.status.return__REPLACE({ 
+            listKey: ['showing', 'modal', idModal],
+            replacement: false
+        }));
         },[]
-    ); 
+    );
     
     const onChange_InputFile = useCallback( (event:React.ChangeEvent<HTMLInputElement>) => {
         const { currentTarget: { files } } = event;
@@ -90,23 +88,20 @@ function MyProfile({}: PropsMyProfile) {
   return (
     <div
         className={`${styles['root']} ${stylesModal['root']}`}
-        role="dialog" aria-labelledby="Heading_MyProfile"
     >
-
-        <button
-            className={`${stylesModal['outside']}`} 
-            type='button'
-            aria-label="Close MyProfile"
-            value={pascalToCamel("MyProfile")}
-            onClick={onClick_CloseModal}
-        ></button>
+        <div
+            className={`${stylesModal['outside']}`}
+            aria-label="Outside MyProfile"
+            onClick={(event)=>onClick_OutsideModal(event, pascalToCamel("MyProfile") )}
+        />
 
         <div 
             className={`${stylesModal['modal']}`} 
+            role="dialog" aria-labelledby="Heading_MyProfile"
         >
             <div className={`${stylesModal['header']}`} >
                 <h2 id='Heading_MyProfile'>  <FormattedMessage id={`Modal.MyProfile_Title`} /> </h2>
-                <button
+                <button 
                     type='button'
                     aria-label="Close MyProfile"
                     value={pascalToCamel("MyProfile")}

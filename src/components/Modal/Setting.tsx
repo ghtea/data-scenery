@@ -26,14 +26,8 @@ function Setting({}: PropsSetting) {
     const languageCurrent:string = useSelector((state: StateRoot) => state['status']['current']['language']);
     const optionThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['option']);
     
-    const refModal = useRef<HTMLDivElement>(null);
-    useEffect(()=>{
-        refModal.current?.focus();
-    },[refModal])
-
     const onClick_CloseModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-
         const {value} = event.currentTarget;
         dispatch(actionsRoot.status.return__REPLACE({ 
             listKey: ['showing', 'modal', value],
@@ -42,7 +36,7 @@ function Setting({}: PropsSetting) {
         },[]
     );
     
-    const onClick_OutSide = useCallback(
+    const onClick_OutsideModal = useCallback(
         (event:React.MouseEvent<HTMLDivElement, MouseEvent>, idModal:string) => {
         dispatch(actionsRoot.status.return__REPLACE({ 
             listKey: ['showing', 'modal', idModal],
@@ -86,7 +80,8 @@ function Setting({}: PropsSetting) {
     
         <div
             className={`${stylesModal['outside']}`}
-            onClick={(event)=>onClick_OutSide(event, pascalToCamel("Setting") )}
+            aria-label="Outside Setting"
+            onClick={(event)=>onClick_OutsideModal(event, pascalToCamel("Setting") )}
         />
 
         <div 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { firebaseAuth } from "firebaseApp";
 
 import history from 'historyApp';
@@ -25,7 +25,12 @@ function Setting({}: PropsSetting) {
 
     const languageCurrent:string = useSelector((state: StateRoot) => state['status']['current']['language']);
     const optionThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['option']);
-  
+    
+    const refModal = useRef<HTMLDivElement>(null);
+    useEffect(()=>{
+        refModal.current?.focus();
+    },[refModal])
+
     const onClick_CloseModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
@@ -36,9 +41,18 @@ function Setting({}: PropsSetting) {
         }));
         },[]
     );
+    
+    const onClick_OutSide = useCallback(
+        (event:React.MouseEvent<HTMLDivElement, MouseEvent>, idModal:string) => {
+        dispatch(actionsRoot.status.return__REPLACE({ 
+            listKey: ['showing', 'modal', idModal],
+            replacement: false
+        }));
+        },[]
+    );
   
   // ~ template
-  const onChange_InputNormal = useCallback(
+    const onChange_InputNormal = useCallback(
         (event:React.ChangeEvent<HTMLInputElement>) => {
             const {currentTarget : {name, value}} = event;
             if (name === 'optionTheme'){
@@ -68,21 +82,17 @@ function Setting({}: PropsSetting) {
     
     <div 
         className={`${styles['root']} ${stylesModal['root']}`} 
-        role="dialog" aria-labelledby="Heading_Setting"
     >
     
-        <button
-            className={`${stylesModal['outside']}`} 
-            type='button'
-            aria-label="Close Setting"
-            value={pascalToCamel("Setting")}
-            onClick={onClick_CloseModal}
-        ></button>
+        <div
+            className={`${stylesModal['outside']}`}
+            onClick={(event)=>onClick_OutSide(event, pascalToCamel("Setting") )}
+        />
 
         <div 
-            className={`${stylesModal['modal']}`} 
+            className={`${stylesModal['modal']}`}
+            role="dialog" aria-labelledby="Heading_Setting"
         >
-            
             <div className={`${stylesModal['header']}`} >
                 <h2 id='Heading_Setting'>  <FormattedMessage id={`Modal.Setting_Title`} /> </h2>
                 <button
@@ -97,7 +107,7 @@ function Setting({}: PropsSetting) {
         
         
             <div className={`${stylesModal['content']}`} >
-                
+                <input/>
                 <div className={`${stylesModal['content__section']}`} >
                     <h3> <FormattedMessage id={`Modal.Setting_Theme`} /> </h3>
 

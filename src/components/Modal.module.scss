@@ -51,6 +51,10 @@
     & > .content {   // content
         margin-bottom: 8px;
     }  
+
+    &:focus { // modal is automatically focused right after first renderting, and if focus gone, modal is closed
+        outline-style: none;
+    }
     
 }
 

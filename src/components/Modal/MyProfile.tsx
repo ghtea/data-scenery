@@ -30,12 +30,14 @@ function MyProfile({}: PropsMyProfile) {
     const [urlPhotoLocal, setUrlPhotoLocal] = useState("");
     const [displayNameEditing, setTisplayNameEditing] = useState(user?.displayName);
 
-    const onClick_HideModal = useCallback(
-        () => {
-            dispatch(actionsRoot.status.return__REPLACE({ 
-                listKey: ['showing', 'modal', pascalToCamel('MyProfile')],
-                replacement: false
-            }));
+    const onClick_CloseModal = useCallback(
+        (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+
+        const {value} = event.currentTarget;
+        dispatch(actionsRoot.status.return__REPLACE({ 
+            listKey: ['showing', 'modal', value],
+            replacement: false
+        }));
         },[]
     );
 
@@ -86,23 +88,32 @@ function MyProfile({}: PropsMyProfile) {
     );
 
   return (
-    <div className={`${styles['root']} ${stylesModal['root']}`} >
+    <div
+        className={`${styles['root']} ${stylesModal['root']}`}
+        role="dialog" aria-labelledby="Heading_MyProfile"
+    >
 
-        <div 
+        <button
             className={`${stylesModal['outside']}`} 
-            onClick={()=>onClick_HideModal()}
-        />
+            type='button'
+            aria-label="Close MyProfile"
+            value={pascalToCamel("MyProfile")}
+            onClick={onClick_CloseModal}
+        ></button>
 
         <div 
             className={`${stylesModal['modal']}`} 
         >
             <div className={`${stylesModal['header']}`} >
-                <div>  <FormattedMessage id={`Modal.MyProfile_Title`} /> </div>
-                <div
-                    onClick={()=>onClick_HideModal()}
+                <h2 id='Heading_MyProfile'>  <FormattedMessage id={`Modal.MyProfile_Title`} /> </h2>
+                <button
+                    type='button'
+                    aria-label="Close MyProfile"
+                    value={pascalToCamel("MyProfile")}
+                    onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />
-                </div>
+                </button>
             </div>
         
             <form 
@@ -114,17 +125,17 @@ function MyProfile({}: PropsMyProfile) {
                 )}
                 
                 <div className={`${stylesModal['content__section']}`} >
-                    <div>  <FormattedMessage id={`Modal.MyProfile_EmailAddress`} /></div>
+                    <h3>  <FormattedMessage id={`Modal.MyProfile_EmailAddress`} /></h3>
                     <p className={`${styles['email']}`}> {user?.email} </p>
                 </div>
 
                 <div className={`${stylesModal['content__section']}`} >
-                    <div>  <FormattedMessage id={`Modal.MyProfile_Name`} /></div>
+                    <h3>  <FormattedMessage id={`Modal.MyProfile_Name`} /></h3>
                     <p className={`${styles['displayName']}`}> {user?.displayName} </p>
                 </div>
 
                 <div className={`${stylesModal['content__section']}`} >
-                    <div> <FormattedMessage id={`Modal.MyProfile_Photo`} /> </div>
+                    <h3> <FormattedMessage id={`Modal.MyProfile_Photo`} /> </h3>
 
                     <div className={`container__input-file`} > 
                         <input type="file" accept="image/*" id='file-photo' 

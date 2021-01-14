@@ -21,19 +21,21 @@ type PropsSetting = {};
 
 function Setting({}: PropsSetting) {
   
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const languageCurrent:string = useSelector((state: StateRoot) => state['status']['current']['language']);
-  const optionThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['option']);
+    const languageCurrent:string = useSelector((state: StateRoot) => state['status']['current']['language']);
+    const optionThemeCurrent:string = useSelector((state: StateRoot) => state['status']['current']['theme']['option']);
   
-  const onClick_HideModal = useCallback(
-    () => {
-      dispatch(actionsRoot.status.return__REPLACE({ 
-        listKey: ['showing', 'modal', pascalToCamel('Setting')],
-        replacement: false
-      }))
-    },[]
-  );
+    const onClick_CloseModal = useCallback(
+        (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+
+        const {value} = event.currentTarget;
+        dispatch(actionsRoot.status.return__REPLACE({ 
+            listKey: ['showing', 'modal', value],
+            replacement: false
+        }));
+        },[]
+    );
   
   // ~ template
   const onChange_InputNormal = useCallback(
@@ -66,32 +68,38 @@ function Setting({}: PropsSetting) {
     
     <div 
         className={`${styles['root']} ${stylesModal['root']}`} 
-        role="dialog" aria-labelledby="heading__setting"
+        role="dialog" aria-labelledby="Heading_Setting"
     >
-        
-        <div 
+    
+        <button
             className={`${stylesModal['outside']}`} 
-            onClick={()=>onClick_HideModal()}
-        />
+            type='button'
+            aria-label="Close Setting"
+            value={pascalToCamel("Setting")}
+            onClick={onClick_CloseModal}
+        ></button>
 
         <div 
             className={`${stylesModal['modal']}`} 
         >
             
             <div className={`${stylesModal['header']}`} >
-                <h2 id='heading__setting'>  <FormattedMessage id={`Modal.Setting_Title`} /> </h2>
-                <div
-                    onClick={()=>onClick_HideModal()}
+                <h2 id='Heading_Setting'>  <FormattedMessage id={`Modal.Setting_Title`} /> </h2>
+                <button
+                    type='button'
+                    aria-label="Close Setting"
+                    value={pascalToCamel("Setting")}
+                    onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />
-                </div>
+                </button>
             </div>
         
         
             <div className={`${stylesModal['content']}`} >
                 
                 <div className={`${stylesModal['content__section']}`} >
-                    <div> <FormattedMessage id={`Modal.Setting_Theme`} /> </div>
+                    <h3> <FormattedMessage id={`Modal.Setting_Theme`} /> </h3>
 
                     <div className={'container__input-radio'} > 
                         <input 
@@ -118,8 +126,8 @@ function Setting({}: PropsSetting) {
                 </div>
                 
                 <div className={`${stylesModal['content__section']}`} >
-                    <div>  <FormattedMessage id={`Modal.Setting_Language`} /></div>
-
+                    <h3>  <FormattedMessage id={`Modal.Setting_Language`} /></h3>
+ 
                     <div className={'container__input-radio'} > 
                         <input 
                             type="radio" 

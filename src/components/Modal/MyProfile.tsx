@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from "react";
+import React, { useCallback, useEffect, useState, useMemo, useRef } from "react";
 
 import history from 'historyApp';
 import { useLocation } from "react-router-dom";
@@ -40,14 +40,23 @@ function MyProfile({}: PropsMyProfile) {
         },[]
     );
     
-    const onClick_OutsideModal = useCallback(
-        (event:React.MouseEvent<HTMLDivElement, MouseEvent>, idModal:string) => {
-        dispatch(actionsRoot.status.return__REPLACE({ 
-            listKey: ['showing', 'modal', idModal],
-            replacement: false
-        }));
-        },[]
-    );
+    const refModal = useRef<HTMLDivElement>(null);
+    const onClick_Window = useCallback(
+        (event:MouseEvent)=> {   
+            if ( !refModal.current?.contains(event.target as Node)){
+                dispatch(actionsRoot.status.return__REPLACE({ 
+                    listKey: ['showing', 'modal', pascalToCamel("MyProfile")],
+                    replacement: false
+                }));
+            } 
+        },[refModal]
+    ); 
+    useEffect(()=>{  // close sub menu when click outside of menu
+        window.addEventListener('click', onClick_Window);
+        return () => window.removeEventListener('click', onClick_Window);
+    },[onClick_Window]);
+
+
     
     const onChange_InputFile = useCallback( (event:React.ChangeEvent<HTMLInputElement>) => {
         const { currentTarget: { files } } = event;
@@ -92,12 +101,12 @@ function MyProfile({}: PropsMyProfile) {
         <div
             className={`${stylesModal['outside']}`}
             aria-label="Outside MyProfile"
-            onClick={(event)=>onClick_OutsideModal(event, pascalToCamel("MyProfile") )}
         />
-
+ 
         <div 
             className={`${stylesModal['modal']}`} 
             role="dialog" aria-labelledby="Heading_MyProfile"
+            ref={refModal}
         >
             <div className={`${stylesModal['header']}`} >
                 <h2 id='Heading_MyProfile'>  <FormattedMessage id={`Modal.MyProfile_Title`} /> </h2>

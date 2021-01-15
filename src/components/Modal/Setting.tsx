@@ -36,15 +36,24 @@ function Setting({}: PropsSetting) {
         },[]
     );
     
-    const onClick_OutsideModal = useCallback(
-        (event:React.MouseEvent<HTMLDivElement, MouseEvent>, idModal:string) => {
-        dispatch(actionsRoot.status.return__REPLACE({ 
-            listKey: ['showing', 'modal', idModal],
-            replacement: false
-        }));
-        },[]
-    );
-  
+
+    const refModal = useRef<HTMLDivElement>(null);
+    const onClick_Window = useCallback(
+        (event:MouseEvent)=> {   
+            if ( !refModal.current?.contains(event.target as Node)){
+                dispatch(actionsRoot.status.return__REPLACE({ 
+                    listKey: ['showing', 'modal', pascalToCamel("Setting")],
+                    replacement: false
+                }));
+            } 
+        },[refModal]
+    ); 
+    useEffect(()=>{  // close sub menu when click outside of menu
+        window.addEventListener('click', onClick_Window);
+        return () => window.removeEventListener('click', onClick_Window);
+    },[onClick_Window]);
+
+
   // ~ template
     const onChange_InputNormal = useCallback(
         (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -81,12 +90,12 @@ function Setting({}: PropsSetting) {
         <div
             className={`${stylesModal['outside']}`}
             aria-label="Outside Setting"
-            onClick={(event)=>onClick_OutsideModal(event, pascalToCamel("Setting") )}
         />
 
         <div 
             className={`${stylesModal['modal']}`}
             role="dialog" aria-labelledby="Heading_Setting"
+            ref={refModal}
         >
             <div className={`${stylesModal['header']}`} >
                 <h2 id='Heading_Setting'>  <FormattedMessage id={`Modal.Setting_Title`} /> </h2>

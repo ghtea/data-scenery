@@ -4,7 +4,7 @@ import { render} from 'test-utils';
 import {screen, fireEvent} from '@testing-library/react';
 //import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
-// import * from '@testing-library/dom';
+import {waitFor} from '@testing-library/dom';
 
 import translationEn from 'language/translation/en.json';
 import NavBar from './NavBar';
@@ -21,25 +21,17 @@ describe('<NavBar />', () => {
     });
     */ 
 
-    it('hover each category', () => {
+    it('open close each category', async () => {
         render(<NavBar />);
 
-        expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
-        expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('is-open');
+        fireEvent.click(screen.getByRole('button', {name: 'Sports'}));
+        ["disabled"]
 
-        fireEvent.click(screen.getByRole('button', {name: 'Open Board'}));
+        expect(screen.getByRole('button', {name: 'Sports'}).toHaveAttribute('aria-expanded', 'true');
+
+        fireEvent.click(screen.getByRole('navigation', {name: 'Main Navigation Bar'}));
         
-        expect(screen.queryByRole('button', {name: 'Open Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('button', {name: 'Close Board'})).toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).toHaveClass('is-open');
-
-
-        fireEvent.click(screen.getByRole('button', {name: 'Close Board'}));
-        
-        expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
-        expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('is-open');
+        expect(screen.queryByRole('menu', {name: 'Sports'})).not.toBeInTheDocument();
     });
 
     

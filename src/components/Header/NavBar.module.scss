@@ -6,6 +6,7 @@
     margin-left: 20px;
 
     height: $header__height;
+
 } 
 
 
@@ -20,7 +21,7 @@ ul.all {
     justify-content: flex-start;
     align-items: center;
 
-    & > li {
+    & > li.category-each {
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -30,18 +31,14 @@ ul.all {
 
         position: relative;
 
-        .category {
+        button {
             width: auto;
-            height: 100%;
+            height: calc(100% - 10px);
 
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-start;
             align-items: center; 
-
-            .text {
-                width: auto;
-            }
 
             .container__icon {
                 width: auto;
@@ -53,6 +50,11 @@ ul.all {
                 }
             }
 
+        }
+
+        button[aria-expanded='true'] + ul{
+
+            display: flex;
         }
 
         

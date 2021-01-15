@@ -10,6 +10,7 @@ import * as actionsRoot from "store/actions";
 import styles from './NavBoard.module.scss';
 
 
+
 type PropsNavBoard = {
     isOpen:boolean;
 };
@@ -23,8 +24,8 @@ function NavBoard({isOpen}: PropsNavBoard) {
   
   return (
     <nav 
-        className={`${styles['root']} on-small-devices ${isOpen && 'display----flex'}`}
-        aria-label="Main Navigation"
+        className={`${styles['root']} on-small-devices ${isOpen && 'is-open'}`}
+        aria-label="Main Navigation Board"
     > 
         hello! hellohellohellohellohellohello
     </nav> 

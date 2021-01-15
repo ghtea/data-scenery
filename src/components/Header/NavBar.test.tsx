@@ -7,13 +7,12 @@ import '@testing-library/jest-dom/extend-expect';
 // import * from '@testing-library/dom';
 
 import translationEn from 'language/translation/en.json';
-import Header from './Header';
-import Modal from './Modal';
+import NavBar from './NavBar';
 
 // import { StringLiteral } from 'typescript';
 
 
-describe('<Header />', () => {
+describe('<NavBar />', () => {
 
     /*
     it('matches snapshot', () => {
@@ -22,37 +21,27 @@ describe('<Header />', () => {
     });
     */ 
 
-    it('open/close board', () => {
-        render(<Header />);
+    it('hover each category', () => {
+        render(<NavBar />);
 
         expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
         expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('display----flex');
+        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('is-open');
 
         fireEvent.click(screen.getByRole('button', {name: 'Open Board'}));
         
         expect(screen.queryByRole('button', {name: 'Open Board'})).not.toBeInTheDocument();
         expect(screen.getByRole('button', {name: 'Close Board'})).toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).toHaveClass('display----flex');
+        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).toHaveClass('is-open');
 
 
         fireEvent.click(screen.getByRole('button', {name: 'Close Board'}));
         
         expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
         expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('display----flex');
+        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('is-open');
     });
 
-
-    it('open setting', () => {
-        render(<Header />);
-        
-        fireEvent.click( screen.getByRole('button', {name: 'Open Setting'}) );
-        
-        render(<Modal />);
-
-        expect(screen.getByRole('dialog', {name: translationEn['Modal.Setting_Title']})).toBeInTheDocument();
-    });
     
 });
 

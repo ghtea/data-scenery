@@ -55,18 +55,14 @@ ul.all {
 
         }
 
-        &:hover {
-            .dropdown {
-                display: flex;
-            }
-        }
-
+        
         ul.dropdown {
             width: 180px;
             height: auto;
             padding: 1rem 1rem 1rem 1rem;
             
             display: none;
+            
             list-style-type: none;
 
             @include color-each-theme(background-color, basic__0);

@@ -15,6 +15,15 @@ import IconAngle from 'svgs/basic/IconAngle';
 type PropsNavBar = {};
 
 function NavBar({}: PropsNavBar) {
+
+    const [idCategoryOpen, setIdCategoryOpen] = useState<undefined | string>(undefined);
+
+    const onClick_Category = useCallback(
+        (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            const {currentTarget: {value : idCategoryClicked}} = event;
+            setIdCategoryOpen(idCategoryClicked);
+        },[idCategoryOpen]
+    );
   
   return (
     <nav 
@@ -23,22 +32,24 @@ function NavBar({}: PropsNavBar) {
     >
         <ul 
             className={`${styles['all']}`}
-            aria-labelledby={'A'}
+            aria-labelledby={'button__categoryA'}
         >
             <li>
-
-                https://www.vultr.com/
-                https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
-                <a className={`${styles['category']}`}>
-                    <div 
-                        className={`${styles['text']}`}
-                        role
-                        id='categoryA'
-                    > sports </div>
+                <button 
+                    type='button'
+                    id={`button__${'categoryA'}`}
+                    aria-haspopup="menu" aria-expanded={idCategoryOpen === 'categoryA'}
+                    onClick={onClick_Category}
+                >
+                    <span> sports </span>
                     <div className={`${styles['container__icon']}`}> <IconAngle className={`${styles['icon__angle']}`} directon='down' kind='light' /> </div>
-                </a>
-                <ul className={`${styles['dropdown']}`}>
-                    <li><a href='/sports/football'>football</a></li>
+                </button>
+                <ul 
+                    className={`${styles['dropdown']}`}
+                    role="menu"    
+                    aria-labelledby="button__categoryA"
+                >
+                    <li role='menuitem'><a href='/sports/football'>football</a></li>
                 </ul>
             </li>
         </ul>

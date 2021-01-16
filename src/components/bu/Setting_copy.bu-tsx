@@ -10,7 +10,6 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import InputRadio from '../Global/Input/InputRadio';
 import {pascalToCamel} from 'tools/vanilla/convertName';
 import IconX from 'svgs/basic/IconX';
 
@@ -84,17 +83,21 @@ function Setting({}: PropsSetting) {
     const draft = useMemo(()=>{
         let result:any = {};
 
-        result['optionTheme'] = [
-            { value: 'auto', label: "auto"},
-            { value: 'always-light', label: "light"},
-            { value: 'always-dark', label: "dark"},
-        ];
+        result['input'] = {
+            type: 'radio',
+            name: "optionTheme",
+            value: "auto",
+            defaultChecked: optionThemeCurrent==='auto' ,
+            id: "input-radio__optionTheme----auto",
+            ['aria-labelledby']: 'label__optionTheme----auto',
+            onChange={onChange_InputNormal} ,
+        };
 
-        result['language'] = [
-            { value: 'ko', label: "한국어"},
-            { value: 'en', label: "English"},
-        ];
-
+        result['label']= {
+            id: 'label__optionTheme----auto',
+            htmlFor: "input-radio__optionTheme----auto",
+        };
+        
         return result;
     },[])
   
@@ -128,22 +131,50 @@ function Setting({}: PropsSetting) {
         
         
             <div className={`${stylesModal['content']}`} >
+                <input/>
                 <div className={`${stylesModal['content__section']}`} >
                     <h3> <FormattedMessage id={`Modal.Setting_Theme`} /> </h3>
 
-                    <div className={'container__input-radio'} >
-                        {draft['optionTheme'].map((element: any, index: number)=>
-                            <InputRadio 
-                                valueCurrent={optionThemeCurrent}
+                    <div className={'container__input-radio'} > 
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="auto" defaultChecked={optionThemeCurrent==='auto'} 
+                            id="input-radio__optionTheme----auto"
+                            aria-labelledby='label__optionTheme----auto'
+                            onChange={onChange_InputNormal} 
+                        /> 
+                        <label 
+                            id='label__optionTheme----auto'
+                            htmlFor="input-radio__optionTheme----auto"
+                        >   auto 
+                        </label>
 
-                                name='optionTheme'
-                                value={element.value}
-                                label={element.label}
-                                onChange={onChange_InputNormal}
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="always-light" defaultChecked={optionThemeCurrent==='always-light'} 
+                            id="input-radio__optionTheme----always-light"
+                            onChange={onChange_InputNormal} 
+                        /> 
+                        <label 
+                            id='label__optionTheme----always-light'
+                            htmlFor="input-radio__optionTheme----always-light"
+                        >   light
+                        </label>
 
-                                key={`InputRadio__optionTheme----${element.value}`}
-                            />
-                        )}
+                        <input 
+                            type="radio" 
+                            name="optionTheme" 
+                            value="always-dark" defaultChecked={optionThemeCurrent==='always-dark'} 
+                            id="input-radio__optionTheme----always-dark"
+                            onChange={onChange_InputNormal} 
+                        /> 
+                        <label 
+                            id='label__optionTheme----always-dark'
+                            htmlFor="input-radio__optionTheme----always-dark"
+                        >   dark 
+                        </label>
                     </div>
                 </div>
                 
@@ -151,18 +182,32 @@ function Setting({}: PropsSetting) {
                     <h3>  <FormattedMessage id={`Modal.Setting_Language`} /></h3>
  
                     <div className={'container__input-radio'} > 
-                        {draft['language'].map((element: any, index: number)=>
-                            <InputRadio 
-                                valueCurrent={languageCurrent}
+                        <input 
+                            type="radio" 
+                            name="language"  
+                            value="en"  defaultChecked={languageCurrent==='en'} 
+                            id="input-radio__language----en"
+                            onChange={onChange_InputNormal} 
+                        /> 
+                        <label 
+                            id='label__language----en'
+                            htmlFor="input-radio__language----en"
+                        >   English 
+                        </label>
 
-                                name='language'
-                                value={element.value}
-                                label={element.label}
-                                onChange={onChange_InputNormal}
+                        <input 
+                            type="radio" 
+                            name="language" 
+                            value="ko" defaultChecked={languageCurrent==='ko'} 
+                            id="input-radio__language----ko"
+                            onChange={onChange_InputNormal} 
+                        /> 
+                        <label 
+                            id='label__language----ko'
+                            htmlFor="input-radio__language----ko"
+                        >   한국어 
+                        </label>
 
-                                key={`InputRadio__language----${element.value}`}
-                            />
-                        )}
                     </div>
 
                 </div>

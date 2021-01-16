@@ -21,7 +21,7 @@ describe('<NavBar />', () => {
     });
     */ 
 
-    it.concurrent.each(['Sports'])('open close each category', (name) => {
+    it.each(['Sports'])('open close each category', (name) => {
 
         render(<NavBar />);
 

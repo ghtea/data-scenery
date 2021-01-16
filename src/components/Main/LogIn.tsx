@@ -10,12 +10,14 @@ import {StateRoot} from 'store/reducers';
 
 import * as actionsRoot from "store/actions";
 
+import inputEmail from 'components/Global/Input/InputEmail';
 import useInputBasic from 'tools/hooks/useInputBasic';
 
 //import IconLogIn from 'svgs/basic/IconLogIn';
 import TopBar from './LogIn/TopBar';
 
 import styles from './LogIn.module.scss';
+import InputEmail from "components/Global/Input/InputEmail";
 
 
 
@@ -41,7 +43,7 @@ function LogIn({}:PropsLogIn) {
     );
     
     const {draft: draft_Main, onChange: onChange_Main} = useInputBasic({
-        emailAddress: '',
+        email: '',
         password: '' 
     });
 
@@ -82,7 +84,7 @@ function LogIn({}:PropsLogIn) {
     const submitMain = useCallback(
         () => {
             dispatch(actionsRoot.auth.return__LOG_IN({
-                email: draft_Main.emailAddress,
+                email: draft_Main.email,
                 password: draft_Main.password
             }));
         },
@@ -132,13 +134,22 @@ function LogIn({}:PropsLogIn) {
             </div>
                 
             <div className={`${styles['input-identity']}`} >
+                <InputEmail 
+                    name='email'
+                    value={draft_Main.email}
+                    label={element.label}
+                    onChange={onChange_InputNormal}
+
+                    key={`InputRadio__language----${element.value}`}
+                />
+
                 <div> <FormattedMessage id={`Main.LogIn_EmailAddress`} /> </div>
                 <input 
                     type='email'
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
                     name='emailAddress'
-                    value={draft_Main.emailAddress}
-                    required
+                    value={draft_Main.email}
+                    required={true}
                     onChange={onChange_Main} 
                     onKeyPress={onKeyPress_Main}
                 /> 
@@ -152,7 +163,7 @@ function LogIn({}:PropsLogIn) {
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
                     name='password'
                     value={draft_Main.password}
-                    required
+                    required={true}
                     onChange={onChange_Main}
                     onKeyPress={onKeyPress_Main}
                 /> 

@@ -83,7 +83,6 @@ function Banner({
             >
                 <IconXCircle className={`${styles['icon__x-circle']}`} kind={'light'}  />
                 <IconXCircle className={`${styles['icon__x-circle']}`} kind={'solid'}  />
-                
             </button>
 
         </div>

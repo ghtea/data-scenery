@@ -56,7 +56,7 @@
         font-weight: normal;
     }
 
-    &:focus-within > div:nth-child(1) {
+    &:focus-within > label {
         @include color-each-theme(color, main__5);
     }
 

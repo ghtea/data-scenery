@@ -8,8 +8,11 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import useInput from 'tools/hooks/useInput';
+import useInputBasic from 'tools/hooks/useInputBasic';
+import useLink from 'tools/hooks/useLink'; 
 
+import InputEmail from "components/Global/Input/InputEmail";
+import InputPassword from "components/Global/Input/InputPassword";
 
 import TopBar from './LogIn/TopBar';
 
@@ -25,15 +28,28 @@ function SignUp({}: PropsSignUp) {
     const dispatch = useDispatch();
     const intl = useIntl();
 
+    const readyUser = useSelector((state: StateRoot) => state['status']['ready']['user']);
+    const loadingUser = useSelector((state: StateRoot) => state['status']['loading']['user']);
+
     const listCodeSituationOthers:string[] = useSelector((state: StateRoot) => state['notification']['listCodeSituationOthers']);
     
-    const inputEmail = useInput(""); // {value, setValue, onChange};
-    const inputPassword1 = useInput(""); // {value, setValue, onChange};
-    const inputPassword2 = useInput(""); // {value, setValue, onChange};
-  
+    const {onClick_LinkInsideApp} = useLink(history);
+    
+    const {draft: draft_Main, onChange: onChange_Main} = useInputBasic({
+        email: '',
+        password1: '',
+        password2: '',
+    });
+
     const [codeSituationEmail, setCodeSituationEmail] = useState('');
     const [codeSituationPassword, setCodeSituationPassword] = useState('');
     
+    useEffect(()=>{
+        if (readyUser) {
+            history.push('/');
+        }
+    },[readyUser, loadingUser]);
+
     useEffect(()=>{
         if(listCodeSituationOthers.includes('SignUp_NoEmail__E')){
             setCodeSituationEmail('SignUp_NoEmail__E');
@@ -66,35 +82,32 @@ function SignUp({}: PropsSignUp) {
 
     },[listCodeSituationOthers]);
   
-  const onClick_LinkInsideApp = useCallback(
-    (destination:string) => {
-      history.push(destination);
-    },[history]
-  );
   
-  const onClick_SignUp = useCallback(
-    () => {
-      
-      dispatch(actionsRoot.auth.return__SIGN_UP({
-        email: inputEmail.value,
-        password1: inputPassword1.value,
-        password2: inputPassword2.value
-      }));
-      
-    },
-    [inputEmail, inputPassword1, inputPassword2]
-  );
-  
-  
-  // (event: React.ChangeEvent<HTMLInputElement>)
-  const onKeyPress_SignUp = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === "Enter") {
-        onClick_SignUp();
-      }
-    },
-    [inputEmail, inputPassword1, inputPassword2]
-  );
+    const submitMain = useCallback(
+        () => {
+            dispatch(actionsRoot.auth.return__SIGN_UP({
+                email: draft_Main.email,
+                password1: draft_Main.password1,
+                password2: draft_Main.password2,
+            }));
+        },
+        [draft_Main]
+    );
+    const onSubmit_Main = useCallback(
+        (event:React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            submitMain();
+        }, 
+        [draft_Main]
+    );
+    const onKeyPress_Main = useCallback(
+        (event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === "Enter") {
+                submitMain();
+            }
+        },
+        [draft_Main]
+    );
   
   
   return (
@@ -102,71 +115,85 @@ function SignUp({}: PropsSignUp) {
         
         <TopBar />
 
-        <div className={`${stylesLogIn['content']}`} >  
-
+        <form 
+            className={`${stylesLogIn['content']}`} 
+            onSubmit={onSubmit_Main}
+        >  
                 
             <div className={`${stylesLogIn['title-page']}`} >  
                 <FormattedMessage id={`Main.SignUp_SignUp`} />
             </div>
             
             <div className={`${stylesLogIn['input-identity']}`} >
-                <div> <FormattedMessage id={`Main.LogIn_EmailAddress`} /> </div>
-                <input 
-                    type='text' 
-                    placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})} 
-                    value={inputEmail.value}
-                    onChange={inputEmail.onChange} 
-                /> 
+                <InputEmail 
+                    name='email'
+                    value={draft_Main.email}
+
+                    label={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
+                    placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
+                    required={true}
+
+                    onChange={onChange_Main}
+                    onKeyPress={onKeyPress_Main}
+                />
                 <div> { codeSituationEmail &&  <FormattedMessage id={`Notification.${codeSituationEmail}`} />} </div>
             </div>
             
             
             <div className={`${stylesLogIn['input-password']}`} >
-                <div> <FormattedMessage id={`Main.LogIn_Password`} /> </div>
-                <input 
-                    type='password'
+                <InputPassword 
+                    name='password1'
+                    value={draft_Main.password1}
+
+                    label={intl.formatMessage({ id: 'Main.LogIn_Password'})}
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
-                    value={inputPassword1.value}
-                    onChange={inputPassword1.onChange}
-                /> 
+                    required={true}
+
+                    onChange={onChange_Main}
+                    onKeyPress={onKeyPress_Main}
+                />
                 <div> { codeSituationPassword &&  <FormattedMessage id={`Notification.${codeSituationPassword}`} />} </div>
             </div>
             
             <div className={`${stylesLogIn['input-password']}`} >
-                <div> <FormattedMessage id={`Main.SignUp_PasswordAgain`} /> </div>
-                <input 
-                    type='password'
+                <InputPassword 
+                    name='password2'
+                    value={draft_Main.password2}
+
+                    label={intl.formatMessage({ id: 'Main.SignUp_PasswordAgain'})}
                     placeholder={intl.formatMessage({ id: 'Main.SignUp_PasswordAgain'})}
-                    
-                    value={inputPassword2.value}
-                    onChange={inputPassword2.onChange}
-                    onKeyPress={onKeyPress_SignUp}
-                /> 
+                    required={true}
+
+                    onChange={onChange_Main}
+                    onKeyPress={onKeyPress_Main}
+                />
             </div> 
             
             
             
             <div className={`${stylesLogIn['button-enter']}`} >
-                <button
-                    onClick={()=>onClick_SignUp()}
-                > <FormattedMessage id={`Main.SignUp_SignUp`} />
-                </button>
+                <input
+                    type='submit'
+                    value={intl.formatMessage({ id: 'Main.SignUp_SignUp'})}
+                /> 
             </div>
             
-            <div className={`${stylesLogIn['collection-link']}`} > 
-            <div> 
-                <a
-                onClick={()=>onClick_LinkInsideApp( '/')}
-                > <FormattedMessage id={`Nav.Home`} /> </a> 
-            </div>
-            <div> 
-                <a
-                onClick={()=>onClick_LinkInsideApp('/log-in')}
-                > <FormattedMessage id={`Nav.LogIn`} /> </a> 
-            </div>
-            </div>
+            <nav className={`${stylesLogIn['collection-link']}`} > 
+                <div> 
+                    <a  
+                        href='/'
+                        onClick={onClick_LinkInsideApp}
+                    > <FormattedMessage id={`Nav.Home`} /> </a>
+                </div>
+                <div> 
+                    <a  
+                        href='/log-in' 
+                        onClick={onClick_LinkInsideApp}
+                    > <FormattedMessage id={'Nav.LogIn'} /> </a>
+                </div>
+            </nav>
             
-        </div>     
+        </form>     
     </div>
   );
 }

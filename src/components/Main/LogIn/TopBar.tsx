@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 
 //import {useSelector, useDispatch} from "react-redux";
+import useLink from 'tools/hooks/useLink';
 
 import IconLogo from 'svgs/others/IconLogo';
 
@@ -17,26 +18,25 @@ function TopBar({}: PropsTopBar) {
   
   // event: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>, 
    
-  const onClick_LinkInsideApp = useCallback(
-    (destination:string) => {  history.push(destination);
-    },[history]
-  );
-  
+  const {onClick_LinkInsideApp} = useLink(history);
+
   return (
-    <div className={`${styles['root']}`}
-      onClick={(event)=>onClick_LinkInsideApp('/')}
+    <div 
+        className={`${styles['root']}`}
     >
-    
-      <div>
-          <IconLogo className={`${styles['icon-logo']}`} />
-      </div>
-      
-      <div> 
-        <a> 
-            <FormattedMessage id={`Nav.NameApp`} />
+        <a  
+            className={`${styles['home']}`}
+            href='/' 
+            onClick={onClick_LinkInsideApp}
+        >
+            <div>
+                <IconLogo className={`${styles['icon-logo']}`} />
+            </div>
+            
+            <div> 
+                <FormattedMessage id={`Nav.NameApp`} />
+            </div>
         </a>
-      </div>
-        
     </div>
   );
 }

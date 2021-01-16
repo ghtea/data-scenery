@@ -2,6 +2,10 @@
 
 .root {
 
+    visibility: hidden;
+    &:global(.showing){
+        visibility: visible;
+    }
     width: 100%; min-width: $device-xs__min-width; 
 
     position: absolute;
@@ -106,15 +110,17 @@
             }
         }
 
+        .icon__user-circle {
+            width: 28px;
+            height: 28px;
+            @include color-each-theme(color, basic__5);
+        }
 
         .icon__setting {
             width: 24px;
             height: 24px;
             @include color-each-theme(color, basic__5);
         }
-        .icon__user-circle {
-            width: 24px;
-            height: 24px;
-        }
+        
     }
 }

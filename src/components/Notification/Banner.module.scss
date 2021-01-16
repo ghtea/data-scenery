@@ -139,7 +139,7 @@ $width__side: 50px;
 
 
 
-.button-delete {
+.button__delete {
 
     & > div:nth-child(1){
         display: flex;
@@ -149,7 +149,7 @@ $width__side: 50px;
 	    display: none;
 	}
 	  
-	&:hover {
+	&:hover, &:active {
 	    & > div:nth-child(1){
 	        display: none;
 	    }

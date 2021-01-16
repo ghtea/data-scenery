@@ -19,7 +19,7 @@ const sagaMiddleware = createSagaMiddleware({
 
 // example: dont show logger when testing
 let listMiddleware = []
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
   listMiddleware = [sagaMiddleware];
 } else {
   listMiddleware = [sagaMiddleware, logger];

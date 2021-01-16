@@ -7,6 +7,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
+import useLink from 'tools/hooks/useLink';
+
 import styles from './NavBar.module.scss';
 
 import IconAngle from 'svgs/basic/IconAngle';
@@ -15,6 +17,8 @@ import IconAngle from 'svgs/basic/IconAngle';
 type PropsNavBar = {};
  
 function NavBar({}: PropsNavBar) {
+
+    const {onClick_LinkInsideApp} = useLink(history);
 
     const [idCategoryOpen, setIdCategoryOpen] = useState<undefined | string>(undefined);
 

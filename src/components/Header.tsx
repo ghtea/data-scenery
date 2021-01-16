@@ -10,6 +10,7 @@ import * as actionsRoot from "store/actions";
 import NavBar from './Header/NavBar';
 import NavBoard from './Header/NavBoard';
 
+import useLink from 'tools/hooks/useLink';
 
 import styles from './Header.module.scss';
 
@@ -37,6 +38,7 @@ function Header({}: PropsHeader) {
     const user = useSelector((state: StateRoot) => state['auth']['user']);
     // useEffect(()=>console.log(user),[user])
 
+    const {onClick_LinkInsideApp} = useLink(history);
     
     useEffect(() => {
         // console.log(location.pathname);
@@ -71,18 +73,9 @@ function Header({}: PropsHeader) {
         },[]
     );
 
-    const onClick_LinkInsideApp = useCallback(
-        (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
-        const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
-        if (href) {
-            history.push(href);
-        }
-        },[history]
-    );
   
   return (
-    <header className={`${styles['root']} showing----${showingHeader}`}>
+    <header className={`${styles['root']} ${showingHeader && 'showing'}`}>
 
         <div className={`${styles['bar']}`}>
 
@@ -154,8 +147,8 @@ function Header({}: PropsHeader) {
                     <button
                         type='button'
                         aria-label="Open Profile"
-                        value='profile'
-
+                        value='myProfile'
+                        onClick={onClick_ShowModal}
                     > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
                     </button>
                     <button

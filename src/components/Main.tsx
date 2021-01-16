@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./Main/Home";
 import LogIn from "./Main/LogIn";
 import SignUp from "./Main/SignUp";
+import Test from "./Main/Test";
 import NotFound from "./Main/NotFound";
 
 //import SignUp from "./components/Auth/SignUp";
@@ -29,6 +30,10 @@ function Main({}: PropsMain) {
 
             <Route path="/sign-up" >
                 <SignUp />
+            </Route>
+
+            <Route path="/test" >
+                <Test />
             </Route>
 
             <Route >

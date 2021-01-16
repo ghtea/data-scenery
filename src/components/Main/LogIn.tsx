@@ -10,16 +10,17 @@ import {StateRoot} from 'store/reducers';
 
 import * as actionsRoot from "store/actions";
 
-import inputEmail from 'components/Global/Input/InputEmail';
 import useInputBasic from 'tools/hooks/useInputBasic';
+import useLink from 'tools/hooks/useLink';
+
+import InputEmail from "components/Global/Input/InputEmail";
+import InputPassword from "components/Global/Input/InputPassword";
+
 
 //import IconLogIn from 'svgs/basic/IconLogIn';
 import TopBar from './LogIn/TopBar';
 
 import styles from './LogIn.module.scss';
-import InputEmail from "components/Global/Input/InputEmail";
-import InputPassword from "components/Global/Input/InputPassword";
-
 
 
 
@@ -35,23 +36,13 @@ function LogIn({}:PropsLogIn) {
 
     // when login button is pushed, notification code of reaction is added to  this list, when login button is pushed again this list cleared once 
     const listCodeSituationOthers = useSelector((state: StateRoot) => state['notification']['listCodeSituationOthers']);
-
   
-    const onClick_LinkInsideApp = useCallback(
-        (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
-        const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
-        if (href) {
-            history.push(href);
-        }
-        },[history]
-    );
+    const {onClick_LinkInsideApp} = useLink(history);
     
     const {draft: draft_Main, onChange: onChange_Main} = useInputBasic({
         email: '',
         password: '' 
     });
-
 
     const [codeSituationEmail, setCodeSituationEmail] = useState('');
     const [codeSituationPassword, setCodeSituationPassword] = useState('');
@@ -100,7 +91,7 @@ function LogIn({}:PropsLogIn) {
             event.preventDefault();
             submitMain();
         },
-        []
+        [draft_Main]
     );
     const onKeyPress_Main = useCallback(
         (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -108,7 +99,7 @@ function LogIn({}:PropsLogIn) {
                 submitMain();
             }
         },
-        []
+        [draft_Main]
     );
     
 

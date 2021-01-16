@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 
 // idk how to set type of valueCurrent and value to be same
-type PropsInputEmail = {
+type PropsInputPassword = {
 
     name: string;
     value: any;
@@ -15,7 +15,7 @@ type PropsInputEmail = {
     onKeyPress: ((event: React.KeyboardEvent<HTMLInputElement>) => void) | undefined;
 };
 
-function InputEmail({
+function InputPassword({
 
     name,
     value,
@@ -27,9 +27,9 @@ function InputEmail({
     onChange,
     onKeyPress,
 
-}: PropsInputEmail) {
+}: PropsInputPassword) {
 
-    const idInput = useMemo(()=>`input-email__${name}----${value}`,[]);
+    const idInput = useMemo(()=>`input-password__${name}----${value}`,[]);
     const idLabel = useMemo(()=>`label__${name}----${value}`,[]);
 
     return ( 
@@ -41,7 +41,7 @@ function InputEmail({
         </label>
 
         <input 
-            type="email" 
+            type="password" 
 
             name={name} 
             value={value}
@@ -60,8 +60,8 @@ function InputEmail({
   );
 }
 
-InputEmail.defaultProps = {};
+InputPassword.defaultProps = {};
 
-export default InputEmail;
+export default InputPassword;
 
 

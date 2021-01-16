@@ -18,6 +18,7 @@ import TopBar from './LogIn/TopBar';
 
 import styles from './LogIn.module.scss';
 import InputEmail from "components/Global/Input/InputEmail";
+import InputPassword from "components/Global/Input/InputPassword";
 
 
 
@@ -37,8 +38,12 @@ function LogIn({}:PropsLogIn) {
 
   
     const onClick_LinkInsideApp = useCallback(
-        (event: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>, destination:string) => {
-        history.push(destination);
+        (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
+        if (href) {
+            history.push(href);
+        }
         },[history]
     );
     
@@ -137,40 +142,32 @@ function LogIn({}:PropsLogIn) {
                 <InputEmail 
                     name='email'
                     value={draft_Main.email}
-                    label={element.label}
-                    onChange={onChange_InputNormal}
 
-                    key={`InputRadio__language----${element.value}`}
-                />
-
-                <div> <FormattedMessage id={`Main.LogIn_EmailAddress`} /> </div>
-                <input 
-                    type='email'
+                    label={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
                     placeholder={intl.formatMessage({ id: 'Main.LogIn_EmailAddress'})}
-                    name='emailAddress'
-                    value={draft_Main.email}
                     required={true}
-                    onChange={onChange_Main} 
+
+                    onChange={onChange_Main}
                     onKeyPress={onKeyPress_Main}
-                /> 
+                />
                 <div> { codeSituationEmail && <FormattedMessage id={`Notification.${codeSituationEmail}`} /> }  </div>
             </div> 
                 
             <div className={`${styles['input-password']}`} >
-                <div> <FormattedMessage id={`Main.LogIn_Password`} /> </div>
-                <input 
-                    type='password'
-                    placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
+                <InputPassword 
                     name='password'
                     value={draft_Main.password}
+
+                    label={intl.formatMessage({ id: 'Main.LogIn_Password'})}
+                    placeholder={intl.formatMessage({ id: 'Main.LogIn_Password'})}
                     required={true}
+
                     onChange={onChange_Main}
                     onKeyPress={onKeyPress_Main}
-                /> 
+                />
                 <div> { codeSituationPassword && <FormattedMessage id={`Notification.${codeSituationPassword}`}/>} </div>
             </div> 
 
-            
             <div className={`${styles['button-enter']}`} >
                 <input
                     type='submit'
@@ -200,11 +197,13 @@ function LogIn({}:PropsLogIn) {
                 <div> 
                     <a  
                         href='/'
+                        onClick={onClick_LinkInsideApp}
                     > <FormattedMessage id={`Nav.Home`} /> </a> 
                 </div>
                 <div> 
                     <a  
-                        href='/sign-up'
+                        href='/sign-up' 
+                        onClick={onClick_LinkInsideApp}
                     > <FormattedMessage id={`Nav.SignUp`} /> </a> 
                 </div>
             </nav> 

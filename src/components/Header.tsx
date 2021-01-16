@@ -70,7 +70,16 @@ function Header({}: PropsHeader) {
         }));
         },[]
     );
-  
+
+    const onClick_LinkInsideApp = useCallback(
+        (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
+        if (href) {
+            history.push(href);
+        }
+        },[history]
+    );
   
   return (
     <header className={`${styles['root']} showing----${showingHeader}`}>
@@ -101,7 +110,11 @@ function Header({}: PropsHeader) {
 
             <div className={`${styles['left']} on-big-devices`}>
 
-                <a href='/' className={`${styles['logo']}`} >
+                <a 
+                    className={`${styles['logo']}`} 
+                    href='/'
+                    onClick={onClick_LinkInsideApp}
+                >
                     <div> <IconLogo className={`${styles['icon__logo']}`} kind='regular' /> </div>
                     <div className={`${styles['name']}`}> <FormattedMessage id={`Nav.NameApp`} /> </div>
                 </a>
@@ -113,10 +126,18 @@ function Header({}: PropsHeader) {
 
             {!readyUser && !loadingUser && 
                 <div className={`${styles['right']}`}>
-                    <a className={`button__main--light on-big-devices`} href='/log-in'> 
+                    <a 
+                        className={`button__main--light on-big-devices`} 
+                        href='/log-in'
+                        onClick={onClick_LinkInsideApp}
+                    > 
                         <FormattedMessage id={'Nav.LogIn'}/> 
                     </a>
-                    <a className={`button__main--solid on-big-devices`} href='/sign-up'> 
+                    <a 
+                        className={`button__main--solid on-big-devices`} 
+                        href='/sign-up'
+                        onClick={onClick_LinkInsideApp}
+                    > 
                         <FormattedMessage id={'Nav.SignUp'}/> 
                     </a>
                     <button

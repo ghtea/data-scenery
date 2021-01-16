@@ -83,6 +83,7 @@ function Header({}: PropsHeader) {
                 <button
                     type='button'
                     aria-label="Open Board"
+                    aria-haspopup="true"
                     onClick={onClick_OpenBoard}
                 >   <IconThreeBars className={`${styles['icon__three-bars']}`} kind='light'/>
                 </button>
@@ -90,6 +91,7 @@ function Header({}: PropsHeader) {
                 <button
                     type='button'
                     aria-label="Close Board"
+                    aria-haspopup="true"
                     onClick={onClick_OpenBoard}
                 >   <IconX className={`${styles['icon__x']}`} kind='light'/>
                 </button>

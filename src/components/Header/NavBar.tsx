@@ -74,7 +74,7 @@ function NavBar({}: PropsNavBar) {
                     role="menu"    
                     aria-labelledby="name__categoryA"
                 >
-                    <li role='menuitem'><a href='/sports/football'>football</a></li>
+                    <li role='menuitem'><a href='/sports/football'>Football</a></li>
                 </ul>
             </li>
         </ul>

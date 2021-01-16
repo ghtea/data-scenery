@@ -27,22 +27,22 @@ describe('<Header />', () => {
 
         expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
         expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).not.toHaveClass('display----flex');
+        expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('is-open');
 
         fireEvent.click(screen.getByRole('button', {name: 'Open Board'}));
         
         expect(screen.queryByRole('button', {name: 'Open Board'})).not.toBeInTheDocument();
         expect(screen.getByRole('button', {name: 'Close Board'})).toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation'}) ).toHaveClass('display----flex');
-
+        expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).toHaveClass('is-open');
+ 
 
         fireEvent.click(screen.getByRole('button', {name: 'Close Board'}));
         
         expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
         expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
-        expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('display----flex');
+        expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('is-open');
     });
-
+ 
 
     it('open setting', () => {
         render(<Header />);

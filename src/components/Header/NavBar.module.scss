@@ -10,7 +10,7 @@
 } 
 
 
-ul.all {
+.root > ul {
     width: auto;
     height: 100%;
     
@@ -21,7 +21,7 @@ ul.all {
     justify-content: flex-start;
     align-items: center;
 
-    & > li.category-each {
+    & > li {
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
@@ -33,22 +33,12 @@ ul.all {
 
         button {
             width: auto;
-            height: calc(100% - 10px);
+            height: calc(100% - 20px);
 
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-start;
             align-items: center; 
-
-            .container__icon {
-                width: auto;
-                top: 3px;
-
-                .icon__angle {
-                    width: 18px;
-                    height: 18px;
-                }
-            }
 
         }
 
@@ -58,7 +48,7 @@ ul.all {
         }
 
         
-        ul.dropdown {
+        ul[role='menu'] {
             width: 180px;
             height: auto;
             padding: 1rem 1rem 1rem 1rem;

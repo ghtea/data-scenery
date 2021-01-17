@@ -39,11 +39,8 @@
     "Nav.Home": "홈",
     "Nav.LogIn": "로그인",
     "Nav.SignUp": "회원가입",
-    "Nav.System": "시스템",   
-    "Nav.System_State": "상태 관리",
-    "Nav.System_Styles": "스타일",
-    "Nav.System_Language": "언어",
-    "Nav.Diary": "일기",
+    "Nav.Sports": "스포츠",  
+    "Nav.Sports_Football": "축구",  
 
     
     "Notification.Test1__S": "테스트에 성공하였습니다 1 !",

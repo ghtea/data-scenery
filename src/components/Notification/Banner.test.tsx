@@ -1,5 +1,5 @@
 import React from 'react';
-import { render} from 'test-utils';
+import { render, beforeAllDefault} from 'test-utils';
 // import '@testing-library/jest-dom/extend-expect';    // 이거 필요없는 듯?
 import {screen, fireEvent} from '@testing-library/react';
 //import userEvent from '@testing-library/user-event';
@@ -11,6 +11,7 @@ import translationEn from 'language/translation/en.json';
 import Banner from './Banner';
 
 // import { StringLiteral } from 'typescript';
+beforeAllDefault();
 
 
 describe('<Banner />', () => {

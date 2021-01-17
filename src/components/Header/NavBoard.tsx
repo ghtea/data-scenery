@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
+import nav from './nav';
 import useLink from 'tools/hooks/useLink';
 
 import styles from './NavBoard.module.scss';

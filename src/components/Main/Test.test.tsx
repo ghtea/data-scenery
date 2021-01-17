@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, beforeAllDefault} from 'test-utils';
 import '@testing-library/jest-dom/extend-expect';
 
 import LogIn from './LogIn';
 import { StringLiteral } from 'typescript';
 
-render(<div > hahaha </div>);
+beforeAllDefault();
 
 type TypeProfile = {
     username: string;

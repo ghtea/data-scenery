@@ -12,6 +12,14 @@
         align-items: center;
     }
 
+    @media (min-width: $device-m__min-width) { // 320≤ xs < 576,   576 ≤ s < 768,   768 ≤ m < 992,   992 ≤ l < 1200,   1200 ≤ xl
+        // top: $nav-2--bar__height;
+        display: none;
+
+        &:global(.is-open) {
+            display: none;
+        }
+	}
 }
 
 

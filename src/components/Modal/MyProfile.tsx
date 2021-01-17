@@ -130,12 +130,12 @@ function MyProfile({}: PropsMyProfile) {
                 
                 <div className={`${stylesModal['content__section']}`} >
                     <h3>  <FormattedMessage id={`Modal.MyProfile_EmailAddress`} /></h3>
-                    <p className={`${styles['email']}`}> {user?.email} </p>
+                    <span className={`${styles['email']}`}> {user?.email} </span>
                 </div>
 
                 <div className={`${stylesModal['content__section']}`} >
                     <h3>  <FormattedMessage id={`Modal.MyProfile_Name`} /></h3>
-                    <p className={`${styles['displayName']}`}> {user?.displayName} </p>
+                    <span className={`${styles['displayName']}`}> {user?.displayName} </span>
                 </div>
 
                 <div className={`${stylesModal['content__section']}`} >

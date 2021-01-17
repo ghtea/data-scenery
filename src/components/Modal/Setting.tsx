@@ -99,11 +99,9 @@ function Setting({}: PropsSetting) {
     },[])
   
   return (
-    
     <div 
         className={`${styles['root']} ${stylesModal['root']}`} 
     >
-    
         <div
             className={`${stylesModal['outside']}`}
             aria-label="Outside Setting"
@@ -127,7 +125,9 @@ function Setting({}: PropsSetting) {
             </div>
         
         
-            <div className={`${stylesModal['content']}`} >
+            <div 
+                className={`${stylesModal['content']}`} 
+            >
                 <div className={`${stylesModal['content__section']}`} >
                     <h3> <FormattedMessage id={`Modal.Setting_Theme`} /> </h3>
 

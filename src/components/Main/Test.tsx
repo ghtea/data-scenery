@@ -19,26 +19,35 @@ function Test({}: PropsTest) {
     const dispatch = useDispatch();     
 
 
-    const onClick_AddTestingBanner = useCallback(
-        (codeSituation:string) => {
+    const onClick_AddBanner = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const {value: codeSituation} = event.currentTarget;
+
         dispatch(actionsRoot.notification.return__ADD_DELETE_BANNER({
             codeSituation: codeSituation
         }) );
+
         }, []
     );
   
   return (
 
     <div className={`${styles['root']}`} >
+
         <div className={`${styles['content']}`} >
 
           <button
-            onClick={event=>onClick_AddTestingBanner('Test1__S')}
-          > test 1 
+            type='button'
+            value='Test1__S'
+            onClick={onClick_AddBanner}
+          > Test 1 
           </button>
+
           <button
-            onClick={event=>onClick_AddTestingBanner('Test2__H')}
-          > test 2 
+            type='button'
+            value='Test2__H'
+            onClick={onClick_AddBanner}
+          > Test 2 
           </button>
 
         </div>

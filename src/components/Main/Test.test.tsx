@@ -1,33 +1,45 @@
 import React from 'react';
 import { render, beforeAllDefault} from 'test-utils';
+// import '@testing-library/jest-dom/extend-expect';    // 이거 필요없는 듯?
+import {screen, fireEvent} from '@testing-library/react';
+//import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
+import {waitFor} from '@testing-library/dom';
 
-import LogIn from './LogIn';
-import { StringLiteral } from 'typescript';
+import translationEn from 'language/translation/en.json';
+import Test from './Test';
+
+// import { StringLiteral } from 'typescript';
 
 beforeAllDefault();
 
-type TypeProfile = {
-    username: string;
-    name: String;
-};
 
-const Profile = ({ username, name }:TypeProfile) => {
-  return (
-    <div>
-      <b>{username}</b>
-      <span>({name})</span>
-    </div>
-  );
-};
+describe('<Test />', () => {
 
-const App = () => {
-  return <Profile username="velopert" name="김민준" />;
-};
+    /*
+    it('matches snapshot', () => {
+        const {container} = render(<Header />);
+        expect(container).toMatchSnapshot();
+    });
+    */ 
 
-describe('<Profile />', () => {
-  it('matches snapshot', () => {
-    const utils = render(<Profile username="velopert" name="김민준" />);
-    expect(utils.container).toMatchSnapshot();
-  });
+
+    it('test banner', () => {
+        render(<Test />);
+        
+        fireEvent.click( screen.getByRole('button', {name: 'Test 1'}) );
+        waitFor( ()=> expect(screen.getByRole('alert', {name: translationEn['Notification.Test1__S' as keyof typeof translationEn] } )).toBeInTheDocument() );
+
+        fireEvent.click( screen.getByRole('button', {name: 'Test 2'}) );
+        waitFor( ()=> expect(screen.getByRole('alert', {name: translationEn[ 'Notification.Test2__H' as keyof typeof translationEn] } )).toBeInTheDocument() );
+
+    });
+    
 });
+
+
+// https://twitter.com/i/lists/create
+
+// https://www.samdawson.dev/article/react-redux-use-selector-vs-connect
+// https://itnext.io/how-existing-redux-patterns-compare-to-the-new-redux-hooks-b56134c650d2
+// 테스팅 등으로 비교한 connect vs useSelector

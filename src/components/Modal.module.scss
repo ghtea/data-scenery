@@ -44,6 +44,10 @@
 
     & > .header{  // header
         margin-top: 8px;
+
+        h2 {
+            font-size: 1.3rem;
+        }
     }
     
     // overflow 에서 스크롤 모드일때 아래 여백이 보이지 않는데 해결방법이 지저분해서 우선 나둠

@@ -120,14 +120,14 @@ function Header({}: PropsHeader) {
             {!readyUser && !loadingUser && 
                 <div className={`${styles['right']}`}>
                     <a 
-                        className={`button__main--light on-big-devices`} 
+                        className={`button__main--light`} 
                         href='/log-in'
                         onClick={onClick_LinkInsideApp}
                     > 
                         <FormattedMessage id={'Nav.LogIn'}/> 
                     </a>
                     <a 
-                        className={`button__main--solid on-big-devices`} 
+                        className={`button__main--solid`} 
                         href='/sign-up'
                         onClick={onClick_LinkInsideApp}
                     > 

@@ -103,14 +103,15 @@
             }
         }
 
+        & > *:nth-child(n+2) {
+            margin-left: 10px;
+        }
+        
         button {
             width: 36px;
             height: 36px;
             padding: 0;
 
-            &:nth-child(n+2){
-                margin-left: 10px;
-            }
 
             .icon__user-circle {
                 width: 28px;

@@ -12,7 +12,7 @@ export type Category = {
 
 const nav: Category[] = [
     {
-        id: 'Sports',
+        id: 'sports',
         listLink: [
             {id: 'Football'} 
         ],

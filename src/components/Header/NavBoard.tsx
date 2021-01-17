@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
+import Category from './Nav/Category';
 import nav from './nav';
 import useLink from 'tools/hooks/useLink';
 
@@ -60,29 +61,19 @@ function NavBoard({isOpen}: PropsNavBoard) {
             className={`${styles['all']}`}
             aria-labelledby={'name__categoryA'}
             ref={refListAll}
-        >
-            <li className={`${styles['category-each']}`}> 
-                <button 
-                    type='button'
-                    value='categoryA'
-                    id={`button__${'categoryA'}`}
-                    
-                    aria-labelledby={'name__categoryA'}
-                    aria-haspopup="menu" aria-expanded={idCategoryOpen === 'categoryA'}
-                    onClick={onClick_Category}
-                >
-                    <span id='name__categoryA'> Sports </span>
-                    <div className={`${styles['container__icon']}`}> <IconAngle className={`${styles['icon__angle']}`} directon='down' kind='light' /> </div>
-                </button>
-                <ul 
-                    className={`${styles['dropdown']}`}
-                    role="menu"    
-                    aria-labelledby="name__categoryA"
-                >
-                    <li role='menuitem'><a href='/sports/football'>Football</a></li>
-                </ul>
-            </li>
-        </ul>
+            >
+                {nav.map((categoryEach, iEach)=>(
+                    <Category 
+                        idCategoryOpen={idCategoryOpen}
+
+                        id={categoryEach.id}
+                        listLink={categoryEach.listLink}
+
+                        onClick={onClick_Category}
+                        key={`NavBoard__Category-${iEach}`}
+                    />
+                ))}
+            </ul>
         </nav> 
     );
 }

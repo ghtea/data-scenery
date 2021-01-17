@@ -34,7 +34,7 @@ function Category({
     const idButton = useMemo(()=>`button__idCategory----${idCategory}`,[]);
     const idLabel = useMemo(()=>`label__idCategory----${idCategory}`,[]);
     
-    const slugCategory = useMemo(()=>cn.camelToSlug(idCategory),[]);
+    const slugCategory = useMemo(()=>encodeURIComponent( cn.camelToKebab(idCategory) ),[]);
 
     const transform: string = useMemo(()=>{
         if (idCategoryOpen === idCategory){
@@ -64,7 +64,7 @@ function Category({
                     <svg
                         width="1.3em"
                         height="1.3em"
-                        style={{marginTop: '0.3em'}}
+                        style={{marginTop: '0.2em'}}
                         fill="currentColor"
                         className=""
                         aria-hidden="true"
@@ -86,7 +86,7 @@ function Category({
             >
                 {listLink.map((linkEach, iEach)=>{
     
-                    const slugLink = cn.camelToSlug(linkEach.id);
+                    const slugLink = encodeURIComponent( cn.camelToKebab(linkEach.id) );
  
                     return (
                         <li 

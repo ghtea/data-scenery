@@ -23,7 +23,7 @@
 }
 
 
-ul.all {
+.root > ul {
     width: calc(100% - 20px);
     height: 100%;
     
@@ -34,7 +34,7 @@ ul.all {
     justify-content: flex-start;
     align-items: center;
 
-    & > li.category-each {
+    & > li {
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
@@ -45,23 +45,12 @@ ul.all {
         position: relative;
 
         button {
-            width: auto;
-            width: calc(100% - 10px);
+            width: 100%;
 
             display: flex;
             flex-flow: row nowrap;
             justify-content: center;
             align-items: center; 
-
-            .container__icon {
-                width: auto;
-                top: 3px;
-
-                .icon__angle {
-                    width: 18px;
-                    height: 18px;
-                }
-            }
 
         }
 
@@ -74,8 +63,8 @@ ul.all {
         }
 
         
-        ul.dropdown {
-            width: 180px;
+        ul[role='menu'] {
+            width: 100%;
             height: auto;
             padding: 1rem 1rem 1rem 1rem;
             
@@ -87,8 +76,10 @@ ul.all {
 
             li {
                 width: 100%;
+
                 a {
                     width: 100%;
+                    padding: 2px 6px 2px 6px;
                     display: inline-block;
                 }
             }

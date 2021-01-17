@@ -9,7 +9,7 @@ import {waitFor} from '@testing-library/dom';
 import * as cn from 'tools/vanilla/convertName';
 
 import translationEn from 'language/translation/en.json';
-import NavBar from './NavBar';
+import NavBoard from './NavBoard';
 import nav from 'components/Header/nav';
 
 // import { StringLiteral } from 'typescript';
@@ -21,7 +21,7 @@ const listNameCategory = nav.map(
         translationEn[`Nav.${cn.camelToPascal(category.id)}` as keyof typeof translationEn] 
 );
 
-describe('<NavBar />', () => {
+describe('<NavBoard />', () => {
 
     /*
     it('matches snapshot', () => {
@@ -32,7 +32,7 @@ describe('<NavBar />', () => {
 
     it.each(listNameCategory)('open close each category', (name) => {
 
-        render(<NavBar />);
+        render(<NavBoard />);
 
         expect(screen.getByRole('button', {name: name}).getAttribute('aria-expanded')).toBe('false');
 

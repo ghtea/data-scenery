@@ -103,24 +103,29 @@
             }
         }
 
-        & > * {
-            width: auto;
+        button {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+
             &:nth-child(n+2){
-                margin-left: 15px;
+                margin-left: 10px;
             }
+
+            .icon__user-circle {
+                width: 28px;
+                height: 28px;
+                @include color-each-theme(color, basic__5);
+            }
+
+            .icon__setting {
+                width: 24px;
+                height: 24px;
+                @include color-each-theme(color, basic__5);
+            }
+
         }
 
-        .icon__user-circle {
-            width: 28px;
-            height: 28px;
-            @include color-each-theme(color, basic__5);
-        }
-
-        .icon__setting {
-            width: 24px;
-            height: 24px;
-            @include color-each-theme(color, basic__5);
-        }
         
     }
 }

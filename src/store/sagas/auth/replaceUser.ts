@@ -21,20 +21,27 @@ function* replaceUser(action: actionsRoot.auth.type__REPLACE_USER) {
 
         const user = action.payload?.user || firebaseAuth.currentUser;
 
-        yield put( actionsRoot.auth.return__REPLACE({
-            listKey: ['user'],
-            replacement: {
-                id: user.uid,
-                email: user.email,
-                
-                photoURL: user.photoURL,
-                displayName: user.displayName,
-    
-                joined: user.metadata.creationTime,
-                accessed: user.metadata.lastSignInTime
-            }
-        }) );
+        if (user) {
+
+            yield put( actionsRoot.auth.return__REPLACE({
+                listKey: ['user'],
+                replacement: {
+                    id: user.uid,
+                    email: user.email,
+                    
+                    photoURL: user.photoURL,
+                    displayName: user.displayName,
         
+                    joined: user.metadata.creationTime,
+                    accessed: user.metadata.lastSignInTime
+                }
+            }) );
+        }
+
+        else {
+            console.log('no user');
+        }
+
     } catch (error) {
         console.log(error);
         console.log('replaceUser has been failed');

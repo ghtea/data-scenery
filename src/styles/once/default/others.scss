@@ -19,7 +19,7 @@ a {
 
     &:focus {
         outline-style: none;
-        @include shadow-each-theme(box-shadow, 0, 0, 0, 2px, basic__9, $is-module: false);
+        @include shadow-each-theme(box-shadow, 0, 0, 0, 2px, basic__6, $is-module: false); 
     }
 }
 

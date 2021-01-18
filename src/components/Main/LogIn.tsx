@@ -18,8 +18,11 @@ import InputPassword from "components/Global/Input/InputPassword";
 
 
 //import IconLogIn from 'svgs/basic/IconLogIn';
-import TopBar from './LogIn/TopBar';
+import imgGoogle from 'others/imgs/g-logo.png';
+import IconGithub from 'svgs/others/IconGithub';
 
+
+import TopBar from './LogIn/TopBar';
 import styles from './LogIn.module.scss';
 
 
@@ -167,8 +170,10 @@ function LogIn({}:PropsLogIn) {
             </div> 
             
         
-            <div className={`${styles['division']}`} > 
-                <div> or Log In with </div>
+            <div className={`${styles['division']}`} >
+                <div />
+                <div> OR </div>
+                <div/>
             </div> 
             
             <div className={`${styles['collection-social']}`} >
@@ -176,12 +181,18 @@ function LogIn({}:PropsLogIn) {
                     type='button'
                     value='google'
                     onClick={onClick_LogInSocial}
-                > Google </button>
+                > 
+                    <span className={`${styles['icon']}`}><img src={imgGoogle}/></span>
+                    <span className={`${styles['text']}`}> Continue with Google </span>
+                </button>
                 <button 
                     type='button'
                     value='github'
                     onClick={onClick_LogInSocial}
-                > GitHub </button>
+                > 
+                    <span className={`${styles['icon']}`}> <IconGithub className={`icon__github`} /></span>
+                    <span className={`${styles['text']}`}> Continue with GitHub  </span>
+                </button>
             </div> 
             
             <nav className={`${styles['collection-link']}`} >

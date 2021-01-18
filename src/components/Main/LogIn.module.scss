@@ -148,7 +148,17 @@
     justify-content: center;
     align-items: center;
 
-    height: 40px;
+    height: 60px;
+    $width__center-division: 40px;
+
+    & > *:nth-child(1), & > *:nth-child(3) {
+        width: calc(50% - #{$width__center-division/2});
+        height: 2px;
+        @include color-each-theme(background-color, basic__2 );
+    }
+    & > *:nth-child(2) {
+        width: $width__center-division;
+    }
 }
 
 .collection-social {
@@ -165,11 +175,13 @@
     & > button {
     
         width: 100%;
-        height: 44px;
+
+        $height__button-social: 40px;
+        height: $height__button-social;
         
         font-weight: normal;
         border-radius: 4px;
-        font-size: 1.1rem;
+        font-size: 1rem;
     
     
     &:nth-child(1){
@@ -180,6 +192,31 @@
         @include color-each-theme(background-color, github__bg);
         @include color-each-theme(color, github__font);
         margin-top: 8px;
+    } 
+
+    &[value='google'] {
+        .icon {
+            @include color-each-theme(background-color, google__white);
+            width: calc(#{$height__button-social} - 8px);
+            height: calc(#{$height__button-social} - 8px);
+            border-radius: 4px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 23px;
+                height: 23px;
+            }
+            margin-right: 12px;
+        }
+    }
+    &[value='github'] {
+        .icon {
+            width: 23px;
+            height: 23px;
+            margin-right: 12px;
+        }
     }
   }
   

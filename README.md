@@ -5,14 +5,17 @@
 
 ---
 ## Focused (compared to past projects)
-- Semantic HTML
-- Testing
-- Better saga coding for rendering/using firebase less
+- Semantic HTML (ARIA)
+- Testing (jest, testing-library)
+- Components, Hooks for frequent usage
 - More complicate UI
+- Better saga coding for rendering/using firebase less
 
 
 ## Should Be Improved
 - naming roles for many things
+- trying frameworks (Next.js, Nest.js)
+- get out of create-react-app and edit babel, webpack
 
 
 ---

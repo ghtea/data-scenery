@@ -1,12 +1,12 @@
 import React from 'react';
 import { render as renderRtl, RenderOptions } from '@testing-library/react';
-import '@testing-library/dom';
+// import '@testing-library/dom';
 
 import { IntlProvider } from 'react-intl';
 import translationEn from 'language/translation/en.json';
 
 // action 하나로 합쳐볼까?!!!
-import * as actionsRoot from 'store/actions'; 
+// import * as actionsRoot from 'store/actions'; 
 
 import { Router} from "react-router-dom";  // BrowserRouter
 import history from 'historyApp';

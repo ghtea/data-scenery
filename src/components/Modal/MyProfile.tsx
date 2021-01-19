@@ -162,6 +162,8 @@ function MyProfile({}: PropsMyProfile) {
 
                 <div className={`${stylesModal['content__section']}`} >
                     <button
+                        type='button'
+                        value='log-out'
                         className={`${styles['button-log-out']}`}
                         onClick={()=>onClick_LogOut()}
                     > <FormattedMessage id={`Modal.Setting_LogOut`} /> </button>

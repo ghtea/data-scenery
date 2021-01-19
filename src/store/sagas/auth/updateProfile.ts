@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import * as actionsPortal from "store/actions/portal";
+import * as actionsPortal from "store/actions/data";
 //import * as actionsTheme from "../../actions/theme";
 
 const uploadPhoto = (refFirebase: any, urlPhotoLocal: string) => {

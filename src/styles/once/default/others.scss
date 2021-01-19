@@ -1,5 +1,11 @@
 @import 'styles/every.scss';
 
+span {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+}
+
 p { 
 
     display: block;    // setting this for block   not works by browser

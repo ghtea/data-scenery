@@ -41,7 +41,7 @@
     align-items: flex-start;
   
     &:nth-child(n+2) {
-        margin-top: 30px;
+        margin-top: 10px;
     }
 
 
@@ -124,7 +124,7 @@
     align-items: center;
 
 
-    margin: 25px 0px 0px 0px; /* top right bottom left */
+    margin: 30px 0px 0px 0px; /* top right bottom left */
     padding: 0px 0px 0px 0px; /* top right bottom left */
   
     & > button {
@@ -182,19 +182,20 @@
         font-weight: normal;
         border-radius: 4px;
         font-size: 1rem;
+
+        display: inline-flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
     
-    
-    &:nth-child(1){
-        @include color-each-theme(background-color, google__bg);
-        @include color-each-theme(color, google__font);
-    }
     &:nth-child(2){
-        @include color-each-theme(background-color, github__bg);
-        @include color-each-theme(color, github__font);
         margin-top: 8px;
     } 
 
     &[value='google'] {
+        @include color-each-theme(background-color, google__bg);
+        @include color-each-theme(color, google__font);
+
         .icon {
             @include color-each-theme(background-color, google__white);
             width: calc(#{$height__button-social} - 8px);
@@ -212,6 +213,9 @@
         }
     }
     &[value='github'] {
+        @include color-each-theme(background-color, github__bg);
+        @include color-each-theme(color, github__font);
+        
         .icon {
             width: 23px;
             height: 23px;

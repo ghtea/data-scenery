@@ -17,7 +17,9 @@ import InputPassword from "components/Global/Input/InputPassword";
 import TopBar from './LogIn/TopBar';
 
 //import IconLogIn from 'svgs/basic/IconLogIn';
-
+import imgGoogle from 'others/imgs/g-logo.png';
+import IconGithub from 'svgs/others/IconGithub';
+ 
 import styles from './SignUp.module.scss';
 import stylesLogIn from './LogIn.module.scss';
 
@@ -108,7 +110,18 @@ function SignUp({}: PropsSignUp) {
         },
         [draft_Main]
     );
-  
+        
+    const onClick_LogInSocial = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            const {currentTarget: {value}} = event;
+            if (value === 'google'){
+                dispatch(actionsRoot.auth.return__LOG_IN_GOOGLE() );
+            }
+            else if (value === 'github'){
+                dispatch(actionsRoot.auth.return__LOG_IN_GITHUB() );
+            }
+        }, []
+    );
   
   return (
     <div className={`${stylesLogIn['root']}`} >
@@ -177,7 +190,33 @@ function SignUp({}: PropsSignUp) {
                     value={intl.formatMessage({ id: 'Main.SignUp_SignUp'})}
                 /> 
             </div>
+
+            <div className={`${stylesLogIn['division']}`} >
+                <div />
+                <div> OR </div>
+                <div/>
+            </div> 
             
+
+            <div className={`${stylesLogIn['collection-social']}`} >
+                <button 
+                    type='button'
+                    value='google'
+                    onClick={onClick_LogInSocial}
+                > 
+                    <span className={`${stylesLogIn['icon']}`}><img src={imgGoogle}/></span>
+                    <span className={`${styles['text']}`}> <FormattedMessage id={`Main.LogIn_ContinueWithGoogle`} /> </span>
+                </button>
+                <button 
+                    type='button'
+                    value='github'
+                    onClick={onClick_LogInSocial}
+                > 
+                    <span className={`${stylesLogIn['icon']}`}> <IconGithub className={`icon__github`} /></span>
+                    <span className={`${styles['text']}`}> <FormattedMessage id={`Main.LogIn_ContinueWithGithub`} />  </span>
+                </button>
+            </div> 
+
             <nav className={`${stylesLogIn['collection-link']}`} > 
                 <div> 
                     <a  

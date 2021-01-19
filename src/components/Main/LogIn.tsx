@@ -183,7 +183,7 @@ function LogIn({}:PropsLogIn) {
                     onClick={onClick_LogInSocial}
                 > 
                     <span className={`${styles['icon']}`}><img src={imgGoogle}/></span>
-                    <span className={`${styles['text']}`}> Continue with Google </span>
+                    <span className={`${styles['text']}`}> <FormattedMessage id={`Main.LogIn_ContinueWithGoogle`} /> </span>
                 </button>
                 <button 
                     type='button'
@@ -191,7 +191,7 @@ function LogIn({}:PropsLogIn) {
                     onClick={onClick_LogInSocial}
                 > 
                     <span className={`${styles['icon']}`}> <IconGithub className={`icon__github`} /></span>
-                    <span className={`${styles['text']}`}> Continue with GitHub  </span>
+                    <span className={`${styles['text']}`}> <FormattedMessage id={`Main.LogIn_ContinueWithGithub`} />  </span>
                 </button>
             </div> 
             

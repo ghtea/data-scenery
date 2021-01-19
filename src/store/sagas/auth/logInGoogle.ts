@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
 
-import * as actionsRoot from "store/actions";
+import * as actions from "store/actions";
 
 //import * as actionsTheme from "../../actions/theme";
 
@@ -22,14 +22,14 @@ const requestLogInGoogle = (provider:any) => {
 };
 
 
-function* logInGoogle(action: actionsRoot.auth.type__LOG_IN_GOOGLE) {
+function* logInGoogle(action: actions.auth.type__LOG_IN_GOOGLE) {
     try {
 
         const provider = new firebaseApp.auth.GoogleAuthProvider();
             //provider = new firebaseApp.auth.GithubAuthProvider();
         
 
-        yield put( actionsRoot.notification.return__REPLACE({
+        yield put( actions.notification.return__REPLACE({
             listKey: ['listCodeSituationOthers'],
             replacement: []
         }) );
@@ -39,17 +39,17 @@ function* logInGoogle(action: actionsRoot.auth.type__LOG_IN_GOOGLE) {
                 const {user} = yield call( requestLogInGoogle, provider );
                 //console.log(data.user);
 
-                yield put( actionsRoot.status.return__REPLACE({
+                yield put( actions.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsRoot.status.return__REPLACE({
+                yield put( actions.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: true
                 }) );
 
-                yield put( actionsRoot.auth.return__REPLACE_USER({
+                yield put( actions.auth.return__REPLACE_USER({
                     user: user
                 }) );
 
@@ -57,17 +57,17 @@ function* logInGoogle(action: actionsRoot.auth.type__LOG_IN_GOOGLE) {
             } 
             catch (error){
 
-                yield put( actionsRoot.status.return__REPLACE({
+                yield put( actions.status.return__REPLACE({
                     listKey: ['ready', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsRoot.status.return__REPLACE({
+                yield put( actions.status.return__REPLACE({
                     listKey: ['loading', 'user'],
                     replacement: false
                 }) );
 
-                yield put( actionsRoot.auth.return__REPLACE({
+                yield put( actions.auth.return__REPLACE({
                     listKey: ['user'],
                     replacement: null
                 }) );
@@ -76,13 +76,13 @@ function* logInGoogle(action: actionsRoot.auth.type__LOG_IN_GOOGLE) {
                 console.log(error);
                 if (error.code === 'auth/account-exists-with-different-credential'){
                     console.log(error.message);
-                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
+                    yield put( actions.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogInGoogle_UnknownError__E'
                     }) );
                 }
                 else {
                     console.log(error);
-                    yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
+                    yield put( actions.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogInGoogle_UnknownError__E'
                     }) );
                 }
@@ -96,24 +96,24 @@ function* logInGoogle(action: actionsRoot.auth.type__LOG_IN_GOOGLE) {
         
     } catch (error) {
         
-        yield put( actionsRoot.status.return__REPLACE({
+        yield put( actions.status.return__REPLACE({
             listKey: ['ready', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsRoot.status.return__REPLACE({
+        yield put( actions.status.return__REPLACE({
             listKey: ['loading', 'user'],
             replacement: false
         }) );
 
-        yield put( actionsRoot.auth.return__REPLACE_USER({
+        yield put( actions.auth.return__REPLACE_USER({
             user: null
         }) );
         
         console.log(error);
         console.log('logInGoogle has been failed');
         
-        yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
+        yield put( actions.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'LogInGoogle_UnknownError__E'
         }) );
     }

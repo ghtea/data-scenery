@@ -6,6 +6,7 @@
 ---
 ## Focused (compared to past projects)
 - Semantic HTML (ARIA)
+- Reconstruncted/renamed components based on HTML tags
 - Testing (jest, testing-library)
 - Components, Hooks for frequent usage
 - More complicate UI

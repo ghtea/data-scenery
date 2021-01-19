@@ -149,7 +149,12 @@ function Header({}: PropsHeader) {
                         aria-label="Open Profile"
                         value='myProfile'
                         onClick={onClick_ShowModal}
-                    > <IconUserCircle className={`${styles['icon__user-circle']}`} kind='regular'/> 
+                    > 
+                    {user?.photoURL ? 
+                        <img className={`${styles['photo__profile']}`} src={user.photoURL} />
+                        :
+                        <IconUserCircle className={`${styles['icon__user-circle']}`} kind="solid"/>
+                    }
                     </button>
                     <button
                         type='button'

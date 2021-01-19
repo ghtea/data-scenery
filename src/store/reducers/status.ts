@@ -13,10 +13,20 @@ const stateInitial = {
   
   loading: {
     user: false,
+    data: {
+        football: {
+            leagueStandings: false,
+        }
+    },
   },
   
   ready: {
     user: false,
+    data: {
+        football: {
+            leagueStandings: false,
+        }
+    },
     // listPortal: false,
   },
   

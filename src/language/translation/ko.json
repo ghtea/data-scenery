@@ -16,6 +16,8 @@
     "Main.LogIn_LogIn": "로그인",
     "Main.LogIn_EmailAddress": "이메일 주소",
     "Main.LogIn_Password": "비밀번호",
+    "Main.LogIn_ContinueWithGoogle": "구글로 계속하기",
+    "Main.LogIn_ContinueWithGithub": "깃허브로 계속하기",
 
     "Main.SignUp_SignUp": "회원가입",
     "Main.SignUp_PasswordAgain": "비밀번호 재입력",

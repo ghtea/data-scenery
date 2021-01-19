@@ -24,6 +24,8 @@
     "Main.LogIn_LogIn": "Log In",
     "Main.LogIn_EmailAddress": "Email Address",
     "Main.LogIn_Password": "Password",
+    "Main.LogIn_ContinueWithGoogle": "Continue With Google",
+    "Main.LogIn_ContinueWithGithub": "Continue With Github",
 
     "Main.SignUp_SignUp": "Sign Up",
     "Main.SignUp_PasswordAgain": "Password Again",

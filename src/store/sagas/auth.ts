@@ -16,22 +16,22 @@ import logCheckFailed from 'store/sagas/auth/logCheckFailed';
 import updateProfile from 'store/sagas/auth/updateProfile';
 
 
-import * as actionsRoot from "store/actions";
+import * as actions from "store/actions";
 
 
 export default function* sagaAuth() {
-    yield takeLatest( actionsRoot.auth.name__REPLACE_USER, replaceUser ); 
+    yield takeLatest( actions.auth.name__REPLACE_USER, replaceUser ); 
 
-    yield takeLatest( actionsRoot.auth.name__LOG_CHECK_SUCCEEDED, logCheckSucceeded ); 
-    yield takeLatest( actionsRoot.auth.name__LOG_CHECK_FAILED, logCheckFailed ); 
+    yield takeLatest( actions.auth.name__LOG_CHECK_SUCCEEDED, logCheckSucceeded ); 
+    yield takeLatest( actions.auth.name__LOG_CHECK_FAILED, logCheckFailed ); 
 
-    yield takeLatest( actionsRoot.auth.name__SIGN_UP, signUp ); 
-    yield takeLatest( actionsRoot.auth.name__LOG_IN, logIn ); 
-    yield takeLatest( actionsRoot.auth.name__LOG_OUT, logOut ); 
+    yield takeLatest( actions.auth.name__SIGN_UP, signUp ); 
+    yield takeLatest( actions.auth.name__LOG_IN, logIn ); 
+    yield takeLatest( actions.auth.name__LOG_OUT, logOut ); 
 
-    yield takeLatest( actionsRoot.auth.name__LOG_IN_GOOGLE, logInGoogle ); 
-    yield takeLatest( actionsRoot.auth.name__LOG_IN_GITHUB, logInGithub ); 
+    yield takeLatest( actions.auth.name__LOG_IN_GOOGLE, logInGoogle ); 
+    yield takeLatest( actions.auth.name__LOG_IN_GITHUB, logInGithub ); 
 
-    yield takeLatest( actionsRoot.auth.name__UPDATE_PROFILE, updateProfile ); 
+    yield takeLatest( actions.auth.name__UPDATE_PROFILE, updateProfile ); 
 }
 

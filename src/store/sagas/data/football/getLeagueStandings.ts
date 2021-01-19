@@ -21,7 +21,7 @@ const requestGetListPortal = (idUser:string) => {
 // if data (update date) is old, directly call SportdataAPI and get & upload to firebase
 function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STANDINGS) {
 
-    const {idUser, triggeringCheckAllPortals} = action.payload;
+    const {idLeague} = action.payload;
 
     try {
             
@@ -51,20 +51,20 @@ function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STAN
         
         console.log(error)
 
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actions.status.return__REPLACE({
             listKey: ['loading', 'listPortal'],
             replacement: false
         }) );
         
-        yield put( actionsStatus.return__REPLACE({
+        yield put( actions.status.return__REPLACE({
             listKey: ['ready', 'listPortal'],
             replacement: false
         }) );
         
-        yield put( actionsNotification.return__ADD_DELETE_BANNER({
-            codeSituation: 'GetListPortal_UnknownError__E'
+        yield put( actions.notification.return__ADD_DELETE_BANNER({
+            codeSituation: 'GetLeagueStandings_UnknownError__E'
         }) );
     }
 }
 
-export default getListPortal;
+export default getLeagueStandings;

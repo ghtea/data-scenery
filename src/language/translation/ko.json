@@ -72,10 +72,11 @@
     "Notification.SignUp_PasswordsDifferent__E": "두 비밀번호가 서로 다릅니다",
     "Notification.SignUp_WeakPassword__E": "비밀번호는 6글자 이상이어야 합니다",
     
-    "Notification.Portal_NotOwner__E": "이 포털의 주인이 아닙니다",
-    "Notification.Portal_InitialsTooLong__E": "이니셜은 1~4 글자이어야 합니다",
-    "Notification.Portal_NotValidSearchUrl__E": "검색 포털의 URL은 '{search}'를 포함해야 합니다",
-    "Notification.Portal_NoImage__E": "이미지를 업로드해주세요",
+    "Notification.Football_GetLeagueStandings_UnknownError__E": "리그 순위표를 불러오지 못했습니다",
+    "Notification.Football_UpdateLeagueStandings_UnknownError__E": "리그 순위표를 업데이트하지 못했습니다",
+    "Notification.Football_CheckListTeam_UnknownError__E": "팀 정보를 확인하지 못했습니다",
+    "Notification.Football_GetListTeam_UnknownError__E": "팀 정보를 불러오지 못했습니다",
+    "Notification.Football_AddTeam_UnknownError__E": "팀 정보를 찾지 못했습니다",
 
     "Notification.CreatePortal_Succeeded__S": "성공적으로 포털을 만들었습니다!",
     "Notification.CreatePortal_UnknownError__E": "포털을 만들지 못했습니다",

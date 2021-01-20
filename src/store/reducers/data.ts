@@ -14,8 +14,8 @@ export type State = typeof stateInitial;   // 아직 불확실
 const stateInitial = {
     
     football: {
-        leagueStanding: null as any,
-        listTeam: [] as any[]
+        leagueStandings: null as any,
+        listTeam: [] as actions.data.football.Team[]
     },
 
 };

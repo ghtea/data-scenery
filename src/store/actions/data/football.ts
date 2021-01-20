@@ -13,6 +13,75 @@ export const return__GET_LEAGUE_STANDINGS = (payload: Payload__GET_LEAGUE_STANDI
 export type type__GET_LEAGUE_STANDINGS = ReturnType<typeof return__GET_LEAGUE_STANDINGS>;
 
 
+export const name__UPDATE_LEAGUE_STANDINGS = 'data/football/UPDATE_LEAGUE_STANDINGS';
+type Payload__UPDATE_LEAGUE_STANDINGS = {
+    idLeague: string,
+    triggeringGet?: boolean,
+}
+export const return__UPDATE_LEAGUE_STANDINGS = (payload: Payload__UPDATE_LEAGUE_STANDINGS) => {
+    return {
+        type: name__UPDATE_LEAGUE_STANDINGS,
+        payload: payload
+    }
+};
+export type type__UPDATE_LEAGUE_STANDINGS = ReturnType<typeof return__UPDATE_LEAGUE_STANDINGS>;
+
+
+
+
+
+export type Team = {
+    id: string;
+    name: string;
+    code: string;
+    pathLogo: string;
+    country: {
+        id: string;
+        name: string;
+        alpha2: string;
+        continent: string;
+    }
+} 
+
+export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';
+type Payload__GET_LIST_TEAM = {
+    idCountry?: string,
+}
+export const return__GET_LIST_TEAM = (payload: Payload__GET_LIST_TEAM) => {
+    return {
+        type: name__GET_LIST_TEAM,
+        payload: payload
+    }
+};
+export type type__GET_LIST_TEAM = ReturnType<typeof return__GET_LIST_TEAM>;
+
+
+export const name__CHECK_LIST_TEAM = 'data/football/CHECK_LIST_TEAM';
+type Payload__CHECK_LIST_TEAM = {
+    listIdTeam: string[],
+}
+export const return__CHECK_LIST_TEAM = (payload: Payload__CHECK_LIST_TEAM) => {
+    return {
+        type: name__CHECK_LIST_TEAM,
+        payload: payload
+    }
+};
+export type type__CHECK_LIST_TEAM = ReturnType<typeof return__CHECK_LIST_TEAM>;
+
+
+export const name__ADD_TEAM = 'data/football/ADD_TEAM';
+type Payload__ADD_TEAM = {
+    idTeam: string,
+    triggeringGet?: boolean,
+}
+export const return__ADD_TEAM = (payload: Payload__ADD_TEAM) => {
+    return {
+        type: name__ADD_TEAM,
+        payload: payload
+    }
+};
+export type type__ADD_TEAM = ReturnType<typeof return__ADD_TEAM>;
+
 /*
 export const name__MANIPULATE_DATA = 'data/MANIPULATE_DATA';
 type Payload__MANIPULATE_DATA = {

@@ -72,11 +72,12 @@
     "Notification.SignUp_PasswordsDifferent__E": "The two passwords are different",
     "Notification.SignUp_WeakPassword__E": "Password should be at least 6 characters long",
 
-    "Notification.Portal_NotOwner__E": "You're not owner of this portal",
-    "Notification.Portal_InitialsTooLong__E": "Initials must be between 1 and 4 letters",
-    "Notification.Portal_NotValidSearchUrl__E": "URL of searching portal must include '{search}'",
-    "Notification.Portal_NoImage__E": "Please Upload Image",
-    
+    "Notification.Football_GetLeagueStandings_UnknownError__E": "Failed to get league standings",
+    "Notification.Football_UpdateLeagueStandings_UnknownError__E": "Failed to update league standings",
+    "Notification.Football_CheckListTeam_UnknownError__E": "Failed to check information of teams",
+    "Notification.Football_GetListTeam_UnknownError__E": "Failed to get information of teams",
+    "Notification.Football_AddTeam_UnknownError__E": "Failed to find information of the team",
+
     "Notification.CreatePortal_Succeeded__S": "Successfully created portal!",
     "Notification.CreatePortal_UnknownError__E": "Failed to create the portal",
     "Notification.GetListPortal_UnknownError__E": "Failed to get portals",

@@ -1,14 +1,11 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import Home from "./Main/Home";
-import LogIn from "./Main/LogIn";
-import SignUp from "./Main/SignUp";
-
-import Sports from "./Main/Sports";
-
-import Test from "./Main/Test";
-import NotFound from "./Main/NotFound";
+import Home from "../Home";
+import LogIn from "../LogIn";
+import SignUp from "../SignUp";
+import Test from "../Test";
+import NotFound from "../NotFound";
 
 //import SignUp from "./components/Auth/SignUp";
 
@@ -21,7 +18,6 @@ function Main({}: PropsMain) {
   return (
     
     <main className={`${styles['root']}`}>
-        
           <Switch>
             
             <Route exact path="/" >
@@ -31,12 +27,9 @@ function Main({}: PropsMain) {
             <Route path="/log-in" >
                 <LogIn />
             </Route>
+
             <Route path="/sign-up" >
                 <SignUp />
-            </Route>
-
-            <Route path="/sports" >
-                <Sports />
             </Route>
 
             <Route path="/test" >

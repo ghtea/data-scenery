@@ -10,59 +10,102 @@ import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
 
 
-const requestGetListPortal = (idUser:string) => {
-    
-    return firebaseFirestore.collection("Portal_")
-    .where("idUser", "==", idUser)
+const requestGetLeagueStandings = (idLeague:string) => {
+    return firebaseFirestore.collection("Football.LeagueStandings_")
+    .doc(idLeague)
     .get()
 };
 
+/*
+return firebaseFirestore.collection("LeagueStandings_")
+    .where("idLeague", "==", idLeague)
+    .get()
+*/
+
 // get first from my database
-// if data (update date) is old, directly call SportdataAPI and get & upload to firebase
+// if data (update date) is old, dispatch updateLeagueStandings
+// idUser is not needed
 function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STANDINGS) {
 
     const {idLeague} = action.payload;
 
     try {
             
-            const idUser: string =  yield select( (state:StateRoot) => state.auth.user?.id); 
+        yield put( actions.status.return__REPLACE({
+            listKey: ['ready', 'data', 'football', 'leagueStandings'],
+            replacement: false
+        }) );
+        yield put( actions.status.return__REPLACE({
+            listKey: ['loading', 'data', 'football', 'leagueStandings'],
+            replacement: true
+        }) );
 
-            yield put( actions.status.return__REPLACE({
-                listKey: ['ready', 'data', 'football', 'leagueStandings'],
-                replacement: false
-            }) );
-            yield put( actions.status.return__REPLACE({
-                listKey: ['loading', 'data', 'football', 'leagueStandings'],
-                replacement: true
-            }) );
+        const res =  yield call( requestGetLeagueStandings, idLeague );
+        // console.log(res.data());
 
-            const data =  yield call( requestGetListPortal, idUser );
-            
-            const leagueStandings = data.docs[0];
-            
-            yield put( actions.data.return__REPLACE({
-                listKey: ['football', 'leagueStandings'],
-                replacement: leagueStandings
-            }) );
+        const leagueStandings = res.data();
 
-            // trigger sorting of standings
+        const dateNow = Date.now();
+
+        if (!leagueStandings){
+            yield put( actions.data.football.return__UPDATE_LEAGUE_STANDINGS({
+                idLeague: idLeague,
+                triggeringGet: true,
+            }) );
+        }
+        else {
+            if (dateNow - leagueStandings['dateUpdated'] > 1000 * 60 * 60 * 3){  // if data is not old (in 3hours)
+
+                yield put( actions.data.football.return__UPDATE_LEAGUE_STANDINGS({
+                    idLeague: idLeague,
+                    triggeringGet: true,
+                }) );
+
+            }
+            else {   // if data is fresh
+                yield put( actions.data.return__REPLACE({
+                    listKey: ['football', 'leagueStandings'],
+                    replacement: leagueStandings
+                }) );
+
+                yield put( actions.status.return__REPLACE({
+                    listKey: ['loading', 'data', 'football', 'leagueStandings'],
+                    replacement: false
+                }) );
+                
+                yield put( actions.status.return__REPLACE({
+                    listKey: ['ready', 'data', 'football', 'leagueStandings'],
+                    replacement: true
+                }) );
+
+                const listIdTeamHere = leagueStandings.listTeam.map((team:any)=> team.id);
+                
+                yield put( actions.data.football.return__CHECK_LIST_TEAM({
+                    listIdTeam: listIdTeamHere,
+                }) );
+            }
+
+        }
+        
+
+        // trigger sorting of standings
 
     } catch (error) {
         
         console.log(error)
 
         yield put( actions.status.return__REPLACE({
-            listKey: ['loading', 'listPortal'],
+            listKey: ['loading', 'data', 'football', 'leagueStandings'],
             replacement: false
         }) );
         
         yield put( actions.status.return__REPLACE({
-            listKey: ['ready', 'listPortal'],
+            listKey: ['ready', 'data', 'football', 'leagueStandings'],
             replacement: false
         }) );
         
         yield put( actions.notification.return__ADD_DELETE_BANNER({
-            codeSituation: 'GetLeagueStandings_UnknownError__E'
+            codeSituation: 'Football_GetLeagueStandings_UnknownError__E'
         }) );
     }
 }

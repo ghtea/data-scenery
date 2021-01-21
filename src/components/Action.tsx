@@ -30,7 +30,7 @@ function Action({}: PropsAction) {
             setIsOpenAction(decision);
         }
         else {
-            setIsOpenAction(!isOpenAction);
+            setIsOpenAction(isOpenAction=>!isOpenAction);
         }
     },[isOpenAction]
   );
@@ -51,6 +51,8 @@ function Action({}: PropsAction) {
 
         <div className={`${styles['main']}`} >
             <button
+                type='button'
+                value='openCloseAction'
                 onClick={()=>onClick_OpenCloseAction()}
             > <IconThreeDots className={`${styles['icon-three-dots']}`} /> 
             </button>
@@ -60,12 +62,14 @@ function Action({}: PropsAction) {
         <div className={`${styles['menu']}`} >
 
             <button
-                
-            > <IconCopy className={`${styles['icon-copy']}`} /> 
+                type='button'
+                value='copy'
+            >   <IconCopy className={`${styles['icon__copy']}`} /> 
             </button>
             <button
-                
-            > <IconShare className={`${styles['icon-share']}`} /> 
+                type='button'
+                value='share'
+            >   <IconShare className={`${styles['icon__share']}`} /> 
             </button>
         </div>
         

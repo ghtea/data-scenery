@@ -59,7 +59,7 @@ function Header({}: PropsHeader) {
     const [isOpen, setIsOpen] = useState(false);
     const onClick_OpenBoard = useCallback(
         (event: React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
-            setIsOpen(!isOpen);        
+            setIsOpen(isOpen=>!isOpen);        
         },[isOpen]
     );
     

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { useLocation } from "react-router-dom";
 import { firebaseAuth } from 'firebaseApp';
 
@@ -130,30 +130,4 @@ export default App;
 
 
     
-  
-  /*
-  const [isFullPage, setIsFullPage] = useState(true);   // default value is true because if it was false, Nav is shown shortly after reload
-  
-  const listFullPage : string[] = [
-    '/log-in', '/sign-up', '/lost'
-  ];
-  useEffect(() => {
-    
-    const listMatched: RegExpMatchArray | null = (location.pathname).match( /\/[^\/]+/ );
-    let pathFirst: string = '/';
-    if (listMatched !== null){
-      pathFirst = listMatched[0];
-    }
-    //console.log(listMatched)
-    //console.log(pathFirst)
-    
-    if (listFullPage.includes(pathFirst)){
-      setIsFullPage(true);
-    }
-    else {
-      setIsFullPage(false);
-    }
-    
-  }, [location]);
-  */
   

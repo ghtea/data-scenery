@@ -39,7 +39,7 @@ function* replaceUser(action: actionsRoot.auth.type__REPLACE_USER) {
         }
 
         else {
-            console.error('no user');
+            console.log('no user');
         }
 
     } catch (error) {

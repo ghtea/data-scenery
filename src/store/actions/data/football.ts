@@ -41,7 +41,27 @@ export type Team = {
         alpha2: string;
         continent: string;
     }
-} 
+};
+
+
+export type StatPlaceTeam = {
+    games_played:number
+    won:number
+    draw:number
+    lost:number
+    goals_diff:number
+    goals_scored:number
+    goals_against:number
+}
+export type StatTeam ={
+    id:string;
+    points:number;
+    status:string;
+    result:string;
+    overall:StatPlaceTeam;
+    home:StatPlaceTeam;
+    away:StatPlaceTeam;
+};
 
 export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';
 type Payload__GET_LIST_TEAM = {

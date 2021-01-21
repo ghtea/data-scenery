@@ -29,11 +29,6 @@ function Home({}: PropsHome) {
 
     <div className={`${styles['root']}`} >
 
-        <div className={`${styles['content']}`} >
-
-            
-
-        </div>
 
     </div>
   );

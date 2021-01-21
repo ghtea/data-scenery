@@ -5,12 +5,16 @@ import { firebaseFirestore } from "firebaseApp";
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
 
+import waitForStateChange from 'store/sagas/others/waitForStateChange';
+
 
 // directly access to sportdataAPI -> update firebase (get document on return)
 function* checkListTeam(action: actions.data.football.type__CHECK_LIST_TEAM) {
 
     const { listIdTeam } = action.payload;
     
+    yield call(waitForStateChange, state => state.status.ready.data.football.listTeam, true);
+
     const listTeamInApp: actions.data.football.Team[] =  yield select( (state:StateRoot) => state.data.football.listTeam ); 
     const listIdTeamInApp = listTeamInApp.map( (team:actions.data.football.Team) =>team.id)
     
@@ -24,7 +28,7 @@ function* checkListTeam(action: actions.data.football.type__CHECK_LIST_TEAM) {
         }
     } catch (error) {
         
-        console.log(error)
+        console.error(error)
 
         yield put( actions.notification.return__ADD_DELETE_BANNER({
             codeSituation: 'Football_AddTeam_UnknownError__E'

@@ -69,7 +69,7 @@ function* logInGithub(action: actionsRoot.auth.type__LOG_IN_GITHUB) {
                 }) );
 
 
-                console.log(error);
+                console.error(error);
                 if (error.code === 'auth/account-exists-with-different-credential'){
                     console.log(error.message);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
@@ -77,7 +77,7 @@ function* logInGithub(action: actionsRoot.auth.type__LOG_IN_GITHUB) {
                     }) );
                 }
                 else {
-                    console.log(error);
+                    console.error(error);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogInGithub_UnknownError__E'
                     }) );
@@ -106,8 +106,8 @@ function* logInGithub(action: actionsRoot.auth.type__LOG_IN_GITHUB) {
             user: null
         }) );
 
-        console.log(error);
-        console.log('logInGithub has been failed');
+        console.error(error);
+        console.error('logInGithub has been failed');
         
         yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'LogInGithub_UnknownError__E'

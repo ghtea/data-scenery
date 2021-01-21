@@ -75,7 +75,7 @@ function* getListTeam(action: actions.data.football.type__GET_LIST_TEAM) {
 
     } catch (error) {
         
-        console.log(error)
+        console.error(error)
 
         yield put( actions.status.return__REPLACE({
             listKey: ['loading', 'data', 'football', 'listTeam'],

@@ -16,6 +16,7 @@ const stateInitial = {
     data: {
         football: {
             leagueStandings: false,
+            listTeam: false,
         }
     },
   },
@@ -25,6 +26,7 @@ const stateInitial = {
     data: {
         football: {
             leagueStandings: false,
+            listTeam: false,
         }
     },
     // listPortal: false,

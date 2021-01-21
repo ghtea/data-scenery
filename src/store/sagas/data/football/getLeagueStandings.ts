@@ -92,7 +92,7 @@ function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STAN
 
     } catch (error) {
         
-        console.log(error)
+        console.error(error)
 
         yield put( actions.status.return__REPLACE({
             listKey: ['loading', 'data', 'football', 'leagueStandings'],

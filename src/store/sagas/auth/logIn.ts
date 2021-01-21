@@ -84,33 +84,33 @@ function* logIn(action: actionsRoot.auth.type__LOG_IN) {
                 }) );
 
 
-                console.log(error);
+                console.error(error);
                 if (error.code === 'auth/wrong-password'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'LogIn_WrongPassword__E'
                     }) );
                 }
                 else if (error.code === 'auth/invalid-email'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'LogIn_InvalidEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/user-disabled'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UserDisabled__E'
                     }) );
                 }
                 else if (error.code === 'auth/user-not-found'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UserNotFound__E'
                     }) );
                 }
                 else {
-                    console.log(error);
+                    console.error(error);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'LogIn_UnknownError__E'
                     }) );
@@ -139,7 +139,7 @@ function* logIn(action: actionsRoot.auth.type__LOG_IN) {
             replacement: false
         }) );
 
-        console.log(error);
+        console.error(error);
         console.log('logIn has been failed');
         
         yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({

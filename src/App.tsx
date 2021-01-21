@@ -88,7 +88,7 @@ function App({}: PropsApp) {
             });
         }
         catch (error){
-            console.log(error);
+            console.error(error);
         }
     }, []);
     

@@ -124,33 +124,33 @@ function* signUp(action: actionsRoot.auth.type__SIGN_UP) {
                     user: null
                 }) );
 
-                console.log(error);
+                console.error(error);
                 if (error.code === 'auth/email-already-in-use'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_DuplicateEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/invalid-email'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_InvalidEmail__E'
                     }) );
                 }
                 else if (error.code === 'auth/weak-password'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
                         codeSituation: 'SignUp_WeakPassword__E'
                     }) );
                 }
                 else if (error.code === 'auth/operation-not-allowed'){
-                    console.log(error.message);
+                    console.error(error.message);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'SignUp_UnknownError__E'
                     }) );
                 }
                 else {
-                    console.log(error);
+                    console.error(error);
                     yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
                         codeSituation: 'SignUp_UnknownError__E'
                     }) );
@@ -179,8 +179,8 @@ function* signUp(action: actionsRoot.auth.type__SIGN_UP) {
             replacement: false
         }) );
 
-        console.log(error);
-        console.log('signUp has been failed');
+        console.error(error);
+        console.error('signUp has been failed');
         
         yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'SignUp_UnknownError'

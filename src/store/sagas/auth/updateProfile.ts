@@ -70,8 +70,8 @@ function* updateProfile(action: actionsRoot.auth.type__UPDATE_PROFILE) {
 
     } catch (error) {
         
-        console.log(error);
-        console.log('updateProfile has been failed');
+        console.error(error);
+        console.error('updateProfile has been failed');
         
         yield put( actionsRoot.notification.return__ADD_DELETE_BANNER({
             codeSituation: 'UnknownError__E'

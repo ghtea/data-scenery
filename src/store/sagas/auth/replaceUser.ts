@@ -39,12 +39,12 @@ function* replaceUser(action: actionsRoot.auth.type__REPLACE_USER) {
         }
 
         else {
-            console.log('no user');
+            console.error('no user');
         }
 
     } catch (error) {
-        console.log(error);
-        console.log('replaceUser has been failed');
+        console.error(error);
+        console.error('replaceUser has been failed');
         
         yield put( actionsRoot.notification.return__ADD_CODE_SITUATION_OTHERS({
             codeSituation: 'UnknownError__E'

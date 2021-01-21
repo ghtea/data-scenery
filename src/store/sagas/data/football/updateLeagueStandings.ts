@@ -81,7 +81,7 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
 
     } catch (error) {
         
-        console.log(error)
+        console.error(error)
 
         yield put( actions.notification.return__ADD_DELETE_BANNER({
             codeSituation: 'Football_UpdateLeagueStandings_UnknownError__E'

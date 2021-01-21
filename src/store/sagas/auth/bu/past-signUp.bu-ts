@@ -93,12 +93,12 @@ import {getTimeStamp} from '../../tools/vanilla/time';
           else { console.log(res) };
         }
         catch (error) {
-          console.log(error);
+          console.error(error);
           addDeleteNotification("auth09", language);
         }
         
       } // else
-    } catch(error) {console.log(error); return;}  // 
+    } catch(error) {console.error(error); return;}  // 
 
   }
   

@@ -84,7 +84,7 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
             const {response, error}  = yield call( requestLogIn, bodyRequest );
             
             console.log(response);
-            console.log(error);
+            console.error(error);
 
             if (response) {
                 const codeSituation = response.data.codeSituation;
@@ -160,7 +160,7 @@ function* logIn(action: actionsAuth.type__LOG_IN) {
         
     } catch (error) {
         
-        //console.log(error);
+        //console.error(error);
         //alert(error);
         console.log('log in has been failed');
         

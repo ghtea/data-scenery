@@ -16,9 +16,13 @@ import styles from './Team.module.scss';
 // import IconSort from 'svgs/basic/IconSort';
 type PropsTeam = {
     statTeam: actions.data.football.StatTeam;
+    index: number;
 }
 
-function Team({statTeam}: PropsTeam) {
+function Team({
+    statTeam, 
+    index}: PropsTeam
+) {
 
     const idTeam = statTeam.id;
 
@@ -26,12 +30,30 @@ function Team({statTeam}: PropsTeam) {
     
     return (
         team ?
-        <tr>
-            <td>1</td>
-            <td>{team.name}</td>
-            <td>{statTeam.points}</td>
-            <td>{statTeam.overall.games_played}</td>
-            <td>{statTeam.overall.goals_diff}</td>
+        <tr className={`${styles['root']}`}>
+            <td>
+                {index+1}
+            </td>
+
+            <td>
+                <div className={`${styles['container']}`}>
+                    <img className={`${styles['logo']}`} src={`${team.pathLogo}`}/>
+                    <span className={`${styles['code']}`}> {team.code} </span>
+                    <span className={`${styles['name']}`}> {team.name} </span>
+                </div>
+            </td> 
+            
+            <td>
+                {statTeam.points}
+            </td>
+            
+            <td>
+                {statTeam.overall.games_played}
+            </td>
+            
+            <td>
+                {statTeam.overall.goals_diff}
+            </td>
         </tr>
         : null
     );

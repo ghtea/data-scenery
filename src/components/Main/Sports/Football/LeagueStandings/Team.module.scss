@@ -1,49 +1,66 @@
 @import 'styles/every.scss';
 
-
-
-table.root {
-    border-collapse: collapse;
-    table-layout: fixed;
-    display: table;
-
-    width: 100%;  min-width: $device-xs__min-width; max-width: $device-m__min-width;
+.root {
+    
+    &:nth-child(n+2) {
+        @include frame-each-theme(border-top, 2px, solid, basic__2);
+    } 
+    
 }
 
-
-
-// colgroup 는 잔문제가 많아서 사용하지 않기로 결정
-
-thead {
-    width: 100%;
-    display: table-header-group;
-    @include frame-each-theme(border-bottom, 2px, solid, basic__2);
-}
-
-tbody {
-    width: 100%;
-    display: table-row-group; 
-    tr {
-        &:nth-child(n+2) {
-            @include frame-each-theme(border-top, 2px, solid, basic__2);
-        } 
-    }
-}
-
-
-// columns
-
-th, td {
-    display: table-cell;
-
-    &:nth-child(1){
-        width: 30px;
-    }
-}
 
 
 // rows
 tr { 
     display: table-row;
     width: 100%;
+    height: 40px;
+}
+
+td {
+    display: table-cell;
+    vertical-align: middle;
+    // box-sizing: content-box;
+    height: 40px;
+
+    &:nth-child(1){
+        width: 30px;
+    }
+
+    &:nth-child(2){
+
+        .container {
+            display: inline-flex;
+            flex-flow: row nowrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            height:100%;
+
+            & > *:nth-child(n+2){
+                margin-left: 6px;
+            }
+
+            .logo {
+                width: 32px;
+                height: 32px;
+                margin: 4px;
+            }
+            .code {
+                display: inline;
+                @media (min-width: $device-m__min-width) { // 320≤ xs < 576,   576 ≤ s < 768,   768 ≤ m < 992,   992 ≤ l < 1200,   1200 ≤ xl
+                    display: none;
+                }
+            }
+            .name {
+                display: none;
+                @media (min-width: $device-m__min-width) { // 320≤ xs < 576,   576 ≤ s < 768,   768 ≤ m < 992,   992 ≤ l < 1200,   1200 ≤ xl
+                    display: inline;
+                }
+            }
+
+        }
+        
+    }
 }

@@ -23,7 +23,9 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
 
     const leagueStandings = useSelector((state: StateRoot)=>state.data.football.leagueStandings);
 
-
+    const listStatTeamSorted = useMemo(()=>{
+        return ([...leagueStandings.listTeam] as actions.data.football.StatTeam[]).sort((statTeamA, statTeamB)=>statTeamB.points - statTeamA.points);
+    }, []);
 
     return (
 
@@ -40,8 +42,12 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
             </thead>
 
             <tbody>
-                {leagueStandings.listTeam.map( (statTeamEach:actions.data.football.StatTeam, index: number) => (
-                    <Team statTeam={statTeamEach} key={`Team-${index}`}/>
+                {listStatTeamSorted.map( (statTeamEach:actions.data.football.StatTeam, index: number) => (
+                    <Team 
+                        statTeam={statTeamEach} 
+                        key={`Team-${index}`}
+                        index={index}
+                    />
                 ))} 
             </tbody>
 

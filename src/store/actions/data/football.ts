@@ -42,8 +42,6 @@ export type Team = {
         continent: string;
     }
 };
-
-
 export type StatPlaceTeam = {
     games_played:number
     won:number
@@ -56,11 +54,18 @@ export type StatPlaceTeam = {
 export type StatTeam ={
     id:string;
     points:number;
+    position: number;
     status:string;
-    result:string;
+    result: 'Champions League' | 'Europa League' | 'Relegation' | undefined;
     overall:StatPlaceTeam;
     home:StatPlaceTeam;
     away:StatPlaceTeam;
+};
+export type LeagueStandings = {
+    idLeague: string;
+    idSeason: string;
+    dateUpdated: number;
+    listTeam: StatTeam[];
 };
 
 export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';

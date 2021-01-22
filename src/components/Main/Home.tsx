@@ -7,6 +7,7 @@ import axios from 'axios';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
+import Loading from 'components/Global/Loading';
 
 //import actionsRoot from 'store/actions';
 

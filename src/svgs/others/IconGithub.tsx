@@ -13,7 +13,7 @@ const propsDefault = {
 // Github
 const Icon = ({ className }: PropsIcon) => {
   return (
-    <div className={`${className} icon`} >
+    <span className={`${className} icon`} >
       <svg
         width="100%"
         height="100%"
@@ -30,7 +30,7 @@ const Icon = ({ className }: PropsIcon) => {
         
       </svg>
       
-    </div>
+    </span>
   );
 };
 Icon.defaultProps = propsDefault;

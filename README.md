@@ -400,7 +400,7 @@
     // Hide
     const Icon = ({ className, kind }: PropsIcon) => {
     return (
-        <div className={`${className} icon`} >
+        <span className={`${className} icon`} >
         <svg
             width="100%"
             height="100%"

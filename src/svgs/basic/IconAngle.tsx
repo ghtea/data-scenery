@@ -37,7 +37,7 @@ const Icon = ({ className, kind, directon }: PropsIcon) => {
     },[directon]);
 
   return (
-    <div className={`${className} icon`} >
+    <span className={`${className} icon`} >
   
     {(!kind || kind === 'regular') && 
       <svg
@@ -90,8 +90,8 @@ const Icon = ({ className, kind, directon }: PropsIcon) => {
         </path>
       </svg>
     }
-      
-    </div>
+       
+    </span>
   );
 };
 Icon.defaultProps = propsDefault;

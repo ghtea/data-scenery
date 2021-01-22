@@ -9,6 +9,7 @@ import {StateRoot} from 'store/reducers';
 
 import * as actions  from 'store/actions';
 
+import Loading from 'components/Global/Loading';
 import LeagueStandings from './Football/LeagueStandings';
 
 import styles from './Football.module.scss';
@@ -20,7 +21,8 @@ function Football({}: PropsFootball) {
     const dispatch = useDispatch();     
     
     const readyLeagueStandings = useSelector((state: StateRoot) => state.status.ready.data.football.leagueStandings);
-    
+    const loadingLeagueStandings = useSelector((state: StateRoot) => state.status.loading.data.football.leagueStandings);
+
     useEffect(()=>{
         dispatch(actions.data.football.return__GET_LEAGUE_STANDINGS({
             idLeague: '237'
@@ -35,9 +37,13 @@ function Football({}: PropsFootball) {
     return (
 
         <div className={`${styles['root']}`} >
-
+            
             {readyLeagueStandings &&
                 <LeagueStandings mode={'rows'}/>
+            }
+
+            {!readyLeagueStandings && loadingLeagueStandings &&
+                <Loading />
             }
 
         </div>

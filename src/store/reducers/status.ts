@@ -2,11 +2,11 @@ import produce from 'immer';
 import {handleActions} from 'redux-actions';
 
 import * as actionsRoot from "store/actions";
+import * as types from "./status/types";
 
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 
 export type State = typeof stateInitial;
-
 
 
 const stateInitial = {
@@ -41,24 +41,29 @@ const stateInitial = {
       option: 'always-light',
       name: 'light'
     },
+    
 
-    /*
-    portal: {
-        open: '',
-        editing: '',
-        addingToStack: '',
-        sorting: {
-            property: 'hp' as 'hp' | 'dateVisited', 
-            direction: {
-                hp: 'ascending' as 'ascending' | 'descending', 
-                dateVisited: 'ascending' as 'ascending' | 'descending', 
+    football: {
+        leagueStandings: {
+            sorting: {
+                listOptionActive: [ 
+                    {property: 'points', direction: 'descending'} 
+                ] as types.OptionSorting[],
+                listOptionDeactive: [ 
+                    {property: 'goals_diff', direction: 'descending'},
+                    {property: 'goals_scored', direction: 'descending'},
+                    {property: 'goals_against', direction: 'ascending'} 
+                ] as types.OptionSorting[],
+                listOptionAll: [ 
+                    {property: 'points', direction: 'descending'},
+                    {property: 'goals_diff', direction: 'descending'},
+                    {property: 'goals_scored', direction: 'descending'},
+                    {property: 'goals_against', direction: 'ascending'} 
+                ] as types.OptionSorting[],
             }
-        },
-        hiding: {
-            inStacks: false,
-        },
+        }
     },
-    */
+
   },
   
   showing: {
@@ -109,3 +114,23 @@ const reducerStatus = handleActions<State, any>({
 export default reducerStatus;
 
 
+
+
+
+    /*
+    portal: {
+        open: '',
+        editing: '',
+        addingToStack: '',
+        sorting: {
+            property: 'hp' as 'hp' | 'dateVisited', 
+            direction: {
+                hp: 'ascending' as 'ascending' | 'descending', 
+                dateVisited: 'ascending' as 'ascending' | 'descending', 
+            }
+        },
+        hiding: {
+            inStacks: false,
+        },
+    },
+    */

@@ -21,7 +21,7 @@ type PropsNavBar = {};
 function NavBar({}: PropsNavBar) {
 
     const {onClick_LinkInsideApp} = useLink(history);
-
+    
     const [idCategoryOpen, setIdCategoryOpen] = useState<undefined | string>(undefined);
 
     const onClick_Category = useCallback(
@@ -61,13 +61,15 @@ function NavBar({}: PropsNavBar) {
             ref={refListAll}
         >
             {nav.map((categoryEach, iEach)=>(
-                <Category 
+                <Category  
                     idCategoryOpen={idCategoryOpen}
 
                     id={categoryEach.id}
                     listLink={categoryEach.listLink}
 
                     onClick={onClick_Category}
+                    setIdCategoryOpen={setIdCategoryOpen}
+                    
                     key={`NavBar__Category-${iEach}`}
                 />
             ))}

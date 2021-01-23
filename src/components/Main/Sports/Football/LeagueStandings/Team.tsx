@@ -7,13 +7,14 @@ import axios from 'axios';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-
+import {} from '../LeagueStandings'
 import * as actions  from 'store/actions';
 
 //import Portal from './Team/Portal';
 
 import styles from './Team.module.scss';
 import stylesLS from '../LeagueStandings.module.scss';
+import LeagueStandings from "../LeagueStandings";
 
  
 // import IconSort from 'svgs/basic/IconSort';

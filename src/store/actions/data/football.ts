@@ -65,7 +65,7 @@ export type LeagueStandings = {
     idLeague: string;
     idSeason: string;
     dateUpdated: number;
-    listTeam: StatTeam[];
+    listStatTeam: StatTeam[];
 };
 
 export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';

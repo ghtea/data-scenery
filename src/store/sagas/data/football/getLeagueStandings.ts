@@ -78,7 +78,7 @@ function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STAN
                     replacement: true
                 }) );
 
-                const listIdTeamHere = leagueStandings.listTeam.map((team:any)=> team.id);
+                const listIdTeamHere = leagueStandings.listStatTeam.map((team:any)=> team.id);
                 
                 yield put( actions.data.football.return__CHECK_LIST_TEAM({
                     listIdTeam: listIdTeamHere,

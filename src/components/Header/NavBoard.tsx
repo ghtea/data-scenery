@@ -70,6 +70,7 @@ function NavBoard({isOpen}: PropsNavBoard) {
                         listLink={categoryEach.listLink}
 
                         onClick={onClick_Category}
+                        setIdCategoryOpen={setIdCategoryOpen}
                         key={`NavBoard__Category-${iEach}`}
                     />
                 ))}

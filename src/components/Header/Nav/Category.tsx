@@ -19,6 +19,7 @@ import IconAngle from 'svgs/basic/IconAngle';
 type PropsCategory = TypeCategory & {
     idCategoryOpen: string | undefined;
     onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined
+    setIdCategoryOpen:  React.Dispatch<React.SetStateAction<string | undefined>>
 }; 
  
 function Category({
@@ -27,10 +28,21 @@ function Category({
 
     idCategoryOpen, 
     onClick,
+    setIdCategoryOpen,
 }: PropsCategory) {
 
-    const {onClick_LinkInsideApp} = useLink(history);
     
+    const onClick_Link = useCallback(
+        (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
+        if (href) {
+            history.push(href);
+            setIdCategoryOpen(undefined); 
+        }
+        },[]
+    );
+
     const idButton = useMemo(()=>`button__idCategory----${idCategory}`,[]);
     const idLabel = useMemo(()=>`label__idCategory----${idCategory}`,[]);
     
@@ -92,10 +104,10 @@ function Category({
                         <li 
                             role='menuitem'
                             key={`${idCategory}__link-${iEach}`}
-                        >
+                        > 
                             <a 
                                 href={`/${slugCategory}/${slugLink}`}
-                                onClick={onClick_LinkInsideApp}
+                                onClick={onClick_Link}
                             > 
                                 <FormattedMessage id={`Nav.${cn.camelToPascal(idCategory)}_${cn.camelToPascal(linkEach.id)}`} /> 
                             </a>

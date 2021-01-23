@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
-import * as actions from "store/actions";
+import * as actions from "store/actions"; 
 
 const requestGetListSeasonDirectly = (idLeague:string) => { 
     return axios.get(`https://app.sportdataapi.com/api/v1/soccer/seasons?apikey=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}&league_id=${idLeague}`)
@@ -53,10 +53,10 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
         ]
         */
 
-        let listTeam = standings;
-        for (let iTeam = 0; iTeam < listTeam.length; iTeam ++){
-            listTeam[iTeam]['id'] = (listTeam[iTeam]['team_id']).toString();
-            delete listTeam[iTeam]['team_id'];
+        let listStatTeam = standings;
+        for (let iStatTeam = 0; iStatTeam < listStatTeam.length; iStatTeam ++){
+            listStatTeam[iStatTeam]['id'] = (listStatTeam[iStatTeam]['team_id']).toString();
+            delete listStatTeam[iStatTeam]['team_id'];
         } 
 
         let draftLeagueStandings = {
@@ -64,7 +64,7 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
             idLeague: idLeague,
             idSeason: (idSeason).toString(),
 
-            listTeam: listTeam,
+            listStatTeam: listStatTeam,
 
             dateUpdated: dateNow,
         };

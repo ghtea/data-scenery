@@ -16,6 +16,11 @@ import store from './store';
 
 import { CookiesProvider } from 'react-cookie';
 
+// import '@testing-library/jest-dom/extend-expect'; // 지금으로선 아마 각각의 파일에 추가해야 할듯 
+export {screen, fireEvent} from '@testing-library/react';
+export {waitFor} from '@testing-library/dom'
+//import userEvent from '@testing-library/user-event';
+
 
 export const beforeAllDefault = () => {
     beforeAll(()=>{
@@ -50,8 +55,15 @@ export const render = (ui: Ui, option: Option = undefined) =>{
     return renderRtl(ui, { wrapper: wrapper, ...option })
 }
 
+
+
 /*
-// re-export everything
-export * from '@testing-library/react';
-export * from '@testing-library/dom'
+
+import { 
+    render, beforeAllDefault, 
+    screen, fireEvent, waitFor
+} from 'test-utils'; 
+import '@testing-library/jest-dom/extend-expect';
+
+
 */

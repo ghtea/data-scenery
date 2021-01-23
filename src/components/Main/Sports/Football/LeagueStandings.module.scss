@@ -1,71 +1,105 @@
 @import 'styles/every.scss';
 
-
-
-table.root {
-    border-collapse: collapse;
-    table-layout: fixed;
-    display: table;
+.root {
 
     width: 100%;  min-width: $device-xs__min-width; max-width: $device-m__min-width;
-}
 
-
-.row {   
-    // sharing styles with tr in thead and tr in tbody
-    // rank, logo, points, result, goals
-    grid-template-columns: 30px 50px 50px 1fr 1fr;
-
-    @media (min-width: $device-m__min-width){
-        grid-template-columns: 30px 1fr 50px 1fr 1fr;
+    h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        @include color-each-theme(color, basic__6);
     }
-}
-// colgroup 는 잔문제가 많아서 사용하지 않기로 결정
 
-thead {
-    width: 100%;
-    display: table-header-group;
-    @include frame-each-theme(border-bottom, 2px, solid, basic__2);
+    .sorting {
+        width: auto;
 
-    
-    // rows
-    tr { 
-        display: grid;
-        grid-template-rows: 30px;
+        align-self: flex-end;
 
-        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-end;
 
-        th {
-            display: inline-flex;
+
+        .active, .others {
+            width: auto;
+            display: flex;
             flex-flow: row nowrap;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
 
-            & > * {
-                flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
+            &:nth-child(n+2){
+                margin-top: 6px;
             }
-            & > *:nth-child(1){
-                display: inline-flex;
-                @media (min-width: $device-m__min-width){
-                    display: none;
-                }
+        }
+
+    }
+
+    table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        display: table;
+
+        width: 100%;  
+
+        .row {   
+            // sharing styles with tr in thead and tr in tbody
+            // rank, logo, points, result, goals
+            grid-template-columns: 30px 50px 50px 1fr 1fr;
+
+            @media (min-width: $device-m__min-width){
+                grid-template-columns: 30px 1fr 50px 1fr 1fr;
             }
-            & > *:nth-child(2){
-                display: none;
-                @media (min-width: $device-m__min-width){
+        }
+        // colgroup 는 잔문제가 많아서 사용하지 않기로 결정
+
+        thead {
+            width: 100%;
+            display: table-header-group;
+            @include frame-each-theme(border-bottom, 2px, solid, basic__2);
+
+            
+            // rows
+            tr { 
+                display: grid;
+                grid-template-rows: 30px;
+
+                width: 100%;
+
+                th {
                     display: inline-flex;
+                    flex-flow: row nowrap;
+                    justify-content: center;
+                    align-items: center;
+
+                    & > * {
+                        flex-flow: row nowrap;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    & > *:nth-child(1){
+                        display: inline-flex;
+                        @media (min-width: $device-m__min-width){
+                            display: none;
+                        }
+                    }
+                    & > *:nth-child(2){
+                        display: none;
+                        @media (min-width: $device-m__min-width){
+                            display: inline-flex;
+                        }
+                    }
                 }
             }
         }
+
+        tbody {
+            width: 100%;
+            display: table-row-group; 
+            
+        }
+
+
+
     }
 }
-
-tbody {
-    width: 100%;
-    display: table-row-group; 
-    
-}
-
-

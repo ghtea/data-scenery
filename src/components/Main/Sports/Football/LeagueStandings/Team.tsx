@@ -9,6 +9,7 @@ import {StateRoot} from 'store/reducers';
 
 import {} from '../LeagueStandings'
 import * as actions  from 'store/actions';
+import * as types  from 'store/types';
 
 //import Portal from './Team/Portal';
 
@@ -19,10 +20,10 @@ import LeagueStandings from "../LeagueStandings";
  
 // import IconSort from 'svgs/basic/IconSort';
 type PropsTeam = {
-    statTeam: actions.data.football.StatTeam;
+    statTeam: types.data.football.StatTeam;
     index: number;
     numberResultMax: number;
-    numberGoalsMax: number;
+    numberGoalsMax: number; 
 }
 
 function Team({

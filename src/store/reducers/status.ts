@@ -1,8 +1,8 @@
 import produce from 'immer';
 import {handleActions} from 'redux-actions';
 
-import * as actionsRoot from "store/actions";
-import * as types from "./status/types";
+import * as actions from "store/actions";
+import * as types from "store/types"; 
 
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 
@@ -48,14 +48,14 @@ const stateInitial = {
             sorting: {
                 listOptionActive: [ 
                     {property: 'points', direction: 'descending', isActive: true} 
-                ] as types.OptionSorting[],
+                ] as types.status.OptionSorting[],
                 
                 listOptionInactive: [ 
                     {property: 'points', direction: 'descending', isActive: true},
                     {property: 'goals_diff', direction: 'descending', isActive: false},
                     {property: 'goals_scored', direction: 'descending', isActive: false},
                     {property: 'goals_against', direction: 'ascending', isActive: false}, 
-                ] as types.OptionSorting[],
+                ] as types.status.OptionSorting[],
             }
         }
     },
@@ -85,7 +85,7 @@ const stateInitial = {
 
 const reducerStatus = handleActions<State, any>({
   
-  [actionsRoot.status.name__REPLACE]: (statePrevious, action: actionsRoot.status.type__REPLACE) => {
+  [actions.status.name__REPLACE]: (statePrevious, action: actions.status.type__REPLACE) => {
     
     return produce(statePrevious, stateNew => {
       if (action.payload === undefined) { 

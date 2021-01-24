@@ -1,6 +1,7 @@
 import produce from 'immer';
 import {handleActions} from 'redux-actions';
 import * as actions from "store/actions";
+import * as types from "store/types";
 
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 //import defaultUsingColorAssignment from '../../styles/defaultUsingColorAssignment'
@@ -14,8 +15,8 @@ export type State = typeof stateInitial;   // 아직 불확실
 const stateInitial = {
     
     football: {
-        leagueStandings: null as actions.data.football.LeagueStandings | null,
-        listTeam: [] as actions.data.football.Team[]
+        leagueStandings: null as types.data.football.LeagueStandings | null,
+        listTeam: [] as types.data.football.Team[]
     },
 
 };

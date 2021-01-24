@@ -9,12 +9,11 @@ import {StateRoot} from 'store/reducers';
 
 
 // https://github.com/STRML/react-draggable
-
+import returnListStatTeamSorted from './LeagueStandings/returnListStatTeamSorted';
 import Team from './LeagueStandings/Team';
 
 import * as actions  from 'store/actions';
-
-//import Portal from './LeagueStandings/Portal';
+import * as types  from 'store/types';
 
 import styles from './LeagueStandings.module.scss';
 // import IconSort from 'svgs/basic/IconSort';
@@ -39,21 +38,22 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
         },[]
     );
 
+    
     const listStatTeamSorted = useMemo(()=>{
-        let list: actions.data.football.StatTeam[] = [... (leagueStandings?.listStatTeam || [])];
-        return sortListStatTeam(list, sorting.listOptionActive);
-    }, [sorting, leagueStandings]);
+        return leagueStandings ? returnListStatTeamSorted(leagueStandings, sorting) : []; 
+    }, [leagueStandings, sorting]);
+    
 
     const numberResultMax = useMemo(()=>{
-        const listNumberWon = listStatTeamSorted.map((statTeamEach:actions.data.football.StatTeam)=>statTeamEach.overall.won);
-        const listNumberDraw = listStatTeamSorted.map((statTeamEach:actions.data.football.StatTeam)=>statTeamEach.overall.draw);
-        const listNumberLost = listStatTeamSorted.map((statTeamEach:actions.data.football.StatTeam)=>statTeamEach.overall.lost);
+        const listNumberWon = listStatTeamSorted.map((statTeamEach:types.data.football.StatTeam)=>statTeamEach.overall.won);
+        const listNumberDraw = listStatTeamSorted.map((statTeamEach:types.data.football.StatTeam)=>statTeamEach.overall.draw);
+        const listNumberLost = listStatTeamSorted.map((statTeamEach:types.data.football.StatTeam)=>statTeamEach.overall.lost);
         return Math.max(...listNumberWon, ...listNumberDraw, ...listNumberLost)
     }, []);
 
     const numberGoalsMax = useMemo(()=>{
-        const listNumberGoalsScored = listStatTeamSorted.map((statTeamEach:actions.data.football.StatTeam)=>statTeamEach.overall.goals_scored);
-        const listNumberGoalsAgainst = listStatTeamSorted.map((statTeamEach:actions.data.football.StatTeam)=>statTeamEach.overall.goals_against);
+        const listNumberGoalsScored = listStatTeamSorted.map((statTeamEach:types.data.football.StatTeam)=>statTeamEach.overall.goals_scored);
+        const listNumberGoalsAgainst = listStatTeamSorted.map((statTeamEach:types.data.football.StatTeam)=>statTeamEach.overall.goals_against);
         return Math.max(...listNumberGoalsScored, ...listNumberGoalsAgainst )
     }, []);
 
@@ -100,7 +100,7 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                 </thead>
 
                 <tbody>
-                    {listStatTeamSorted.map( (statTeamEach:actions.data.football.StatTeam, index: number) => (
+                    {listStatTeamSorted.map( (statTeamEach:types.data.football.StatTeam, index: number) => (
                         <Team 
                             statTeam={statTeamEach}
                             index={index}

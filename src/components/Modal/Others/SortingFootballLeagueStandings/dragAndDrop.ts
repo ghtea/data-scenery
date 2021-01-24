@@ -29,6 +29,9 @@ export const moveElementInArray = (list: unknown[], iBefore: number, iAfter: num
     return result;
 };
 
+
+
+/*
 const grid = 8;
 export const returnStyleItem = (isDragging: boolean, styleDraggable: React.CSSProperties):React.CSSProperties => ({
     // some basic styles to make the items look a bit nicer
@@ -49,3 +52,5 @@ export const returnStyleList = (isDraggedOver: boolean):React.CSSProperties => (
     width: 'auto',
     alignSelf: 'flex-end',
 });
+
+*/

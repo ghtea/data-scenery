@@ -4,6 +4,7 @@ import { firebaseFirestore } from "firebaseApp";
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
+import * as types from "store/types";
 
 import waitForStateChange from 'store/sagas/others/waitForStateChange';
 
@@ -15,8 +16,8 @@ function* checkListTeam(action: actions.data.football.type__CHECK_LIST_TEAM) {
     
     yield call(waitForStateChange, state => state.status.ready.data.football.listTeam, true);
 
-    const listTeamInApp: actions.data.football.Team[] =  yield select( (state:StateRoot) => state.data.football.listTeam ); 
-    const listIdTeamInApp = listTeamInApp.map( (team:actions.data.football.Team) =>team.id)
+    const listTeamInApp: types.data.football.Team[] =  yield select( (state:StateRoot) => state.data.football.listTeam ); 
+    const listIdTeamInApp = listTeamInApp.map( (team:types.data.football.Team) =>team.id)
     
     try {   
         for (const idTeamEach of listIdTeam){

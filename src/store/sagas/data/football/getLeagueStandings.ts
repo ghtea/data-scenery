@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
+import * as types from "store/types";
 
 
 const requestGetLeagueStandings = (idLeague:string) => {
@@ -43,7 +44,7 @@ function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STAN
         const res =  yield call( requestGetLeagueStandings, idLeague );
         // console.log(res.data());
 
-        const leagueStandings = res.data();
+        const leagueStandings: types.data.football.LeagueStandings = res.data();
 
         const dateNow = Date.now();
 
@@ -78,7 +79,7 @@ function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STAN
                     replacement: true
                 }) );
 
-                const listIdTeamHere = leagueStandings.listStatTeam.map((team:any)=> team.id);
+                const listIdTeamHere = Object.keys(leagueStandings.dictStatTeam);
                 
                 yield put( actions.data.football.return__CHECK_LIST_TEAM({
                     listIdTeam: listIdTeamHere,

@@ -2,7 +2,8 @@ import produce from 'immer';
 import {handleActions} from 'redux-actions';
 
 
-import * as actionsRoot from "store/actions";
+import * as actions from "store/actions";
+import * as types from 'store/types'
 
 //import { v4 as uuidv4 } from 'uuid';
 import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
@@ -19,7 +20,7 @@ import putValueToNestedObject from 'tools/vanilla/putValueToNestedObject';
 export type Banner = {
   id: string,  
   codeSituation: string, 
-  kindSituation: actionsRoot.notification.KindSituation,
+  kindSituation: types.notification.KindSituation,
   idMessage: string,
   msTime: number 
 }
@@ -46,7 +47,7 @@ const stateInitial = {
 
 const reducerNotification = handleActions<State, any>({
   
-  [actionsRoot.notification.name__REPLACE]: (statePrevious, action: actionsRoot.notification.type__REPLACE) => {
+  [actions.notification.name__REPLACE]: (statePrevious, action: actions.notification.type__REPLACE) => {
     
     return produce(statePrevious, stateNew => {
       if (action.payload === undefined) { 

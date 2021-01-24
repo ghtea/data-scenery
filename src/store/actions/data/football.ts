@@ -30,48 +30,6 @@ export type type__UPDATE_LEAGUE_STANDINGS = ReturnType<typeof return__UPDATE_LEA
 
 
 
-export type Team = {
-    id: string;
-    name: string;
-    code: string;
-    pathLogo: string;
-    country: {
-        id: string;
-        name: string;
-        alpha2: string;
-        continent: string;
-    }
-};
-export type StatPlaceTeam = {
-    games_played:number
-    won:number
-    draw:number
-    lost:number
-    goals_diff:number
-    goals_scored:number
-    goals_against:number
-}
-export type StatTeam ={
-    id:string;
-    points:number;
-    position: number;
-    status:string;
-    result: 'Champions League' | 'Europa League' | 'Relegation' | undefined;
-    overall:StatPlaceTeam;
-    home:StatPlaceTeam;
-    away:StatPlaceTeam;
-};
-
-export type LeagueStandings = {
-    idLeague: string;
-    idSeason: string;
-    dateUpdated: number;
-
-    dictStatTeam: { 
-        [key: string]: StatTeam 
-    }
-    listIdStatTeam: string[];
-};
 
 export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';
 type Payload__GET_LIST_TEAM = {

@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions"; 
+import * as types from "store/types"; 
 
 const requestGetListSeasonDirectly = (idLeague:string) => { 
     return axios.get(`https://app.sportdataapi.com/api/v1/soccer/seasons?apikey=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}&league_id=${idLeague}`)
@@ -53,7 +54,7 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
         ]
         */
         let dictStatTeam: { 
-            [key: string]: actions.data.football.StatTeam 
+            [key: string]: types.data.football.StatTeam 
         } = { };
 
         let listStatTeam = standings;

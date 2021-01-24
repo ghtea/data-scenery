@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 // import * as config from 'config';
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
+import * as types from "store/types";
 
 const requestGetTeamDirectly = (idTeam:string) => { 
     return axios.get(`https://app.sportdataapi.com/api/v1/soccer/teams/${idTeam}?apikey=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}`)
@@ -27,7 +28,7 @@ function* addTeam(action: actions.data.football.type__ADD_TEAM) {
         
         const {data: {data: teamRaw}} =  yield call( requestGetTeamDirectly, idTeam ); 
 
-        const team: Partial<actions.data.football.Team> = {
+        const team: Partial<types.data.football.Team> = {
             name: teamRaw['name'],
             code: teamRaw['short_code'],
             pathLogo: teamRaw['logo'],

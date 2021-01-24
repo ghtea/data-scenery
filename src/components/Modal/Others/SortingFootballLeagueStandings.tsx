@@ -7,12 +7,12 @@ import { DragDropContext, Droppable, Draggable,
     DropResult, ResponderProvided } from 'react-beautiful-dnd';
 import OptionSorting from './SortingFootballLeagueStandings/OptionSorting';
 import * as toolsDnd from './SortingFootballLeagueStandings/dragAndDrop';
-import sortListStatTeam from './SortingFootballLeagueStandings/sortListStatTeam';
+import sortListStatTeam from '../../Main/Sports/Football/LeagueStandings/returnListStatTeamSorted';
 
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsRoot from "store/actions";
+import * as actions from "store/actions";
 
 import {pascalToCamel} from 'tools/vanilla/convertName';
 import IconX from 'svgs/basic/IconX';
@@ -33,7 +33,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
     const onClick_CloseModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const {value} = event.currentTarget;
-        dispatch(actionsRoot.status.return__REPLACE({ 
+        dispatch(actions.status.return__REPLACE({ 
             listKey: ['showing', 'modal', value],
             replacement: false
         }));
@@ -45,7 +45,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
     const onClick_Window = useCallback(
         (event:MouseEvent)=> {   
             if ( !refModal.current?.contains(event.target as Node)){
-                dispatch(actionsRoot.status.return__REPLACE({ 
+                dispatch(actions.status.return__REPLACE({ 
                     listKey: ['showing', 'modal', pascalToCamel("SortingFootballLeagueStandings")],
                     replacement: false
                 }));

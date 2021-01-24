@@ -49,7 +49,7 @@ function OptionSorting({
         >
         {(provided, snapshot) => (
 
-        <div className={`${styles['root']}`}
+        <div className={`${styles['root']} ${snapshot.isDragging && 'isDragging'}`}
             data-property={property}
             data-active={active}
             draggable={true}
@@ -57,13 +57,6 @@ function OptionSorting({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
         >   
-            <button
-                type='button'
-                value={property}
-                onClick={dictEventHandler.onClick_Activate}
-            >   {active ? '-' : '+'}
-            </button>
-
             <span>{property}</span>
 
             <button

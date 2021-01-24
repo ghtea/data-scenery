@@ -61,11 +61,16 @@ export type StatTeam ={
     home:StatPlaceTeam;
     away:StatPlaceTeam;
 };
+
 export type LeagueStandings = {
     idLeague: string;
     idSeason: string;
     dateUpdated: number;
-    listStatTeam: StatTeam[];
+
+    dictStatTeam: { 
+        [key: string]: StatTeam 
+    }
+    listIdStatTeam: string[];
 };
 
 export const name__GET_LIST_TEAM = 'data/football/GET_LIST_TEAM';

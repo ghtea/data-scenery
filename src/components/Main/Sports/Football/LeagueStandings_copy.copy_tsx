@@ -8,7 +8,12 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
 import OptionSorting from './LeagueStandings/OptionSorting';
+import { DragDropContext, Droppable, Draggable,
+    DropResult, ResponderProvided } from 'react-beautiful-dnd';
+// https://github.com/STRML/react-draggable
+
 import Team from './LeagueStandings/Team';
+import * as toolsDnd from './LeagueStandings/dragAndDrop';
 import sortListStatTeam from './LeagueStandings/sortListStatTeam';
 
 import * as actions  from 'store/actions';
@@ -30,48 +35,57 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
     const [propertySortingDragging, setPropertySortingDragging] = useState<string | null>(null);
     const [propertySortingDraggedOver, setPropertySortingDraggedOver] = useState<string | null>(null);
     // https://medium.com/better-programming/create-a-sortable-list-with-draggable-items-using-javascript-9ef38f96b258
+    
+    useEffect(()=>{
+
+    },[])
+
     const dictEventHandler = useMemo(()=>{
         return {
-            onDrag:(event: React.DragEvent<HTMLDivElement>)=>{
-                event.preventDefault();
-                setPropertySortingDragging(event.currentTarget.getAttribute('data-property'));
-            },
-            onDragOver:(event: React.DragEvent<HTMLDivElement>)=>{
-                event.preventDefault();
-                setPropertySortingDraggedOver(event.currentTarget.getAttribute('data-property'));
-            },
-            onDragLeave:(event: React.DragEvent<HTMLDivElement>)=>{
-                event.preventDefault();
-                setPropertySortingDraggedOver(null);
-            },
-            onDrop:(event: React.DragEvent<HTMLDivElement>)=>{
-                event.preventDefault();
-                const optionDragging = 
-                    sorting.listOptionActive.find(option=>option.property===propertySortingDragging) || 
-                    sorting.listOptionDeactive.find(option=>option.property===propertySortingDragging);
-                
-                const indexDraggedOver = sorting.listOptionActive.findIndex(option=>option.property===propertySortingDraggedOver);
+            onDragEnd: (result: DropResult, provided: ResponderProvided)=>{
+            
+                const { source, destination } = result;
 
-                let listOptionActiveNew = [...sorting.listOptionActive];
-                if (sorting.listOptionActive.length !== 1){
-                    listOptionActiveNew = listOptionActiveNew.filter(option=>option.property !== propertySortingDragging);
+                // dropped outside the list
+                if (!destination) {
+                    return;
                 }
-                if (indexDraggedOver > -1 && optionDragging ){
-                    listOptionActiveNew.splice(indexDraggedOver, 0, optionDragging);
-                };   
-                setPropertySortingDragging(null);
-                dispatch(actions.status.return__REPLACE({
-                    listKey:['current', 'football', 'leagueStandings', 'sorting', 'listOptionActive'], 
-                    replacement: listOptionActiveNew
-                }));
 
-                const listPropertyActiveNew = listOptionActiveNew.map(option=>option.property);
-                const listOptionDeactiveNew = sorting.listOptionAll.filter(option=> !listPropertyActiveNew.includes(option.property) )
-                dispatch(actions.status.return__REPLACE({
-                    listKey:['current', 'football', 'leagueStandings', 'sorting', 'listOptionDeactive'], 
-                    replacement: listOptionDeactiveNew
-                }));
+                if (source.droppableId === destination.droppableId) {
+                    const listOption = toolsDnd.moveElementInArray(
+                        sorting[source.droppableId as 'listOptionActive' | 'listOptionInactive'],
+                        source.index,
+                        destination.index
+                    );
+
+                    if (source.droppableId === 'listOptionInactive') {
+                        dispatch(actions.status.return__REPLACE({
+                            listKey: ['current', 'football', 'leagueStandings', 'sorting', 'listOptionInactive'],
+                            replacement: listOption
+                        }));
+                    }
+
+                } else {
+
+                    const resultSorting = toolsDnd.moveDroppableBetweenArrays(
+                        sorting[source.droppableId as 'listOptionActive' | 'listOptionInactive'],
+                        sorting[destination.droppableId as 'listOptionActive' | 'listOptionInactive'],
+                        source,
+                        destination
+                    );
+
+                    dispatch(actions.status.return__REPLACE({
+                        listKey: ['current', 'football', 'leagueStandings', 'sorting'],
+                        replacement: {
+                            listOptionActive: resultSorting['listOptionActive'],
+                            listOptionInactive: resultSorting['listOptionInactive'],
+                        }
+                    }));
+
+                }
+                
             },
+
             onClick_ChangeDirection: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
                 event.preventDefault();
                 const {value} = event.currentTarget;
@@ -111,7 +125,21 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
             <h2> League Standings </h2>
 
             <div className={`${styles['sorting']}`}>
-                <div className={`${styles['active']}`}>
+                <DragDropContext
+                    onDragEnd={dictEventHandler.onDragEnd}
+                >
+                <Droppable 
+                    droppableId="listOptionActive"
+                    direction="horizontal"
+                >
+                {(provided, snapshot) => (
+
+                <div
+                    className={`${styles['active']} ${snapshot.isDraggingOver && 'isDraggingOver'}`}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
+                    
                     {sorting.listOptionActive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
@@ -120,21 +148,44 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                             active={true}
 
                             key={`OptionSortingActive-${index}`}
+                            draggableId={`OptionSortingActive-${index}`}
+                            index={index}
                         />
                     )))}
+                    
                 </div>
-                <div className={`${styles['others']}`}>
-                    {sorting.listOptionDeactive.map(( (option, index)=>(
+
+                )}
+                </Droppable>
+                
+            
+                <Droppable 
+                    droppableId="listOptionInactive"
+                    direction="horizontal"
+                >
+                {(provided, snapshot) => (
+                    
+                <div 
+                    className={`${styles['others']}`}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
+                    {sorting.listOptionInactive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
                             direction={option.direction}
                             dictEventHandler={dictEventHandler}
                             active={false}
 
-                            key={`OptionSortingDeactive-${index}`}
+                            key={`OptionSortingAll-${index}`}
+                            draggableId={`OptionSortingAll-${index}`}
+                            index={index}
                         />
                     )))}
                 </div>
+                )}
+                </Droppable>
+                </DragDropContext>
             </div>
 
             <table className={`mode----${mode}`} aria-label='League Standings'>

@@ -10,7 +10,7 @@
         @include color-each-theme(color, basic__6);
     }
 
-    .sorting {
+    .options {
         width: auto;
 
         align-self: flex-end;
@@ -19,19 +19,6 @@
         flex-flow: column nowrap;
         justify-content: flex-start;
         align-items: flex-end;
-
-
-        .active, .others {
-            width: auto;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-start;
-            align-items: center;
-
-            &:nth-child(n+2){
-                margin-top: 6px;
-            }
-        }
 
     }
 

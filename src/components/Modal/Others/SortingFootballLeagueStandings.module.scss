@@ -1,0 +1,17 @@
+@import 'styles/every.scss';
+
+.root {
+    display: flex;
+
+
+    .content {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+}
+
+
+

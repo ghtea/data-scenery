@@ -70,7 +70,8 @@ const stateInitial = {
     modal: {
         setting: false,
         myProfile: false,
-        // creatingPortal: false,
+        
+        sortingFootballLeagueStandings: false,
         // editingPortal: false,
            
         // searching: false,

@@ -52,11 +52,16 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
             ...   
         ]
         */
+        let dictStatTeam: { 
+            [key: string]: actions.data.football.StatTeam 
+        } = { };
 
         let listStatTeam = standings;
         for (let iStatTeam = 0; iStatTeam < listStatTeam.length; iStatTeam ++){
-            listStatTeam[iStatTeam]['id'] = (listStatTeam[iStatTeam]['team_id']).toString();
+            const idTeam = listStatTeam[iStatTeam]['team_id'].toString();
+            listStatTeam[iStatTeam]['id'] = idTeam;
             delete listStatTeam[iStatTeam]['team_id'];
+            dictStatTeam[idTeam] = listStatTeam[iStatTeam];
         } 
 
         let draftLeagueStandings = {
@@ -64,7 +69,7 @@ function* updateLeagueStandings(action: actions.data.football.type__UPDATE_LEAGU
             idLeague: idLeague,
             idSeason: (idSeason).toString(),
 
-            listStatTeam: listStatTeam,
+            dictStatTeam: dictStatTeam,
 
             dateUpdated: dateNow,
         };

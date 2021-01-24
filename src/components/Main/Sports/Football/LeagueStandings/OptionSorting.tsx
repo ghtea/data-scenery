@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import history from 'historyApp';
 
 import { FormattedMessage } from 'react-intl';
-import axios from 'axios';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
@@ -21,22 +21,41 @@ type PropsOptionSorting = {
     direction: 'ascending' | 'descending';
     dictEventHandler: any;
     active: boolean;
+
+    draggableId: string,
+    index: number,
 }
+
+
+// https://github.com/LeeHyungGeun/react-beautiful-dnd-kr
 
 function OptionSorting({
     property, 
     direction,
     dictEventHandler,
     active,
+    
+    draggableId,
+    index,
 }: PropsOptionSorting) {
-
+ 
     const dispatch = useDispatch();
-
+    const nodeRef = React.useRef(null);
+    
     return (
+        <Draggable
+            draggableId={draggableId}
+            index={index}
+        >
+        {(provided, snapshot) => (
+
         <div className={`${styles['root']}`}
             data-property={property}
             data-active={active}
             draggable={true}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
         >   
             <button
                 type='button'
@@ -52,8 +71,11 @@ function OptionSorting({
                 value={property}
                 onClick={dictEventHandler.onClick_ChangeDirection}
             >   {direction === 'ascending' ? '<' : '>'}
-            </button>
+            </button> 
         </div>
+
+        )}
+        </Draggable>
     );
 }
 

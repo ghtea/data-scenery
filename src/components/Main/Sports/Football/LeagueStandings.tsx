@@ -8,10 +8,12 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
 import OptionSorting from './LeagueStandings/OptionSorting';
-import Draggable from 'react-draggable'; 
+import { DragDropContext, Droppable, Draggable,
+    DropResult, ResponderProvided } from 'react-beautiful-dnd';
 // https://github.com/STRML/react-draggable
 
 import Team from './LeagueStandings/Team';
+import * as dnd from './LeagueStandings/dragAndDrop';
 import sortListStatTeam from './LeagueStandings/sortListStatTeam';
 
 import * as actions  from 'store/actions';
@@ -40,6 +42,45 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
 
     const dictEventHandler = useMemo(()=>{
         return {
+            onDragEnd: (result: DropResult, provided: ResponderProvided)=>{
+            
+                    const { source, destination } = result;
+
+                    // dropped outside the list
+                    if (!destination) {
+                        return;
+                    }
+
+                    if (source.droppableId === destination.droppableId) {
+                        const items = dnd.reorder(
+                            this.getList(source.droppableId),
+                            source.index,
+                            destination.index
+                        );
+
+                        let state = { items };
+
+                        if (source.droppableId === 'droppable2') {
+                            state = { selected: items };
+                        }
+
+                        this.setState(state);
+                    } else {
+                        const result = dnd.move(
+                            sorting[source.droppableId as 'listOptionActive' | 'listOptionInactive'],
+                            sorting[destination.droppableId as 'listOptionActive' | 'listOptionInactive'],
+                            source,
+                            destination
+                        );
+
+                        this.setState({
+                            items: result.droppable,
+                            selected: result.droppable2
+                        });
+                    }
+                
+            },
+
             onClick_Activate: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
                 event.preventDefault();
                 const value = event.currentTarget.value;
@@ -91,7 +132,21 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
             <h2> League Standings </h2>
 
             <div className={`${styles['sorting']}`}>
-                <div className={`${styles['active']}`}>
+                <DragDropContext
+                    onDragEnd={dictEventHandler.onDragEnd}
+                >
+                <Droppable 
+                    droppableId="listOptionActive"
+                    direction="horizontal"
+                >
+                {(provided, snapshot) => (
+
+                <div
+                    className={`${styles['active']}`}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
+                    
                     {sorting.listOptionActive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
@@ -100,10 +155,28 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                             active={true}
 
                             key={`OptionSortingActive-${index}`}
+                            draggableId={`OptionSortingActive-${index}`}
+                            index={index}
                         />
                     )))}
+                    
                 </div>
-                <div className={`${styles['others']}`}>
+
+                )}
+                </Droppable>
+                
+            
+                <Droppable 
+                    droppableId="listOptionInactive"
+                    direction="horizontal"
+                >
+                {(provided, snapshot) => (
+                    
+                <div 
+                    className={`${styles['others']}`}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
                     {sorting.listOptionAll.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
@@ -111,10 +184,15 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                             dictEventHandler={dictEventHandler}
                             active={false}
 
-                            key={`OptionSortingDeactive-${index}`}
+                            key={`OptionSortingAll-${index}`}
+                            draggableId={`OptionSortingAll-${index}`}
+                            index={index}
                         />
                     )))}
                 </div>
+                )}
+                </Droppable>
+                </DragDropContext>
             </div>
 
             <table className={`mode----${mode}`} aria-label='League Standings'>

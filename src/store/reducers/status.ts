@@ -50,7 +50,7 @@ const stateInitial = {
                     {property: 'points', direction: 'descending', isActive: true} 
                 ] as types.OptionSorting[],
                 
-                listOptionAll: [ 
+                listOptionInactive: [ 
                     {property: 'points', direction: 'descending', isActive: true},
                     {property: 'goals_diff', direction: 'descending', isActive: false},
                     {property: 'goals_scored', direction: 'descending', isActive: false},

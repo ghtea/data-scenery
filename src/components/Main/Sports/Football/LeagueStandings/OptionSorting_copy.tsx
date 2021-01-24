@@ -37,22 +37,17 @@ function OptionSorting({
             data-property={property}
             data-active={active}
             draggable={true}
-        >   
-            <button
-                type='button'
-                value={property}
-                onClick={dictEventHandler.onClick_Activate}
-            >   {active ? '-' : '+'}
-            </button>
-
+            onDrag={dictEventHandler.onDrag}
+            onDragOver={dictEventHandler.onDragOver}
+            onDragLeave={dictEventHandler.onDragLeave}
+            onDrop={dictEventHandler.onDrop}
+        >
             <span>{property}</span>
-
             <button
                 type='button'
                 value={property}
                 onClick={dictEventHandler.onClick_ChangeDirection}
-            >   {direction === 'ascending' ? '<' : '>'}
-            </button>
+            >{direction === 'ascending' ? '<' : '>'}</button>
         </div>
     );
 }

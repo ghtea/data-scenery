@@ -8,9 +8,6 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
 import OptionSorting from './LeagueStandings/OptionSorting';
-import Draggable from 'react-draggable'; 
-// https://github.com/STRML/react-draggable
-
 import Team from './LeagueStandings/Team';
 import sortListStatTeam from './LeagueStandings/sortListStatTeam';
 
@@ -33,24 +30,47 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
     const [propertySortingDragging, setPropertySortingDragging] = useState<string | null>(null);
     const [propertySortingDraggedOver, setPropertySortingDraggedOver] = useState<string | null>(null);
     // https://medium.com/better-programming/create-a-sortable-list-with-draggable-items-using-javascript-9ef38f96b258
-    
-    useEffect(()=>{
-
-    },[])
-
     const dictEventHandler = useMemo(()=>{
         return {
-            onClick_Activate: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+            onDrag:(event: React.DragEvent<HTMLDivElement>)=>{
                 event.preventDefault();
-                const value = event.currentTarget.value;
-                const isActive = event.currentTarget.getAttribute('data-active');
-                const index = sorting.listOptionActive.findIndex(option => option.property === value);
-                if (index > -1){
-                    dispatch(actions.status.return__REPLACE({
-                        listKey: ['current', 'football', 'leagueStandings', 'sorting', 'listOptionActive', index, 'isActive'],
-                        replacement: !isActive
-                    }));
+                setPropertySortingDragging(event.currentTarget.getAttribute('data-property'));
+            },
+            onDragOver:(event: React.DragEvent<HTMLDivElement>)=>{
+                event.preventDefault();
+                setPropertySortingDraggedOver(event.currentTarget.getAttribute('data-property'));
+            },
+            onDragLeave:(event: React.DragEvent<HTMLDivElement>)=>{
+                event.preventDefault();
+                setPropertySortingDraggedOver(null);
+            },
+            onDrop:(event: React.DragEvent<HTMLDivElement>)=>{
+                event.preventDefault();
+                const optionDragging = 
+                    sorting.listOptionActive.find(option=>option.property===propertySortingDragging) || 
+                    sorting.listOptionDeactive.find(option=>option.property===propertySortingDragging);
+                
+                const indexDraggedOver = sorting.listOptionActive.findIndex(option=>option.property===propertySortingDraggedOver);
+
+                let listOptionActiveNew = [...sorting.listOptionActive];
+                if (sorting.listOptionActive.length !== 1){
+                    listOptionActiveNew = listOptionActiveNew.filter(option=>option.property !== propertySortingDragging);
                 }
+                if (indexDraggedOver > -1 && optionDragging ){
+                    listOptionActiveNew.splice(indexDraggedOver, 0, optionDragging);
+                };   
+                setPropertySortingDragging(null);
+                dispatch(actions.status.return__REPLACE({
+                    listKey:['current', 'football', 'leagueStandings', 'sorting', 'listOptionActive'], 
+                    replacement: listOptionActiveNew
+                }));
+
+                const listPropertyActiveNew = listOptionActiveNew.map(option=>option.property);
+                const listOptionDeactiveNew = sorting.listOptionAll.filter(option=> !listPropertyActiveNew.includes(option.property) )
+                dispatch(actions.status.return__REPLACE({
+                    listKey:['current', 'football', 'leagueStandings', 'sorting', 'listOptionDeactive'], 
+                    replacement: listOptionDeactiveNew
+                }));
             },
             onClick_ChangeDirection: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
                 event.preventDefault();
@@ -104,7 +124,7 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                     )))}
                 </div>
                 <div className={`${styles['others']}`}>
-                    {sorting.listOptionAll.map(( (option, index)=>(
+                    {sorting.listOptionDeactive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
                             direction={option.direction}

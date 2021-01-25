@@ -16,9 +16,14 @@
     font-size: 0.9rem;
     cursor: pointer;
 
-    &:nth-child(n+2) {
-        margin-left: 6px;
+    &:nth-child(1) {
+        margin-top: 6px;
     }
+    &:nth-child(n+2) {
+        margin-top: 6px;
+    }
+
+    @include color-each-theme(background-color, basic__0);
 
     &[data-active=true]{
         @include frame-each-theme(border, 1px, solid, main__5);
@@ -33,5 +38,17 @@
     button {
         color: inherit;
         height: 100%;
+    }
+}
+
+
+.root {
+    :global(.isDragging){
+        width: auto;
+        
+        font-weight: bold;
+        position: absolute;
+
+        user-select: none;
     }
 }

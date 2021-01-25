@@ -102,7 +102,7 @@ function MyProfile({}: PropsMyProfile) {
             className={`${stylesModal['outside']}`}
             aria-label="Outside MyProfile"
         />
- 
+
         <div 
             className={`${stylesModal['modal']}`} 
             role="dialog" aria-labelledby="Heading_MyProfile"
@@ -119,6 +119,10 @@ function MyProfile({}: PropsMyProfile) {
                     <IconX className={`${stylesModal['icon-x']}`} />
                 </button>
             </div>
+
+            <div 
+                className={`${stylesModal['division']}`}
+            />
         
             <form 
                 className={`${stylesModal['content']}`} 

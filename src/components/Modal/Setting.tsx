@@ -123,7 +123,11 @@ function Setting({}: PropsSetting) {
                     <IconX className={`${stylesModal['icon-x']}`} />
                 </button>
             </div>
-        
+
+            
+            <div 
+                className={`${stylesModal['division']}`}
+            />
         
             <div 
                 className={`${stylesModal['content']}`} 

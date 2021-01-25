@@ -56,6 +56,7 @@ function OptionSorting({
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            style={provided.draggableProps.style}
         >   
             <span>{property}</span>
 

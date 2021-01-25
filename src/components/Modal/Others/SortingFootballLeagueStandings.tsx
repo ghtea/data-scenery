@@ -127,7 +127,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
         className={`${styles['root']} ${stylesModal['root']}`} 
     >
         <div
-            className={`${stylesModal['outside']}`}
+            className={`${stylesModal['outside']} ${styles['outside']}`}
             aria-label="Outside SortingFootballLeagueStandings"
         />
 
@@ -136,7 +136,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
             role="dialog" aria-labelledby="Heading_SortingFootballLeagueStandings"
             ref={refModal}
         >
-            <div className={`${stylesModal['header']}`} >
+            <div className={`${stylesModal['header']} ${styles['header']}`} >
                 <h2 id='Heading_SortingFootballLeagueStandings'>  <FormattedMessage id={`Modal.SortingFootballLeagueStandings_Title`} /> </h2>
                 <button
                     type='button'
@@ -147,7 +147,10 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                     <IconX className={`${stylesModal['icon-x']}`} />
                 </button>
             </div>
-        
+
+            <div 
+                className={`${stylesModal['division']}`}
+            />
         
             <div 
                 className={`${styles['content']}`} 
@@ -188,12 +191,11 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
             
                 <Droppable 
                     droppableId="listOptionInactive"
-                    direction="horizontal"
                 >
                 {(provided, snapshot) => (
                     
                 <div 
-                    className={`${styles['others']}`}
+                    className={`${styles['inactive']}`}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >

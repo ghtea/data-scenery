@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import history from 'historyApp';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-
+import * as cn from 'tools/vanilla/convertName'
 import * as actions  from 'store/actions';
 
 //import Portal from './OptionSorting/Portal';
@@ -42,6 +42,7 @@ function OptionSorting({
     const dispatch = useDispatch();
     const nodeRef = React.useRef(null);
     
+     
     return (
         <Draggable
             draggableId={draggableId}
@@ -57,8 +58,8 @@ function OptionSorting({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             style={provided.draggableProps.style}
-        >   
-            <span>{property}</span>
+        >   "points" | "goals_diff" | "goals_against" | "goals_scored"
+            <span> <FormattedMessage id={`Modal.SortingFootballLeagueStandings_LogOut_${}`} /> </span>
 
             <button
                 type='button'

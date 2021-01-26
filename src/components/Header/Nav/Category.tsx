@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import * as cn from 'tools/vanilla/convertName';
+import * as cn from 'tools/vanilla/convertCase';
 import nav, {Category as TypeCategory, Link} from 'components/Header/nav';
 import useLink from 'tools/hooks/useLink';
 

@@ -12,7 +12,7 @@ import Modal from './Modal';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
-import {pascalToCamel} from 'tools/vanilla/convertName';
+import {pascalToCamel} from 'tools/vanilla/convertCase';
 
 beforeAllDefault();
 

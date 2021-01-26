@@ -4,7 +4,7 @@ import {
     screen, fireEvent,
 } from 'test-utils';
 
-import * as cn from 'tools/vanilla/convertName';
+import * as cn from 'tools/vanilla/convertCase';
 
 import translationEn from 'language/translation/en.json';
 import NavBar from './NavBar';

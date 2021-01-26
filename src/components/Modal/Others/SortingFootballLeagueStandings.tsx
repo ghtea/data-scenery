@@ -14,7 +14,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
 
-import {pascalToCamel} from 'tools/vanilla/convertName';
+import {pascalToCamel} from 'tools/vanilla/convertCase';
 import IconX from 'svgs/basic/IconX';
 
 import styles from './SortingFootballLeagueStandings.module.scss';

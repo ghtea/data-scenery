@@ -11,7 +11,7 @@ import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
 import InputRadio from '../Global/Input/InputRadio';
-import {pascalToCamel} from 'tools/vanilla/convertName';
+import {pascalToCamel} from 'tools/vanilla/convertCase';
 import IconX from 'svgs/basic/IconX';
 
 import styles from './Setting.module.scss';

@@ -7,7 +7,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-import * as cn from 'tools/vanilla/convertName'
+import * as cn from 'tools/vanilla/convertCase'
 import * as actions  from 'store/actions';
 
 //import Portal from './OptionSorting/Portal';

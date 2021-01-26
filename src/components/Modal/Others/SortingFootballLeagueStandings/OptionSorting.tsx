@@ -7,7 +7,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-import * as cn from 'tools/vanilla/convertCase'
+import convertCase from 'tools/vanilla/convertCase'
 import * as actions  from 'store/actions';
 
 //import Portal from './OptionSorting/Portal';
@@ -59,7 +59,7 @@ function OptionSorting({
             {...provided.dragHandleProps}
             style={provided.draggableProps.style}
         >   "points" | "goals_diff" | "goals_against" | "goals_scored"
-            <span> <FormattedMessage id={`Modal.SortingFootballLeagueStandings_LogOut_${}`} /> </span>
+            <span> <FormattedMessage id={`Modal.SortingFootballLeagueStandings_LogOut_${convertCase(property, 'pascal')}`} /> </span>
 
             <button
                 type='button'

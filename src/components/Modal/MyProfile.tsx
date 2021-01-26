@@ -8,7 +8,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import {pascalToCamel} from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 import useInput from 'tools/hooks/useInput';
 
 
@@ -45,7 +45,7 @@ function MyProfile({}: PropsMyProfile) {
         (event:MouseEvent)=> {   
             if ( !refModal.current?.contains(event.target as Node)){
                 dispatch(actionsRoot.status.return__REPLACE({ 
-                    listKey: ['showing', 'modal', pascalToCamel("MyProfile")],
+                    listKey: ['showing', 'modal', convertCase("MyProfile", 'camel')],
                     replacement: false
                 }));
             } 
@@ -113,7 +113,7 @@ function MyProfile({}: PropsMyProfile) {
                 <button 
                     type='button'
                     aria-label="Close MyProfile"
-                    value={pascalToCamel("MyProfile")}
+                    value={convertCase("MyProfile", 'camel')}
                     onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />

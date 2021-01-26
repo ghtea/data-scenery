@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
-import * as cn from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 import nav, {Category as TypeCategory, Link} from 'components/Header/nav';
 import useLink from 'tools/hooks/useLink';
 
@@ -46,7 +46,7 @@ function Category({
     const idButton = useMemo(()=>`button__idCategory----${idCategory}`,[]);
     const idLabel = useMemo(()=>`label__idCategory----${idCategory}`,[]);
     
-    const slugCategory = useMemo(()=>encodeURIComponent( cn.camelToKebab(idCategory) ),[]);
+    const slugCategory = useMemo(()=>encodeURIComponent( convertCase(idCategory, 'kebabLower') ),[]);
 
     const transform: string = useMemo(()=>{
         if (idCategoryOpen === idCategory){
@@ -71,7 +71,7 @@ function Category({
                 aria-haspopup="menu" aria-expanded={idCategoryOpen === idCategory}
                 onClick={onClick}
             >
-                <label id={idLabel}> <FormattedMessage id={`Nav.${cn.camelToPascal(idCategory)}`} /> </label >
+                <label id={idLabel}> <FormattedMessage id={`Nav.${convertCase(idCategory, 'pascal')}`} /> </label >
                 <span>
                     <svg
                         width="1.3em"
@@ -98,7 +98,7 @@ function Category({
             >
                 {listLink.map((linkEach, iEach)=>{
     
-                    const slugLink = encodeURIComponent( cn.camelToKebab(linkEach.id) );
+                    const slugLink = encodeURIComponent( convertCase(linkEach.id, 'kebabLower') );
  
                     return (
                         <li 
@@ -109,7 +109,7 @@ function Category({
                                 href={`/${slugCategory}/${slugLink}`}
                                 onClick={onClick_Link}
                             > 
-                                <FormattedMessage id={`Nav.${cn.camelToPascal(idCategory)}_${cn.camelToPascal(linkEach.id)}`} /> 
+                                <FormattedMessage id={`Nav.${convertCase(idCategory, 'pascal')}_${convertCase(linkEach.id, 'pascal')}`} /> 
                             </a>
                         </li>
                     )

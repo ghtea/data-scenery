@@ -11,7 +11,7 @@ import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
 
 import InputRadio from '../Global/Input/InputRadio';
-import {pascalToCamel} from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 import IconX from 'svgs/basic/IconX';
 
 import styles from './Setting.module.scss';
@@ -43,7 +43,7 @@ function Setting({}: PropsSetting) {
         (event:MouseEvent)=> {   
             if ( !refModal.current?.contains(event.target as Node)){
                 dispatch(actionsRoot.status.return__REPLACE({ 
-                    listKey: ['showing', 'modal', pascalToCamel("Setting")],
+                    listKey: ['showing', 'modal', convertCase("Setting", 'camel')],
                     replacement: false
                 }));
             } 
@@ -117,7 +117,7 @@ function Setting({}: PropsSetting) {
                 <button
                     type='button'
                     aria-label="Close Setting"
-                    value={pascalToCamel("Setting")}
+                    value={convertCase("Setting", 'pascal')}
                     onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />

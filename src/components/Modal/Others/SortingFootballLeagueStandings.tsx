@@ -14,7 +14,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actions from "store/actions";
 
-import {pascalToCamel} from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 import IconX from 'svgs/basic/IconX';
 
 import styles from './SortingFootballLeagueStandings.module.scss';
@@ -46,7 +46,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
         (event:MouseEvent)=> {   
             if ( !refModal.current?.contains(event.target as Node)){
                 dispatch(actions.status.return__REPLACE({ 
-                    listKey: ['showing', 'modal', pascalToCamel("SortingFootballLeagueStandings")],
+                    listKey: ['showing', 'modal', convertCase("SortingFootballLeagueStandings", 'camel')],
                     replacement: false
                 }));
             } 
@@ -141,7 +141,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                 <button
                     type='button'
                     aria-label="Close SortingFootballLeagueStandings"
-                    value={pascalToCamel("SortingFootballLeagueStandings")}
+                    value={convertCase("SortingFootballLeagueStandings", 'camel')}
                     onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />

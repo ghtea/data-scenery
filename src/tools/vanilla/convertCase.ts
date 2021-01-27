@@ -25,10 +25,10 @@ const convertCase = (nameStarting: string, caseEnding: Case):string => {
     if (caseEnding === 'camel'){
         result = list.reduce((acc, current, index)=>{
             if (index === 0){
-                return acc + current
-            }
-            else {
                 return acc + current.replace(/^[A-Z]/, str => str.toLowerCase());
+            } 
+            else {
+                return acc + current.replace(/^[a-z]/, str => str.toUpperCase());
             }
         }, '');
     }

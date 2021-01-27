@@ -43,11 +43,14 @@
 
 
 .root {
-    :global(.isDragging){
+    &:global(.isDragging){
         width: auto;
         
         font-weight: bold;
 
         user-select: none;
+
+        position: fixed;
+        border-width: 2px;
     }
 }

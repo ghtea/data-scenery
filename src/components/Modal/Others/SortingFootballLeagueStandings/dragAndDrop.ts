@@ -2,7 +2,7 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable, DraggableLocation } from 'react-beautiful-dnd';
 
 
-// https://codesandbox.io/s/ql08j35j3q?file=/index.js
+// 
 
 
 

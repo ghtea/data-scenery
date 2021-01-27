@@ -13,7 +13,7 @@ const returnListStatTeamSorted = (leagueStandings:types.data.football.LeagueStan
 
     let listIdTeam = Object.keys(dictStatTeam);
     
-    for (let i = listOptionActive.length-1; i >= 0; i--){
+    for (let i = 0; i < listOptionActive.length; i++){
         
         const {property, direction} = listOptionActive[i];
 
@@ -27,7 +27,7 @@ const returnListStatTeamSorted = (leagueStandings:types.data.football.LeagueStan
         }
     }
 
-    return listIdTeam.reduce((acc, current)=>{acc.unshift(dictStatTeam[current]); return acc;}, [] as types.data.football.StatTeam[])
+    return listIdTeam.reduce((acc, current)=>{acc.push(dictStatTeam[current]); return acc;}, [] as types.data.football.StatTeam[])
 }
 
 

@@ -45,6 +45,10 @@
     "Modal.MyProfile_Update": "Update",
 
     "Modal.SortingFootballLeagueStandings_Title": "Sort Table",
+    "Modal.SortingFootballLeagueStandings_Points": "Points",
+    "Modal.SortingFootballLeagueStandings_GoalsDiff": "Goals Diff",
+    "Modal.SortingFootballLeagueStandings_GoalsScored": "Goals Scored",
+    "Modal.SortingFootballLeagueStandings_GoalsAgainst": "Goals Against",
     
     "Notification.Test1__S": "Succuessfully tested 1 !",
     "Notification.Test2__H": "Succuessfully tested 2 !",

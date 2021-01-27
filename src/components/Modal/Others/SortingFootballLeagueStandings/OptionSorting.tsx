@@ -50,16 +50,16 @@ function OptionSorting({
         >
         {(provided, snapshot) => (
 
-        <div className={`${styles['root']} ${snapshot.isDragging && 'isDragging'}`}
+        <div className={`${styles['root']} ${snapshot.isDragging ? 'isDragging' : ''}`}
             data-property={property}
             data-active={active}
-            draggable={true}
+            draggable='true'
+            style={provided.draggableProps.style}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={provided.draggableProps.style}
-        >   "points" | "goals_diff" | "goals_against" | "goals_scored"
-            <span> <FormattedMessage id={`Modal.SortingFootballLeagueStandings_LogOut_${convertCase(property, 'pascal')}`} /> </span>
+        >   
+            <span> <FormattedMessage id={`Modal.SortingFootballLeagueStandings_${convertCase(property, 'pascal')}`} /> </span>
 
             <button
                 type='button'

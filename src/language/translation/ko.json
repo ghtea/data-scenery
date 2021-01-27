@@ -37,7 +37,11 @@
     "Modal.MyProfile_Update": "업데이트",
  
     "Modal.SortingFootballLeagueStandings_Title": "테이블 정렬하기",
-    
+    "Modal.SortingFootballLeagueStandings_Points": "포인트",
+    "Modal.SortingFootballLeagueStandings_GoalsDiff": "골 득실차",
+    "Modal.SortingFootballLeagueStandings_GoalsScored": "골 득점 수",
+    "Modal.SortingFootballLeagueStandings_GoalsAgainst": "골 실점 수",
+
     "Nav.NameApp": "데이터 시너리",
     "Nav.Home": "홈",
     "Nav.LogIn": "로그인",

@@ -165,7 +165,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                 {(provided, snapshot) => (
 
                 <div
-                    className={`${styles['active']} ${snapshot.isDraggingOver && 'isDraggingOver'}`}
+                    className={`${styles['active']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >
@@ -195,7 +195,7 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                 {(provided, snapshot) => (
                     
                 <div 
-                    className={`${styles['inactive']}`}
+                    className={`${styles['inactive']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`} 
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >
@@ -206,8 +206,8 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                             dictEventHandler={dictEventHandler}
                             active={false}
 
-                            key={`OptionSortingAll-${index}`}
-                            draggableId={`OptionSortingAll-${index}`}
+                            key={`OptionSortingInactive-${index}`}
+                            draggableId={`OptionSortingInactive-${index}`}
                             index={index}
                         />
                     )))}

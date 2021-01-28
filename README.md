@@ -17,6 +17,7 @@
 - naming roles for many things
 - trying frameworks (Next.js, Nest.js)
 - get out of create-react-app and edit babel, webpack
+- use popular color library or css framworks to use better color palettes
 
 
 ---

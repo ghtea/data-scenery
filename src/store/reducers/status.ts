@@ -47,11 +47,11 @@ const stateInitial = {
         leagueStandings: {
             sorting: {
                 listOptionActive: [ 
-                    {property: 'points', direction: 'descending', isActive: true} 
+                    {property: 'points', direction: 'descending', isActive: true},
+                    {property: 'goals_diff', direction: 'descending', isActive: true},
                 ] as types.status.OptionSorting[],
                 
                 listOptionInactive: [ 
-                    {property: 'goals_diff', direction: 'descending', isActive: false},
                     {property: 'goals_scored', direction: 'descending', isActive: false},
                     {property: 'goals_against', direction: 'ascending', isActive: false}, 
                 ] as types.status.OptionSorting[],

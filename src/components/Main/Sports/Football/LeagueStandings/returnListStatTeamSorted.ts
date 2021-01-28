@@ -9,11 +9,11 @@ const returnListStatTeamSorted = (leagueStandings:types.data.football.LeagueStan
 
     // console.log(listOptionSortingActive);
     const { dictStatTeam } = leagueStandings;
-    const {listOptionActive, listOptionInactive} = sorting;
+    const {listOptionActive} = sorting;
 
     let listIdTeam = Object.keys(dictStatTeam);
     
-    for (let i = 0; i < listOptionActive.length; i++){
+    for (let i = listOptionActive.length - 1; i >= 0; i--){
         
         const {property, direction} = listOptionActive[i];
 

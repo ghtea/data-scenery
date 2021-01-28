@@ -7,6 +7,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
+import IconSortButton from 'svgs/basic/IconSortButton';
+
 import convertCase from 'tools/vanilla/convertCase'
 import * as actions  from 'store/actions';
 
@@ -65,7 +67,7 @@ function OptionSorting({
                 type='button'
                 value={property}
                 onClick={dictEventHandler.onClick_ChangeDirection}
-            >   {direction === 'ascending' ? '<' : '>'}
+            >   <IconSortButton className={`${styles['icon__sort-button']}`} direction={direction}/>   
             </button> 
         </div>
 

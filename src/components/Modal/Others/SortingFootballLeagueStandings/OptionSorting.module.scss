@@ -2,7 +2,7 @@
 
 .root {
     
-    height: 28px;
+    height: 30px;
     width: auto;
 
     display: inline-flex;
@@ -17,10 +17,10 @@
     cursor: pointer;
 
     &:nth-child(1) {
-        margin-top: 6px;
+        margin-top: 4px;
     }
     &:nth-child(n+2) {
-        margin-top: 6px;
+        margin-top: 4px;
     }
 
     @include color-each-theme(background-color, basic__0);
@@ -34,10 +34,26 @@
         @include color-each-theme(color, basic__4);
     }
     
+    span {
+        height: auto;
+    }
 
     button {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
         color: inherit;
-        height: 100%;
+
+        width: auto;
+        height: auto;
+        padding: 0px;
+
+        .icon__sort-button {
+            width: 20px;
+            height: 20px;
+        }
     }
 }
 
@@ -46,11 +62,16 @@
     &:global(.isDragging){
         width: auto;
         
-        font-weight: bold;
+        //font-weight: bold;
 
-        user-select: none;
+        //user-select: none;
 
-        position: fixed;
+        position: static;
+        //transform: translate(0,0) !important;
+        //left: 0;
+        //top:0;
+        //transform: translate(0,0);
+
         border-width: 2px;
     }
 }

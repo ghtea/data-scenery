@@ -159,17 +159,24 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                 <DragDropContext
                     onDragEnd={dictEventHandler.onDragEnd}
                 >
-                <Droppable 
-                    droppableId="listOptionActive"
-                >
-                {(provided, snapshot) => (
 
                 <div
-                    className={`${styles['active']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`}
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
+                    className={`${styles['active']}`}
                 >
-                    
+                    <span
+                        className={`${styles['status']}`}
+                    > Active </span>
+
+                    <Droppable 
+                        droppableId="listOptionActive"
+                    >
+                    {(provided, snapshot) => (
+
+                    <div
+                        className={`${styles['area']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`}
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
                     {sorting.listOptionActive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
@@ -183,22 +190,34 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                         />
                     )))}
                     
+                    {provided.placeholder} {/* https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md */ }
+                    </div>
+                    )}
+                    </Droppable>
+
                 </div>
 
-                )}
-                </Droppable>
+                
                 
             
-                <Droppable 
-                    droppableId="listOptionInactive"
-                >
-                {(provided, snapshot) => (
+        
                     
                 <div 
-                    className={`${styles['inactive']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`} 
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                >
+                    className={`${styles['inactive']}`} 
+                >   
+                    <span
+                        className={`${styles['status']}`}
+                    > Inactive </span>
+
+                    <Droppable 
+                        droppableId="listOptionInactive"
+                    >
+                    {(provided, snapshot) => (
+                    <div 
+                        className={`${styles['area']} ${snapshot.isDraggingOver ? 'isDraggingOver' : ''}`} 
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
                     {sorting.listOptionInactive.map(( (option, index)=>(
                         <OptionSorting
                             property={option.property}
@@ -211,9 +230,12 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                             index={index}
                         />
                     )))}
+                    {provided.placeholder} {/* https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/api/droppable.md */ }
+                    </div>
+                    )}
+                    </Droppable>
+
                 </div>
-                )}
-                </Droppable>
                 </DragDropContext>
                     
             </div>

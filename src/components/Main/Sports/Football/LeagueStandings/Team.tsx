@@ -79,7 +79,7 @@ function Team({
         else {
             return (`${statTeam.overall.goals_diff.toString()}`);
         }
-    },[]);
+    },[statTeam]);
 
     return (
         team ?

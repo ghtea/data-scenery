@@ -77,12 +77,10 @@ function SortingFootballLeagueStandings({}: PropsSortingFootballLeagueStandings)
                         destination.index
                     );
 
-                    if (source.droppableId === 'listOptionInactive') {
-                        dispatch(actions.status.return__REPLACE({
-                            listKey: ['current', 'football', 'leagueStandings', 'sorting', 'listOptionInactive'],
-                            replacement: listOption
-                        }));
-                    }
+                    dispatch(actions.status.return__REPLACE({
+                        listKey: ['current', 'football', 'leagueStandings', 'sorting', source.droppableId],
+                        replacement: listOption
+                    }));
 
                 } else {
 

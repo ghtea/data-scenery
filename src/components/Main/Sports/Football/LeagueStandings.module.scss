@@ -5,6 +5,8 @@
     
 
     width: 100%;  min-width: $device-xs__min-width; max-width: $device-m__min-width;
+    margin-bottom: 40px;
+
 
     h2 {
         font-size: 1.2rem;
@@ -30,6 +32,8 @@
         display: table;
 
         width: 100%;  
+
+
 
         .row {   
             // sharing styles with tr in thead and tr in tbody

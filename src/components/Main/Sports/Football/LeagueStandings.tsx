@@ -70,6 +70,7 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                 >
                     Sorting
                 </button>
+                
             </div>
 
             <table className={`mode----${mode}`} aria-label='League Standings'>

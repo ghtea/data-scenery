@@ -75,12 +75,13 @@ function Team({
 
     const diffGoal = useMemo(()=>{
         if (statTeam.overall.goals_diff > 0){
-            return (`+${statTeam.overall.goals_diff.toString()}`);
+            return ({ text: `+${statTeam.overall.goals_diff.toString()}`, className: 'plus-goals'});
         }
         else {
-            return (`${statTeam.overall.goals_diff.toString()}`);
+            return ({ text: `${statTeam.overall.goals_diff.toString()}`, className: 'minus-goals'});
         }
     },[statTeam]);
+
 
     return (
         team ?
@@ -106,7 +107,9 @@ function Team({
             <td className={`${styles['result']}`}>
                 {mode.element === 'text' ?
                 <span className={`${styles['text']}`}>
-                    {`W${statTeam.overall.won} / D${statTeam.overall.draw} / L${statTeam.overall.lost}`}
+                    <span className={`${styles['won']}`}>{statTeam.overall.won}</span>  
+                    <span className={`${styles['draw']}`}>{statTeam.overall.draw}</span> 
+                    <span className={`${styles['lost']}`}>{statTeam.overall.lost}</span>
                 </span>
                 :
                 <span className={`${styles['graph']}`}>
@@ -117,10 +120,11 @@ function Team({
                 }
             </td>
             
-            <td className={`${styles['goals']}`}>
+            <td className={`${styles['goals'] }`}>
                 {mode.element === 'text' ?
                 <span className={`${styles['text']}`}>
-                    {`${diffGoal} ( +${statTeam.overall.goals_scored} / -${statTeam.overall.goals_against} )`}
+                    <span className={`${styles[diffGoal.className] }`} > {diffGoal.text} </span>
+                    <span> { `( +${statTeam.overall.goals_scored} / -${statTeam.overall.goals_against} )` } </span>
                 </span>
                 :
                 <span className={`${styles['graph']}`}>

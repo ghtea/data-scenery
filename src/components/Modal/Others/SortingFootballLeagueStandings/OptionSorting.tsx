@@ -19,7 +19,7 @@ import styles from './OptionSorting.module.scss';
  
 // import IconSort from 'svgs/basic/IconSort';
 type PropsOptionSorting = {
-    property: 'points' | 'goals_diff' | 'goals_against' | 'goals_scored'; 
+    property: 'points' | 'goals_diff' | 'goals_against' | 'goals_scored' | 'games_played';  
     direction: 'ascending' | 'descending';
     dictEventHandler: any;
     active: boolean;

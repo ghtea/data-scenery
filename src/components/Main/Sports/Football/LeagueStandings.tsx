@@ -14,6 +14,8 @@ import Team from './LeagueStandings/Team';
 
 import IconGraph from 'svgs/basic/IconChartBar';
 import IconText from 'svgs/basic/IconText';
+import IconSort from 'svgs/basic/IconSort';
+
 
 import * as actions  from 'store/actions';
 import * as types  from 'store/types';
@@ -21,16 +23,16 @@ import * as types  from 'store/types';
 import styles from './LeagueStandings.module.scss';
 // import IconSort from 'svgs/basic/IconSort';
 type PropsLeagueStandings = {
-    mode: 'rows' | 'cards'; 
 };
 
-function LeagueStandings({mode}: PropsLeagueStandings) {
+function LeagueStandings({}: PropsLeagueStandings) {
 
     const dispatch = useDispatch();
     const leagueStandings = useSelector((state: StateRoot)=>state.data.football.leagueStandings);
 
     const sorting = useSelector((state: StateRoot)=>state.status.current.football.leagueStandings.sorting);
-    
+    const mode = useSelector((state: StateRoot)=>state.status.current.football.leagueStandings.mode);
+
     const onClick_ShowModal = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const {value} = event.currentTarget;
@@ -41,12 +43,16 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
         },[]
     );
     
-    const [modeElement, setModeElement]=useState<'text' | 'graph'>('text');
 
     const onClick_ChangeMode = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const {value} = event.currentTarget;
-        setModeElement( value as 'text' | 'graph');
+
+        dispatch(actions.status.return__REPLACE({ 
+            listKey: ['current', 'football', 'leagueStandings', 'mode', 'element'],
+            replacement: value
+        }));
+    
         },[]
     );
 
@@ -81,16 +87,16 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                     value='sortingFootballLeagueStandings'
                     onClick={onClick_ShowModal}
                 >
-                    Sorting
+                    <IconSort className={`${styles['icon__sort']}`} />
                 </button>
 
                 <button
                     className={`${styles['mode-element']}`}
                     type='button'
-                    value={modeElement === 'text' ? 'graph' : 'text'}
+                    value={mode.element === 'text' ? 'graph' : 'text'}
                     onClick={onClick_ChangeMode}
                 >
-                    {modeElement === 'text' ? 
+                    {mode.element === 'text' ? 
                     <IconText className={`${styles['icon__text']}`} /> 
                     : 
                     <IconGraph className={`${styles['icon__graph']}`} /> 

@@ -85,12 +85,22 @@ td {
     &.result{
 
         flex-flow: row nowrap;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
 
-        $width__text: 60px;
+        //$width__text: 60px;
+
+        .text {
+
+            display: inline-flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+        }
         .graph {
-            width: calc(100% - #{$width__text});
+            // width: calc(100% - #{$width__text});
+            width : calc(100% - 20px);
+            margin: auto;
 
             display: inline-flex;
             flex-flow: column nowrap;
@@ -114,15 +124,6 @@ td {
             }
         }
 
-        .text {
-            width: $width__text;
-
-            display: inline-flex;
-            flex-flow: column nowrap;
-            justify-content: center;
-            align-items: center;
-        }
-
     }
 
 
@@ -130,12 +131,23 @@ td {
     &.goals{
 
         flex-flow: row nowrap;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
 
-        $width__text: 60px;
+        //$width__text: 60px;
+
+        .text {
+
+            display: inline-flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
         .graph {
-            width: calc(100% - #{$width__text});
+            // width: calc(100% - #{$width__text});
+            width : calc(100% - 20px);
+            margin: auto;
 
             display: inline-flex;
             flex-flow: column nowrap;
@@ -154,15 +166,6 @@ td {
             .against {
                 @include color-each-theme(background-color, error__4);
             }
-        }
-
-        .text {
-            width: $width__text;
-
-            display: inline-flex;
-            flex-flow: column nowrap;
-            justify-content: center;
-            align-items: center;
         }
 
     }

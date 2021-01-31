@@ -38,8 +38,8 @@ const stateInitial = {
     language: '',   // en, ko, ja    , it should be blank at first check cookie first (call DETECT_LANGUAGE)
     
     theme: {
-      option: 'always-light',
-      name: 'light'
+        option: 'always-light',
+        name: 'light'
     },
     
 
@@ -52,9 +52,14 @@ const stateInitial = {
                 ] as types.status.OptionSorting[],
                 
                 listOptionInactive: [ 
+                    {property: 'games_played', direction: 'ascending', isActive: false},
                     {property: 'goals_scored', direction: 'descending', isActive: false},
                     {property: 'goals_against', direction: 'ascending', isActive: false}, 
                 ] as types.status.OptionSorting[],
+            },
+            mode: {
+                format: 'table' as 'table' | 'cards',
+                element: 'text' as 'text' | 'graph',
             }
         }
     },

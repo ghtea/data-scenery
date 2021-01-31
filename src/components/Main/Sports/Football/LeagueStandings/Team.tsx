@@ -36,7 +36,8 @@ function Team({
     const idTeam = statTeam.id;
 
     const team = useSelector((state: StateRoot)=> state.data.football.listTeam).find(team => team.id === idTeam);
-    
+    const mode = useSelector((state: StateRoot)=> state.status.current.football.leagueStandings.mode);
+
     const reward = useMemo(()=>{
         if (statTeam.result === 'Champions League'){
             return 'champions';
@@ -103,26 +104,30 @@ function Team({
             </td>
             
             <td className={`${styles['result']}`}>
+                {mode.element === 'text' ?
+                <span className={`${styles['text']}`}>
+                    {`W${statTeam.overall.won} / D${statTeam.overall.draw} / L${statTeam.overall.lost}`}
+                </span>
+                :
                 <span className={`${styles['graph']}`}>
                     <span className={`${styles['won']}`} style={dictStyleResult['won']} />
                     <span className={`${styles['draw']}`} style={dictStyleResult['draw']}/>
                     <span className={`${styles['lost']}`} style={dictStyleResult['lost']}/>
                 </span>
-
-                <span className={`${styles['text']}`}>
-                    {`${statTeam.overall.won}/${statTeam.overall.draw}/${statTeam.overall.lost}`}
-                </span>
+                }
             </td>
             
             <td className={`${styles['goals']}`}>
+                {mode.element === 'text' ?
+                <span className={`${styles['text']}`}>
+                    {`${diffGoal} ( +${statTeam.overall.goals_scored} / -${statTeam.overall.goals_against} )`}
+                </span>
+                :
                 <span className={`${styles['graph']}`}>
                     <span className={`${styles['scored']}`} style={dictStyleGoals['goals_scored']} />
                     <span className={`${styles['against']}`} style={dictStyleGoals['goals_against']}/>
                 </span>
-
-                <span className={`${styles['text']}`}>
-                    {`${diffGoal}`}
-                </span>
+                }
             </td>
         </tr>
         : null

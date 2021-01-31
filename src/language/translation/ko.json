@@ -41,6 +41,7 @@
     "Modal.SortingFootballLeagueStandings_GoalsDiff": "골 득실차",
     "Modal.SortingFootballLeagueStandings_GoalsScored": "골 득점 수",
     "Modal.SortingFootballLeagueStandings_GoalsAgainst": "골 실점 수",
+    "Modal.SortingFootballLeagueStandings_GamesPlayed": "경기 수",
 
     "Nav.NameApp": "데이터 시너리",
     "Nav.Home": "홈",

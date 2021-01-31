@@ -39,7 +39,7 @@ function Football({}: PropsFootball) {
         <div className={`${styles['root']}`} >
             
             {readyLeagueStandings &&
-                <LeagueStandings mode={'rows'}/>
+                <LeagueStandings />
             }
 
             {!readyLeagueStandings && loadingLeagueStandings &&

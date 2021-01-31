@@ -26,6 +26,14 @@
 
         .sorting {
             height: 30px;
+
+            .icon__sort {
+                @include color-each-theme(color, main__5);
+            }
+            .icon__sort {
+                width: 24px;
+                height: 24px;
+            }
         }
         .mode-element {
             margin-left: 10px;

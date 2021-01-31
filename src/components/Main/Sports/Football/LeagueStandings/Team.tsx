@@ -97,6 +97,10 @@ function Team({
             <td className={`${styles['points']}`}>
                 {statTeam.points}
             </td>
+
+            <td className={`${styles['games']}`}>
+                {statTeam.overall.games_played}
+            </td>
             
             <td className={`${styles['result']}`}>
                 <span className={`${styles['graph']}`}>

@@ -12,6 +12,9 @@ import {StateRoot} from 'store/reducers';
 import returnListStatTeamSorted from './LeagueStandings/returnListStatTeamSorted';
 import Team from './LeagueStandings/Team';
 
+import IconGraph from 'svgs/basic/IconChartBar';
+import IconText from 'svgs/basic/IconText';
+
 import * as actions  from 'store/actions';
 import * as types  from 'store/types';
 
@@ -35,6 +38,15 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
             listKey: ['showing', 'modal', value],
             replacement: true
         }));
+        },[]
+    );
+    
+    const [modeElement, setModeElement]=useState<'text' | 'graph'>('text');
+
+    const onClick_ChangeMode = useCallback(
+        (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        const {value} = event.currentTarget;
+        setModeElement( value as 'text' | 'graph');
         },[]
     );
 
@@ -64,11 +76,25 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
 
             <div className={`${styles['options']}`}>
                 <button
+                    className={`${styles['sorting']}`}
                     type='button'
                     value='sortingFootballLeagueStandings'
                     onClick={onClick_ShowModal}
                 >
                     Sorting
+                </button>
+
+                <button
+                    className={`${styles['mode-element']}`}
+                    type='button'
+                    value={modeElement === 'text' ? 'graph' : 'text'}
+                    onClick={onClick_ChangeMode}
+                >
+                    {modeElement === 'text' ? 
+                    <IconText className={`${styles['icon__text']}`} /> 
+                    : 
+                    <IconGraph className={`${styles['icon__graph']}`} /> 
+                    }
                 </button>
                 
             </div>
@@ -88,6 +114,10 @@ function LeagueStandings({mode}: PropsLeagueStandings) {
                         <th scope="col">
                             <span>Pts</span>
                             <span>Points</span>
+                        </th>
+                        <th scope="col">
+                            <span>G</span>
+                            <span>Games</span>
                         </th>
                         <th scope="col">
                             <span>Results</span>

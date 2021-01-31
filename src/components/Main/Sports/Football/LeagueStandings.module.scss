@@ -20,13 +20,41 @@
         align-self: flex-end;
 
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: row nowrap;
         justify-content: flex-start;
-        align-items: flex-end;
+        align-items: center;
 
+        .sorting {
+            height: 30px;
+        }
+        .mode-element {
+            margin-left: 10px;
+            width: 30px;
+            height: 30px;
+            padding: 2px;
+
+            .icon__graph, .icon__text {
+                @include color-each-theme(color, main__5);
+            }
+            .icon__graph {
+                width: 24px;
+                height: 24px;
+            }
+            .icon__text {
+                width: 22px;
+                height: 22px;
+            }
+
+
+        }
+
+        
     }
 
     table {
+
+        margin-top: 10px;
+
         border-collapse: collapse;
         table-layout: fixed;
         display: table;
@@ -37,11 +65,11 @@
 
         .row {   
             // sharing styles with tr in thead and tr in tbody
-            // rank, logo, points, result, goals
-            grid-template-columns: 30px 50px 50px 1fr 1fr;
+            // rank, logo, points, games,  result, goals
+            grid-template-columns: 30px 50px 50px 30px 1fr 1fr;
 
             @media (min-width: $device-m__min-width){
-                grid-template-columns: 30px 1fr 50px 1fr 1fr;
+                grid-template-columns: 30px 1fr 50px 70px 1fr 1fr;
             }
         }
         // colgroup 는 잔문제가 많아서 사용하지 않기로 결정
@@ -84,6 +112,7 @@
                     }
                 }
             }
+
         }
 
         tbody {

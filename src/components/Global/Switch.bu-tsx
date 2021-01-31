@@ -40,12 +40,6 @@ function Switch({
         ]
     ,[]);
 
-    const pairIdLabel = useMemo(()=>[
-        `label__${name}----${pairValue[0]}`,
-        `label__${name}----${pairValue[1]}`,
-        ]
-    ,[]);
-
     return ( 
     <>
         <input 
@@ -65,8 +59,7 @@ function Switch({
             id={pairIdLabel[0]}
             htmlFor={pairIdInput[0]}
             //label={pairLabel[0]}
-        >   <IconChartBar/>
-        </label>
+        /> 
     </>
 
   );

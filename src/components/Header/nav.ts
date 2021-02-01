@@ -14,9 +14,15 @@ const nav: Category[] = [
     {
         id: 'sports',
         listLink: [
-            {id: 'Football'} 
+            {id: 'football'} 
         ],
-    }
+    },
+    {
+        id: 'life',
+        listLink: [
+            {id: 'weather'} 
+        ],
+    },
 ]
 
 

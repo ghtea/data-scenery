@@ -1,16 +1,16 @@
 
 
-export const name__GET_WEATHER = 'data/weather/GET_WEATHER';
-type Payload__GET_WEATHER = {
+export const name__GET_WEATHER_ONE = 'data/weather/GET_WEATHER_ONE';
+type Payload__GET_WEATHER_ONE = {
     
 }
-export const return__GET_WEATHER = (payload: Payload__GET_WEATHER) => {
+export const return__GET_WEATHER_ONE = (payload: Payload__GET_WEATHER_ONE) => {
     return {
-        type: name__GET_WEATHER,
+        type: name__GET_WEATHER_ONE,
         payload: payload
     }
 };
-export type type__GET_WEATHER = ReturnType<typeof return__GET_WEATHER>;
+export type type__GET_WEATHER = ReturnType<typeof return__GET_WEATHER_ONE>;
 
 /*
 export const name__UPDATE_LEAGUE_STANDINGS = 'data/weather/UPDATE_LEAGUE_STANDINGS';

@@ -6,6 +6,7 @@ import LogIn from "./Main/LogIn";
 import SignUp from "./Main/SignUp";
 
 import Sports from "./Main/Sports";
+import Life from "./Main/Life"; 
 
 import Test from "./Main/Test";
 import NotFound from "./Main/NotFound";
@@ -37,6 +38,10 @@ function Main({}: PropsMain) {
 
             <Route path="/sports" >
                 <Sports />
+            </Route>
+
+            <Route path="/life" >
+                <Life />
             </Route>
 
             <Route path="/test" >

@@ -1,7 +1,7 @@
 import { call, select, put } from "redux-saga/effects";
 import { firebaseFirestore } from "firebaseApp";
 
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import queryString from 'query-string';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,16 +11,17 @@ import * as actions from "store/actions";
 import * as types from "store/types";
 
 
-const requestGetLeagueStandings = (idLeague:string) => {
-    return firebaseFirestore.collection("Football.LeagueStandings_")
-    .doc(idLeague)
-    .get()
-};
 
+const requestGetWeather = (lat:number = 37.2636, lon:number = 127.0286): Promise<AxiosResponse<types.data.weather.WeatherOne>> => { 
+    return axios.get(`${process.env.REACT_APP_OPEN_WEATHER_URL_FRONT}/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}`)
+};
 
 /*
 
 https://openweathermap.org/api/one-call-api
+
+`${process.env.REACT_APP_OPEN_WEATHER_URL_FRONT}/onecall?lat=${lat}&lon={lon}&appid=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}`
+
 
 https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&appid=750bac5e554109ad1e24ce1c5e55351d
 
@@ -28,89 +29,59 @@ https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&app
 
 
 
-function* getLeagueStandings(action: actions.data.football.type__GET_LEAGUE_STANDINGS) {
+function* getWeather(action: actions.data.weather.type__GET_WEATHER) {
 
-    const {idLeague} = action.payload;
 
     try {
             
         yield put( actions.status.return__REPLACE({
-            listKey: ['ready', 'data', 'football', 'leagueStandings'],
+            listKey: ['ready', 'data', 'weather', 'weatherOne'],
             replacement: false
         }) );
         yield put( actions.status.return__REPLACE({
-            listKey: ['loading', 'data', 'football', 'leagueStandings'],
+            listKey: ['loading', 'data', 'weather', 'weatherOne'],
             replacement: true
         }) );
 
-        const res =  yield call( requestGetLeagueStandings, idLeague );
-        // console.log(res.data());
+        const res =  yield call( requestGetWeather );
+        console.log(res);
 
-        const leagueStandings: types.data.football.LeagueStandings = res.data();
-
-        const dateNow = Date.now();
-
-        if (!leagueStandings){
-            yield put( actions.data.football.return__UPDATE_LEAGUE_STANDINGS({
-                idLeague: idLeague,
-                triggeringGet: true,
-            }) );
-        }
-        else {
-            if (dateNow - leagueStandings['dateUpdated'] > 1000 * 60 * 60 * 3){  // if data is not old (in 3hours)
-
-                yield put( actions.data.football.return__UPDATE_LEAGUE_STANDINGS({
-                    idLeague: idLeague,
-                    triggeringGet: true,
-                }) );
-
-            }
-            else {   // if data is fresh
-                yield put( actions.data.return__REPLACE({
-                    listKey: ['football', 'leagueStandings'],
-                    replacement: leagueStandings
-                }) );
-
-                yield put( actions.status.return__REPLACE({
-                    listKey: ['loading', 'data', 'football', 'leagueStandings'],
-                    replacement: false
-                }) );
-                
-                yield put( actions.status.return__REPLACE({
-                    listKey: ['ready', 'data', 'football', 'leagueStandings'],
-                    replacement: true
-                }) );
-
-                const listIdTeamHere = Object.keys(leagueStandings.dictStatTeam);
-                
-                yield put( actions.data.football.return__CHECK_LIST_TEAM({
-                    listIdTeam: listIdTeamHere,
-                }) );
-            }
-
-        }
+        const weatherOne: types.data.weather.WeatherOne = res.data;
+        console.log(weatherOne);
         
+        yield put( actions.data.return__REPLACE({
+            listKey: ['weather', 'weatherOne'],
+            replacement: weatherOne
+        }) );
 
-        // trigger sorting of standings
-
+        yield put( actions.status.return__REPLACE({
+            listKey: ['loading', 'data', 'weather', 'weatherOne'],
+            replacement: false
+        }) );
+        
+        yield put( actions.status.return__REPLACE({
+            listKey: ['ready', 'data', 'weather', 'weatherOne'],
+            replacement: true
+        }) );
+        
     } catch (error) {
         
         console.error(error)
 
         yield put( actions.status.return__REPLACE({
-            listKey: ['loading', 'data', 'football', 'leagueStandings'],
+            listKey: ['loading', 'data', 'weather', 'weatherOne'],
             replacement: false
         }) );
         
         yield put( actions.status.return__REPLACE({
-            listKey: ['ready', 'data', 'football', 'leagueStandings'],
+            listKey: ['ready', 'data', 'weather', 'weatherOne'],
             replacement: false
         }) );
         
         yield put( actions.notification.return__ADD_DELETE_BANNER({
-            codeSituation: 'Football_GetLeagueStandings_UnknownError__E'
+            codeSituation: 'Football_GetWeather_UnknownError__E'
         }) );
     }
 }
 
-export default getLeagueStandings;
+export default getWeather;

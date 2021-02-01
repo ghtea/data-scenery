@@ -19,7 +19,8 @@
     "Nav.SignUp": "Sign Up",
     "Nav.Sports": "Sports",  
     "Nav.Sports_Football": "Football",  
-
+    "Nav.Life": "Life",  
+    "Nav.Life_Weather": "Weather",  
 
     "Main.LogIn_LogIn": "Log In",
     "Main.LogIn_EmailAddress": "Email Address",

@@ -17,7 +17,10 @@ const stateInitial = {
         football: {
             leagueStandings: false,
             listTeam: false,
-        }
+        },
+        weather: {
+            weatherOne: false,
+        },
     },
   },
   
@@ -27,6 +30,9 @@ const stateInitial = {
         football: {
             leagueStandings: false,
             listTeam: false,
+        },
+        weather: {
+            weatherOne: false,
         }
     },
     // listPortal: false,

@@ -20,12 +20,11 @@ function Weather({}: PropsWeather) {
   
     const dispatch = useDispatch();     
     
-    const readyLeagueStandings = useSelector((state: StateRoot) => state.status.ready.data.football.leagueStandings);
-    const loadingLeagueStandings = useSelector((state: StateRoot) => state.status.loading.data.football.leagueStandings);
+    const readyWeatherOne = useSelector((state: StateRoot) => state.status.ready.data.weather.weatherOne);
+    const loadingWeatherOne= useSelector((state: StateRoot) => state.status.loading.data.weather.weatherOne);
 
     useEffect(()=>{
-        dispatch(actions.data.weather.return__GET_WEATHER({
-        })); 
+        dispatch(actions.data.weather.return__GET_WEATHER_ONE({})); 
     }, []);
 
 

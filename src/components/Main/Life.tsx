@@ -13,7 +13,7 @@ function Life({}: PropsLife) {
   return (
           <Switch>
             
-            <Route path="/sports/weather" >
+            <Route path="/life/weather" >
                 <Weather />
             </Route>
 

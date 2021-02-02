@@ -46,6 +46,7 @@ function WeatherOne({}: PropsWeatherOne) {
 
             <h2> Weather </h2>
 
+            <div>I'm weather one</div> 
             
 
         </div>

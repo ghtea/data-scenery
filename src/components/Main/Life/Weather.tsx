@@ -10,7 +10,7 @@ import {StateRoot} from 'store/reducers';
 import * as actions  from 'store/actions';
 
 import Loading from 'components/Global/Loading';
-// import LeagueStandings from './Weather/LeagueStandings';
+import WeatherOne from './Weather/WeatherOne';
 
 import styles from './Weather.module.scss';
 // import IconSort from 'svgs/basic/IconSort';
@@ -31,8 +31,13 @@ function Weather({}: PropsWeather) {
     return (
 
         <div className={`${styles['root']}`} >
-            
+            {readyWeatherOne &&
+                <WeatherOne />
+            }
 
+            {!readyWeatherOne && loadingWeatherOne &&
+                <Loading />
+            }
         </div>
     );
 }

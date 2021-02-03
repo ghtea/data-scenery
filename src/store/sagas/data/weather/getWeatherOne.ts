@@ -12,8 +12,8 @@ import * as types from "store/types";
 
 
 
-const requestGetWeather = (lat:number = 37.2636, lon:number = 127.0286): Promise<AxiosResponse<types.data.weather.WeatherOne>> => { 
-    return axios.get(`${process.env.REACT_APP_OPEN_WEATHER_URL_FRONT}/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_SPORT_DATA_API_API_KEY}`)
+const requestGetWeatherOne = (lat:number = 37.2636, lon:number = 127.0286): Promise<AxiosResponse<types.data.weather.WeatherOne>> => { 
+    return axios.get(`${process.env.REACT_APP_OPEN_WEATHER_URL_FRONT}/onecall?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`)
 };
 
 /*
@@ -29,9 +29,9 @@ https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&app
 
 
 
-function* getWeather(action: actions.data.weather.type__GET_WEATHER) {
+function* getWeatherOne(action: actions.data.weather.type__GET_WEATHER_ONE) {
 
-
+    console.log('hello')
     try {
             
         yield put( actions.status.return__REPLACE({
@@ -43,7 +43,7 @@ function* getWeather(action: actions.data.weather.type__GET_WEATHER) {
             replacement: true
         }) );
 
-        const res =  yield call( requestGetWeather );
+        const res =  yield call( requestGetWeatherOne );
         console.log(res);
 
         const weatherOne: types.data.weather.WeatherOne = res.data;
@@ -66,7 +66,7 @@ function* getWeather(action: actions.data.weather.type__GET_WEATHER) {
         
     } catch (error) {
         
-        console.error(error)
+        console.error(error);
 
         yield put( actions.status.return__REPLACE({
             listKey: ['loading', 'data', 'weather', 'weatherOne'],
@@ -79,9 +79,9 @@ function* getWeather(action: actions.data.weather.type__GET_WEATHER) {
         }) );
         
         yield put( actions.notification.return__ADD_DELETE_BANNER({
-            codeSituation: 'Football_GetWeather_UnknownError__E'
+            codeSituation: 'Weather_GetWeather_UnknownError__E'
         }) );
     }
 }
 
-export default getWeather;
+export default getWeatherOne;

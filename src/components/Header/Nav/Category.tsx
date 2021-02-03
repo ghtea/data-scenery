@@ -50,10 +50,10 @@ function Category({
 
     const transform: string = useMemo(()=>{
         if (idCategoryOpen === idCategory){
-            return 'rotate(90)'
+            return 'rotate(270)'
         }
         else {
-            return 'rotate(270)'
+            return 'rotate(90)'
         }
     },[idCategory, idCategoryOpen]);
 

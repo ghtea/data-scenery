@@ -28,7 +28,7 @@ export type Current = {
 
 
 
-export type Hour = {
+export type HourRaw = {
     dt: number;
     temp: number;
     feels_like: number;
@@ -48,6 +48,9 @@ export type Hour = {
         icon: string;
     }[];
     pop: number;
+}
+export type Hour = HourRaw & {
+    hour: number
 }
 
 

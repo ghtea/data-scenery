@@ -44,11 +44,15 @@ function* getWeatherOne(action: actions.data.weather.type__GET_WEATHER_ONE) {
         }) );
 
         const res =  yield call( requestGetWeatherOne );
-        console.log(res);
+        //console.log(res);
 
-        const weatherOne: types.data.weather.WeatherOne = res.data;
-        console.log(weatherOne);
+        let weatherOne: types.data.weather.WeatherOne = res.data;
+        //console.log(weatherOne);
         
+        for (let i=0; i<weatherOne.hourly.length; i++){
+            weatherOne.hourly[i].hour = new Date(weatherOne.hourly[i].dt * 1000).getHours()
+        }
+
         yield put( actions.data.return__REPLACE({
             listKey: ['weather', 'weatherOne'],
             replacement: weatherOne

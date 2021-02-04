@@ -10,7 +10,7 @@ import {StateRoot} from 'store/reducers';
 import * as actions  from 'store/actions';
 
 import Loading from 'components/Global/Loading';
-import WeatherOne from './Weather/WeatherOne';
+import WeatherOne from './Weather/Hourly';
 
 import styles from './Weather.module.scss';
 // import IconSort from 'svgs/basic/IconSort';

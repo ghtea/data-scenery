@@ -50,7 +50,8 @@ export type HourRaw = {
     pop: number;
 }
 export type Hour = HourRaw & {
-    hour: number
+    hour: number;
+    index: number;
 }
 
 

@@ -33,7 +33,24 @@ function Hourly({}: PropsHourly) {
         return weatherOne?.hourly.filter(e=>e.hour === 0).map((e)=>e.index);        
     },[weatherOne]);
 
-    console.log(listIndex)
+    const listNight = useMemo(()=>{
+
+        const listSunrise = weatherOne?.daily.map(day=>({dt: day.sunrise, sun: 'sunrise'}) ) || [];
+        const listSunset = weatherOne?.daily.map(day=>({dt: day.sunset, sun: 'sunset'}) ) || [];
+        const listSun = [...listSunrise, ...listSunset].sort((a,b)=>a.dt - b.dt);
+        console.log(listSun)
+
+        //console.log(weatherOne?.hourly.map(e=>{console.log(e.dt - 1612564248); return undefined;}))
+        //const indexStart = weatherOne?.hourly.filter(e=> Math.abs(e.dt - 1612477903) <= 60 * 30 * 10)[0].index;
+        const indexEnd = weatherOne?.hourly.filter(e=> Math.abs(e.dt - 1612564248) <= 60 * 30)[0].index;
+
+        return [
+            { end: indexEnd}
+        ]
+        // weatherOne?.daily.map(day=>[day.sunrise])
+    },[weatherOne]);
+
+    console.log(listNight)
     /*
     const onClick_ChangeMode = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -54,7 +71,7 @@ function Hourly({}: PropsHourly) {
 
             <h2> Hourly </h2>
 
-            <ResponsiveContainer width={700} height={300}>
+            <ResponsiveContainer width={'100%'} height={300}>
                 <LineChart 
                     width={730} height={250} 
                     data={weatherOne?.hourly}
@@ -68,7 +85,10 @@ function Hourly({}: PropsHourly) {
                     {listIndex?.map(index=>(
                         <ReferenceLine x={index} stroke="grey" key={`ref line ${index}`}/>
                     ))}
-                    <ReferenceArea x1={0} x2={4} y1={-3} y2={3} stroke="red" strokeOpacity={0.3} />
+
+                    {listNight?.map((night, index)=>(
+                        <ReferenceArea x1={0} x2={night.end} key={`ref area night ${index}`}/>
+                    ))}
                     
                     <Tooltip 
                         contentStyle={{width: 'auto'}}

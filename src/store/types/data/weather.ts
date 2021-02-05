@@ -102,7 +102,7 @@ export type WeatherOne = {
         precipitation: number;
     }[];
     hourly: Hour[];
-    daily: any[];
+    daily: Day[];
 };
 
 

@@ -52,6 +52,7 @@ export type HourRaw = {
 export type Hour = HourRaw & {
     hour: number;
     index: number;
+    date: number;
 }
 
 

@@ -117,7 +117,7 @@ function Setting({}: PropsSetting) {
                 <button
                     type='button'
                     aria-label="Close Setting"
-                    value={convertCase("Setting", 'pascal')}
+                    value={convertCase("Setting", 'camel')}
                     onClick={onClick_CloseModal}
                 > 
                     <IconX className={`${stylesModal['icon-x']}`} />

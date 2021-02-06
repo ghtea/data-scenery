@@ -11,7 +11,7 @@ import { LineChart, Line, ResponsiveContainer,
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 
-
+import returnListNight from './Hourly/returnListNight';
 
 import IconGraph from 'svgs/basic/IconChartBar';
 
@@ -33,24 +33,9 @@ function Hourly({}: PropsHourly) {
         return weatherOne?.hourly.filter(e=>e.hour === 0).map((e)=>e.index);        
     },[weatherOne]);
 
-    const listNight = useMemo(()=>{
+    const listNight = useMemo( ()=> weatherOne ? returnListNight(weatherOne) : [] ,[weatherOne] );
 
-        const listSunrise = weatherOne?.daily.map(day=>({dt: day.sunrise, sun: 'sunrise'}) ) || [];
-        const listSunset = weatherOne?.daily.map(day=>({dt: day.sunset, sun: 'sunset'}) ) || [];
-        const listSun = [...listSunrise, ...listSunset].sort((a,b)=>a.dt - b.dt);
-        console.log(listSun)
-
-        //console.log(weatherOne?.hourly.map(e=>{console.log(e.dt - 1612564248); return undefined;}))
-        //const indexStart = weatherOne?.hourly.filter(e=> Math.abs(e.dt - 1612477903) <= 60 * 30 * 10)[0].index;
-        const indexEnd = weatherOne?.hourly.filter(e=> Math.abs(e.dt - 1612564248) <= 60 * 30)[0].index;
-
-        return [
-            { end: indexEnd}
-        ]
-        // weatherOne?.daily.map(day=>[day.sunrise])
-    },[weatherOne]);
-
-    console.log(listNight)
+    console.log(listNight);
     /*
     const onClick_ChangeMode = useCallback(
         (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -77,7 +62,7 @@ function Hourly({}: PropsHourly) {
                     data={weatherOne?.hourly}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
+                    
                     
                     <XAxis dataKey="hour" />
                     <YAxis />
@@ -87,7 +72,7 @@ function Hourly({}: PropsHourly) {
                     ))}
 
                     {listNight?.map((night, index)=>(
-                        <ReferenceArea x1={0} x2={night.end} key={`ref area night ${index}`}/>
+                        <ReferenceArea x1={night.indexStart} x2={night.indexEnd} key={`ref area night ${index}`}/>
                     ))}
                     
                     <Tooltip 

@@ -51,6 +51,7 @@ function* getWeatherOne(action: actions.data.weather.type__GET_WEATHER_ONE) {
         
         for (let i=0; i<weatherOne.hourly.length; i++){
             weatherOne.hourly[i].hour = new Date(weatherOne.hourly[i].dt * 1000).getHours();
+            weatherOne.hourly[i].date = new Date(weatherOne.hourly[i].dt * 1000).getDate();
             weatherOne.hourly[i].index = i;
         }
 

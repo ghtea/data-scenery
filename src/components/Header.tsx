@@ -44,23 +44,26 @@ function Header({}: PropsHeader) {
         // console.log(location.pathname);
         if (  (/^\/log-in/).test(location.pathname) || (/^\/sign-up/).test(location.pathname)  ) {
             dispatch(actions.status.return__REPLACE({
-                listKey:['showing', 'header'],
+                listKey:['showing', 'header', 'root'],
                 replacement: false
             }));
         }
         else {
             dispatch(actions.status.return__REPLACE({
-                listKey:['showing', 'header'],
+                listKey:['showing', 'header', 'root'],
                 replacement: true
             }));
         }
     }, [location]);
 
-    const [isOpen, setIsOpen] = useState(false);
+    const showingBoard = useSelector((state: StateRoot) => state.status.showing.header.board);
     const onClick_OpenBoard = useCallback(
         (event: React.MouseEvent<HTMLButtonElement, MouseEvent> ) => {
-            setIsOpen(isOpen=>!isOpen);        
-        },[isOpen]
+            dispatch(actions.status.return__REPLACE({ 
+                listKey: ['showing', 'header', 'board'],
+                replacement: !showingBoard
+            }));      
+        },[showingBoard]
     );
     
     const onClick_ShowModal = useCallback(
@@ -81,7 +84,7 @@ function Header({}: PropsHeader) {
 
             <div className={`${styles['left']}`}>
 
-                {!isOpen ?
+                {!showingBoard ?
                 <button
                     type='button'
                     aria-label="Open Board"
@@ -169,7 +172,7 @@ function Header({}: PropsHeader) {
 
         </div> 
 
-        <NavBoard isOpen={isOpen}/>
+        <NavBoard isOpen={showingBoard}/>
 
     </header>
   );

@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
-import * as actionsRoot from "store/actions";
+import * as actions from "store/actions";
 
 import convertCase from 'tools/vanilla/convertCase';
 import nav, {Category as TypeCategory, Link} from 'components/Header/nav';
@@ -31,12 +31,18 @@ function Category({
     setIdCategoryOpen,
 }: PropsCategory) {
 
-    
+    const dispatch = useDispatch();
+
     const onClick_Link = useCallback(
         (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         const href = event.currentTarget.getAttribute("href");  // https://stackoverflow.com/questions/1550901/how-to-get-raw-href-contents-in-javascript
         if (href) {
+            dispatch(actions.status.return__REPLACE({ 
+                listKey: ['showing', 'header', 'board'],
+                replacement: false 
+            })); 
+
             history.push(href);
             setIdCategoryOpen(undefined); 
         }

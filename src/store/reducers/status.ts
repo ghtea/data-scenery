@@ -74,7 +74,10 @@ const stateInitial = {
   
   showing: {
 
-    header: false,
+    header: {
+        root: false,
+        board: false,
+    },
     footer: false,
 
     modal: {

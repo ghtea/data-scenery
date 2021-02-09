@@ -12,7 +12,7 @@ import Modal from './Modal';
 import {useSelector, useDispatch} from "react-redux";
 import {StateRoot} from 'store/reducers';
 import * as actionsRoot from "store/actions";
-import {pascalToCamel} from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 
 beforeAllDefault();
 
@@ -38,14 +38,21 @@ function CollectionButtonOpening({}: PropsHeader) {
         <button
             type='button'
             aria-label="Open Setting"
-            value={pascalToCamel("Setting")}
+            value={convertCase("Setting", 'camel')}
             onClick={onClick_ShowModal}
         />
 
         <button
             type='button'
             aria-label="Open MyProfile"
-            value={pascalToCamel("MyProfile")}
+            value={convertCase("MyProfile", 'camel')}
+            onClick={onClick_ShowModal}
+        />  
+
+        <button
+            type='button'
+            aria-label="Open SortingFootballLeagueStandings"
+            value={convertCase("SortingFootballLeagueStandings", 'camel')}
             onClick={onClick_ShowModal}
         />    
     </div>
@@ -96,7 +103,25 @@ describe('Open and close all modals', () => {
         
         fireEvent.click( screen.getByLabelText('Outside MyProfile') );
         expect(screen.queryByRole('dialog', {name: translationEn['Modal.MyProfile_Title']})).not.toBeInTheDocument();
-    });
+    }); 
+
+    it('open/close SortingFootballLeagueStandings', () => {
+        render(<Modal/>);
+        render(<CollectionButtonOpening />);
+
+        fireEvent.click(screen.getByRole('button', {name: 'Open SortingFootballLeagueStandings'}));
+        expect(screen.getByRole('dialog', {name: translationEn['Modal.SortingFootballLeagueStandings_Title']})).toBeInTheDocument();
+        
+        fireEvent.click( screen.getByRole('button', {name: 'Close SortingFootballLeagueStandings'}) );
+        expect(screen.queryByRole('dialog', {name: translationEn['Modal.SortingFootballLeagueStandings_Title']})).not.toBeInTheDocument();
+
+
+        fireEvent.click( screen.getByRole('button', {name: 'Open SortingFootballLeagueStandings'}) );
+        expect(screen.getByRole('dialog', {name: translationEn['Modal.SortingFootballLeagueStandings_Title']})).toBeInTheDocument();
+        
+        fireEvent.click( screen.getByLabelText('Outside SortingFootballLeagueStandings') );
+        expect(screen.queryByRole('dialog', {name: translationEn['Modal.SortingFootballLeagueStandings_Title']})).not.toBeInTheDocument();
+    }); 
 
 });
 

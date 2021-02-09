@@ -4,7 +4,7 @@ import {
     screen, fireEvent,
 } from 'test-utils';
 
-import * as cn from 'tools/vanilla/convertCase';
+import convertCase from 'tools/vanilla/convertCase';
 
 import translationEn from 'language/translation/en.json';
 import NavBoard from './NavBoard';
@@ -16,7 +16,7 @@ beforeAllDefault();
 
 const listNameCategory = nav.map(
     (category)=> 
-        translationEn[`Nav.${cn.camelToPascal(category.id)}` as keyof typeof translationEn] 
+        translationEn[`Nav.${convertCase(category.id, 'pascal')}` as keyof typeof translationEn] 
 );
 
 describe('<NavBoard />', () => {

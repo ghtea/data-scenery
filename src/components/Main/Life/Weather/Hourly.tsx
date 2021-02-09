@@ -54,9 +54,11 @@ function Hourly({}: PropsHourly) {
     
 
     return (
-        <div className={`${styles['root']}`}>
+        <figure className={`${styles['root']}`} aria-labelledby='h2__Hourly' >
 
-            <h2> Hourly </h2>
+            <h2
+                id='h2__Hourly'
+            > Hourly </h2>
 
             <ResponsiveContainer width={'100%'} height={200} >
                 <LineChart 
@@ -89,7 +91,7 @@ function Hourly({}: PropsHourly) {
                 </LineChart>
             </ResponsiveContainer>
 
-        </div>
+        </figure>
     );
 }
 

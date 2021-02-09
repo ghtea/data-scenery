@@ -7,11 +7,11 @@ import '@testing-library/jest-dom/extend-expect';
 
 
 import translationEn from 'language/translation/en.json';
-import Football from './Football';
+import Weather from '../Life/Weather';
 
 beforeAllDefault();
 
-describe('<Football />', () => {
+describe('<Weather />', () => {
 
     /*
     it('matches snapshot', () => {
@@ -22,13 +22,14 @@ describe('<Football />', () => {
     
     
     it ('check getting table', async () => {
-        render(<Football />);
+        render(<Weather />);
         
         
-        await waitFor( () => expect(screen.getByRole('table', {name: 'League Standings'})).toBeInTheDocument() );
+        await waitFor( () => expect(screen.getByRole('figure', {name: 'Hourly'})).toBeInTheDocument() );
 
     });
     
     
 
 });
+ 

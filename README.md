@@ -217,72 +217,59 @@
 - divided reducers
     - auth
     - notification
-    - portal
-    - stack
     - status
+    - data  
+        - football
+        - weather
     ```typescript
-    const stateInitial = { // status
-
+    // example of reducer of status
+    const stateInitial = {
+  
         loading: {
             user: false,
-            listPortal: false,
-            listStack: false
+            data: {
+                football: {
+                    leagueStandings: false,
+                    listTeam: false,
+                },
+                weather: {
+                    weatherOne: false,
+                },
+            },
         },
+        
         ready: {
             user: false,
-            listPortal: false,
-            listStack: false
-        },
-        current: {
-            language: '',   // en, ko, ja    , it should be blank at first check cookie first (call DETECT_LANGUAGE)
-            theme: {
-            option: 'always-light',
-            name: 'light'
-            },
-            portal: {
-                open: '',
-                editing: '',
-                addingToStack: '',
-                sorting: {
-                    property: 'hp' as 'hp' | 'dateVisited', 
-                    direction: {
-                        hp: 'ascending' as 'ascending' | 'descending', 
-                        dateVisited: 'ascending' as 'ascending' | 'descending', 
-                    }
+            data: {
+                football: {
+                    leagueStandings: false,
+                    listTeam: false,
                 },
-                hiding: {
-                    inStacks: false,
-                },
-            },
-            stack: {
-                open: '',
-                editing: '',
-                sorting: {
-                    property: 'name' as 'name' | 'dateVisited', 
-                    direction: {
-                        name: 'ascending' as 'ascending' | 'descending', 
-                        dateVisited: 'ascending' as 'ascending' | 'descending', 
-                    }
+                weather: {
+                    weatherOne: false,
                 }
             },
+            // listPortal: false,
         },
-        showing: {
-            nav: false,
-            modal: {
-                setting: false,
-                myProfile: false,
-                creatingPortal: false,
-                editingPortal: false,
-                    
-                addingPortalToStack: false,
-                creatingStack: false,
-                editingStack: false,
-
-                searching: false,
-            }
-        }
-    };
+        ...
     ```
+    - made useful saga
+        - it can be replacement of useEffect in functional components
+        - it lets me divided files rather than too long code in file of functional components
+        ```typescript
+            function* waitForStateChange<T>( selector: Selector<T>, value:T) {
+
+                if (yield select(selector) as unknown === value) return; 
+
+                while (true) {
+
+                    yield take([actions.auth.name__REPLACE, actions.data.name__REPLACE, actions.notification.name__REPLACE, actions.status.name__REPLACE]);
+                    
+                    if ( yield select(selector) as unknown === value ) return;
+
+                }
+            }
+        ```
 
 ---
 ### Language 
@@ -305,87 +292,30 @@
     ```
 
     ```
-    // en.json // there is ko.json too
-    {
-        "Blank": "",
-
-        "Nav.Home": "Home",
-        "Nav.Setting": "Setting",
-            
-        "Nav.NameApp": "Portal View",
-        
-        "Nav.LogIn": "Log In",
-        "Nav.SignUp": "Sign Up",
-        
-        "Nav.System": "System",   
-        "Nav.System_State": "State",
-        "Nav.System_Styles": "Styles",
-        "Nav.System_Language": "Language",
-        "Nav.Diary": "Diary",
-        
-        
-        "Modal.Create": "Create",
-        "Modal.Delete": "Delete",
-        "Modal.Update": "Update",
-
-        "Modal.Setting_Title": "Setting",
-        "Modal.Setting_Theme": "Theme",
-        "Modal.Setting_Language": "Language",
-        "Modal.Setting_LogOut": "Log Out",
-        
-        "Modal.MyProfile_Title": "My Profile",
-        "Modal.MyProfile_EmailAddress": "Email Address",
-        "Modal.MyProfile_Name": "Name",
-        "Modal.MyProfile_Photo": "Photo",
-        "Modal.MyProfile_Update": "Update",
-
-        ... 
-        "Global.Portal": "Portal",
-        "Global.Stack": "Stack",
-        "Global.Name": "Name",
-        "Global.Add": "Add",
-        "Global.Create": "Create",
-        "Global.Delete": "Delete",
-        "Global.Update": "Update",
-        "Global.Search": "Search",
-
-        "Notification.Test1__S": "Succuessfully tested 1 !",
-        "Notification.Test2__H": "Succuessfully tested 2 !",
-        "Notification.NotLoggedIn__E": "You should log in first",
-        "Notification.UnknownError__E": "An unknown error has occurred",
-
-        "Notification.LogIn_UnknownError__E": "An unknown error has occurred",
-        "Notification.LogIn_UserNotFound__E": "No user was found from this email address",
-        "Notification.LogIn_UserDisabled__E": "This user has been disabled",
-
-        "Notification.LogIn_NoEmail__E": "Please enter email address",
-        "Notification.LogIn_InvalidEmail__E": "The email address is not valid",
-        "Notification.LogIn_NoPassword__E": "Please enter password",
-        "Notification.LogIn_WrongPassword__E": "Password is wrong, or you should use the social service you have already registered",
-
-        "Notification.LogInGoogle_UnknownError__E": "An unknown error has occurred",
-        "Notification.LogInGithub_UnknownError__E": "An unknown error has occurred",
-
+    // ko.json // there is en.json too
         ...
-        "Notification.CreateStack_Succeeded__S": "Successfully created stack!",
-        "Notification.CreateStack_UnknownError__E": "Failed to create the stack",
-        "Notification.GetListStack_UnknownError__E": "Failed to get stacks",
-        "Notification.VisitStack_UnknownError__E": "Failed to update the some portals which you visited",
-        "Notification.UpdateStack_Succeeded__S": "Successfully updated stack!",
-        "Notification.UpdateStack_UnknownError__E": "Failed to update the stack",
-        "Notification.DeleteStack_Succeeded__S": "Successfully deleted stack!",
-        "Notification.DeleteStack_UnknownError__E": "Failed to delete the stack",
+        "Modal.SortingFootballLeagueStandings_Title": "테이블 정렬하기",
+        "Modal.SortingFootballLeagueStandings_Points": "포인트",
+        "Modal.SortingFootballLeagueStandings_GoalsDiff": "골 득실차",
+        "Modal.SortingFootballLeagueStandings_GoalsScored": "골 득점 수",
+        "Modal.SortingFootballLeagueStandings_GoalsAgainst": "골 실점 수",
+        "Modal.SortingFootballLeagueStandings_GamesPlayed": "경기 수",
 
-        "Page.Home_Welcome": "Welcome!",
-        "Page.LogIn_LogIn": "LogIn",
-        "Page.LogIn_EmailAddress": "Email Address",
-        "Page.LogIn_Password": "Password",
-        "Page.LogIn_SignUp": "Sign Up",
-
-        "Page.SignUp_PasswordAgain": "Password Again",
-
-        "Page.Home_ConfirmDeletingPortal": "Are you sure you want to delete this portal?"
-    }
+        "Nav.NameApp": "데이터 시너리",
+        "Nav.Home": "홈",
+        "Nav.LogIn": "로그인",
+        "Nav.SignUp": "회원가입",
+        "Nav.Sports": "스포츠",  
+        "Nav.Sports_Football": "축구",  
+        "Nav.Life": "라이프",  
+        "Nav.Life_Weather": "날씨",  
+        
+        "Notification.Test1__S": "테스트에 성공하였습니다 1 !",
+        "Notification.Test2__H": "테스트에 성공하였습니다 2 !",
+        "Notification.NotLoggedIn__E": "먼저 로그인해야 합니다",
+        "Notification.UnknownError__E": "알수 없는 에러가 발생했습니다",
+        ...
+        
     ```
 ---
 ### Icons
@@ -438,5 +368,41 @@
     //
 
     export default Icon;
+
+    ```
+
+---
+### Testing
+[back to to top](#system)
+- tried simple unit tests, integration tests
+- to make testing available with 'Testing Library', I learnt and added ARIA attributes
+    - followed as official documents suggest
+    ```typescript
+        
+    describe('<Header />', () => {
+
+        it('open/close board', () => {
+            render(<Header />);
+
+            expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
+            expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
+            expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('is-open');
+
+            fireEvent.click(screen.getByRole('button', {name: 'Open Board'}));
+            
+            expect(screen.queryByRole('button', {name: 'Open Board'})).not.toBeInTheDocument();
+            expect(screen.getByRole('button', {name: 'Close Board'})).toBeInTheDocument();
+            expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).toHaveClass('is-open');
+    
+
+            fireEvent.click(screen.getByRole('button', {name: 'Close Board'}));
+            
+            expect(screen.getByRole('button', {name: 'Open Board'})).toBeInTheDocument();
+            expect(screen.queryByRole('button', {name: 'Close Board'})).not.toBeInTheDocument();
+            expect(screen.getByRole('navigation', {name: 'Main Navigation Board'}) ).not.toHaveClass('is-open');
+        });
+        
+        ...
+    }
 
     ```

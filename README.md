@@ -1,22 +1,22 @@
 # Data Scenery
 [link](https://ds.nextwing.me/)
 > 
-- Check diverse data on graph
+- Show data with table/graph
 
 ---
 ## Focused (compared to past projects)
 - Semantic HTML (ARIA)
 - Reconstruncted/renamed components based on HTML tags
-- Testing (jest, testing-library)
+- Testing (simple unit test and integration test)
 - Components, Hooks for frequent usage
 - More complicate UI
 - Better saga coding for rendering/using firebase less
 
 
 ## Should Be Improved
-- naming roles for many things
+- advanced naming roles for many things
 - trying frameworks (Next.js, Nest.js)
-- get out of create-react-app and edit babel, webpack
+- getting out of create-react-app and edit babel, webpack
 - use popular color library or css framworks to use better color palettes
 
 
@@ -28,16 +28,20 @@
 - [State Management](#state-management)
 - [Language](#language)
 - [Icons](#icons)
+- [Testing](#testing)
 
 ---
 
 ### Components
 [back to to top](#system)
-> = Nav + Page + Modal + Notification + Action
-- Nav
-    - stay on top
-    - hide at certain pages like 'LogIn', 'SignUp', ...
-- Page
+> = Header + Main + Modal + Notification + Action
+- Overall
+    - immitated name of HTML tags
+- Header
+    - useing same components for mobile view and descktop view
+    - navigation links support web accessibility
+        - press tab key to open menu for each category (rather than hovering)
+- Main
     - content which appear based on routes
     - LogIn, Home, ...
     ```javascript
@@ -62,22 +66,24 @@
 - Modal
     - box shows at the middle of screen for work like 'create portal'
     - designed thinking experince on mobile
+    - added ARIA attributes for web accessibility
+        - ex) role="dialog"
     ```javascript
-        return (        
-        <>
-            {showingSetting && <Setting />}
-            {showingMyProfile && <MyProfile />}
-            {showingCreatingPortal && <CreatingPortal />}
-            {showingEditingPortal && <EditingPortal />}
+        function Modal({}: PropsModal) {
+  
+            const showingSetting = useSelector((state: StateRoot) => state.status.showing.modal.setting);
+            const showingMyProfile = useSelector((state: StateRoot) => state.status.showing.modal.myProfile); 
 
-            {showingAddingPortalToStack && <AddingPortalToStack />}
-            {showingCreatingStack && <CreatingStack />}
-            {showingEditingStack && <EditingStack />}
+            const showingSortingFootballLeagueStandings = useSelector((state: StateRoot) => state.status.showing.modal.sortingFootballLeagueStandings);  
 
+            return (        
+                <>
+                    {showingSetting && <Setting />}
+                    {showingMyProfile && <MyProfile />}
 
-            {showingSearching && <Searching />}
-        </>
-    );
+                    {showingSortingFootballLeagueStandings && <SortingFootballLeagueStandings/>}
+                </>
+        );
     ```
 - Notification
     - banner shows shorty for notificate success, hint, warning, error

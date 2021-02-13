@@ -21,22 +21,47 @@
 
 
 ---
+## Features
+- [Football League Standings](#football-league-standings)
+- [Weather Hourly Graph](#weather-hourly-graph)
+- [Others](#others)
+
+### Football League Standings
+[link](https://ds.nextwing.me/sports/football)
+- showing table of standings of Premier League
+    - sorting by 'Drag and Drop' options
+    - option for switching Text view vs Graph view
+- applied grid styles while maintaining web accessibility
+
+### Weather Hourly Graph
+[link](https://ds.nextwing.me/life/weather)
+- very simple graph of hourly temperature
+- used Recharts library for the first time
+    - customized a bit to show when is day or night
+
+---
 
 ## System
 - [Components (UI)](#components)
 - [Styles](#styles)
 - [State Management](#state-management)
+- [Auth](#auth)
+- [Backend](#backend)
 - [Language](#language)
 - [Icons](#icons)
 - [Testing](#testing)
 
----
 
 ### Components
 [back to to top](#system)
 > = Header + Main + Modal + Notification + Action
 - Overall
     - immitated name of HTML tags
+    - `history.push('/...')` is available in redux saga files
+    ```typescript
+        import { createBrowserHistory } from 'history';
+        export default createBrowserHistory();
+    ```
 - Header
     - useing same components for mobile view and descktop view
     - navigation links support web accessibility
@@ -271,6 +296,14 @@
             }
         ```
 
+---
+### Auth
+[back to to top](#system)
+- used Firebase
+---
+### Backend
+[back to to top](#system)
+- used Firebase
 ---
 ### Language 
 [back to to top](#system)

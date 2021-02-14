@@ -50,6 +50,7 @@
 - [Language](#language)
 - [Icons](#icons)
 - [Testing](#testing)
+- [Deployment](#deployment)
 
 
 ### Components
@@ -439,3 +440,12 @@
     }
 
     ```
+
+    
+---
+### Deployment
+[back to to top](#system)
+- using AWS Amplify
+- automate deployment by GitHub commit
+- custom domain
+- using enviroment variables in build process

@@ -3,6 +3,11 @@
 > 
 - Show data with table/graph
 
+## 참고 이미지
+![DataScenery](https://user-images.githubusercontent.com/47841931/120080058-1ca31300-c0f2-11eb-9d4c-3e46b6baa9d1.png)
+![DataScenery skills](https://user-images.githubusercontent.com/47841931/120080059-1e6cd680-c0f2-11eb-8dac-facb762136fb.png)
+
+
 ---
 ## Focused (compared to past projects)
 - Semantic HTML (ARIA)
